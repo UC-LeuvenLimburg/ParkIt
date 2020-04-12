@@ -1,3 +1,5 @@
+# To run this script open this project in a powershell window and type '.\setup-parkit.ps1'
+
 Write-Output 'Installing Laravel dependencies'
 composer install
 
