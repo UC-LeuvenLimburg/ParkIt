@@ -6,10 +6,10 @@ We created this using laravel 7.0.
 
 ## How to install
 1. Clone this repository to a desired folder.
-2. Open the folder using your favourite IDE (aka. VsCode)
+2. Open the folder using your favourite IDE (aka. _**VsCode**_)
 3. Run folowing Powershell script in this folder
     ```setup-parkit.ps1```
-4. To start your vagrant box navigate with your terminal to ~/Homestead and run
+4. To start your vagrant box navigate with your terminal to ```~/Homestead``` and run
     ```vagrant up```
 5. Setup your database by running following command in your project folder
     ```php artisan migrate```
