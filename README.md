@@ -1,8 +1,10 @@
 <p align="center"><img src=".github\images\Logo.svg" width="400"></p>
 
-##Project description
+## Project description
+This app gives you the possibility to rent and to lease open land as parking spaces.
+We created this using laravel 7.0.
 
-##How to install
+## How to install
 1. Clone this repository to a desired folder.
 2. Open the folder using your favourite IDE (aka. VsCode)
 3. Run folowing Powershell script in this folder
