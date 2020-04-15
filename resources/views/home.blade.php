@@ -4,18 +4,19 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    You are logged in!
-                </div>
+            <div class="background-gray" >
+                <h1 class="display-4">Welcome,</h1>
+                <p class="lead">To use our service please login.</p>
+                <p class="lead">
+                    <a class="btn btn-primary btn-lg" href="/login" role="button">Login</a>
+                </p>
+                <hr class="my-4">
+                <h3 class="display-6" class="lead">What do we offer?</h3>
+                <p>We offer a service that makes it possible to hire or lease a parking spot.
+                    <div class="row justify-content-center">
+                        <img src="images/parking.jpg" alt="parking image">
+                    </div>
+                </p>
             </div>
         </div>
     </div>
