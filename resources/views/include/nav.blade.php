@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary" >
     <div class="container">
         <a class="navbar-brand" href="{{ url('/') }}">
             {{ config('app.name', 'Laravel') }}
@@ -8,7 +8,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" >
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
@@ -46,12 +46,10 @@
                             {{ __('My profile') }}
                         </a>
 
-                        {{-- To be enabled when we have figured this @auth out --}}
-                        
-                        {{-- @auth('admin') --}} 
+                        {{-- These are ADMIN only --}}  
                         <a class="dropdown-item" href="#">All places</a>
                         <a class="dropdown-item" href="#">All users</a>
-                        {{-- @endauth --}}
+                        {{--  --}}
                         
                         <hr class="my-1">
                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
