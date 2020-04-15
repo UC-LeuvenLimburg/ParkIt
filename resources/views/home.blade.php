@@ -7,7 +7,7 @@
             <div class="background-gray" >
                 <h1 class="display-4">Welcome to ParkIt</h1>
                 <h3 class="display-6" class="lead">What do we offer?</h3>
-                <p>We offer a service that makes it possible to hire or lease a parking spot.
+                <p>We offer a service that makes it possible to rent or lease a parking spot.
                     <div class="row justify-content-center">
                         <img src="images/parking.jpg" alt="parking image">
                     </div>
