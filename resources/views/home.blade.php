@@ -4,8 +4,8 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="jumbotron">
-                <h1 class="display-5">Welcome to Parkit</h1>
+            <div class="background-gray" >
+                <h1 class="display-4">Welcome,</h1>
                 <p class="lead">To use our service please login.</p>
                 <p class="lead">
                     <a class="btn btn-primary btn-lg" href="#" role="button">Login</a>
@@ -13,7 +13,9 @@
                 <hr class="my-4">
                 <h3 class="display-6" class="lead">What do we offer?</h3>
                 <p>We offer a service that makes it possible to hire or lease a parking spot.
-                    <img src="images/parking.jpg">
+                    <div class="row justify-content-center">
+                        <img src="images/parking.jpg" alt="parking image">
+                    </div>
                 </p>
             </div>
         </div>
