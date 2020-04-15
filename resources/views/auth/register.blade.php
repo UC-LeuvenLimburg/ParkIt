@@ -66,7 +66,7 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Sign up') }}
                                 </button>
-                                <a class="btn btn-link" href="/login" role="button">Sign in instead</a>
+                                <a class="btn btn-link" href="/login" role="button">Already have an account?</a>
                             </div>
                         </div>
                     </form>
