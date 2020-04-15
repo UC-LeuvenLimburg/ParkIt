@@ -8,7 +8,7 @@
                 <h1 class="display-4">Welcome,</h1>
                 <p class="lead">To use our service please login.</p>
                 <p class="lead">
-                    <a class="btn btn-primary btn-lg" href="#" role="button">Login</a>
+                    <a class="btn btn-primary btn-lg" href="/login" role="button">Login</a>
                 </p>
                 <hr class="my-4">
                 <h3 class="display-6" class="lead">What do we offer?</h3>
