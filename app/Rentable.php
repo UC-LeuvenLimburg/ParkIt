@@ -13,7 +13,7 @@ class Rentable extends Model
      * @var array
      */
     protected $fillable = [
-        'rent_place_id', 'owner_id', 'postal_code', 'address','date_of_hire', 'start_time_rp','end_time_rp','price/h','bankaccount_nr','description'
+         'user_id', 'postal_code', 'address','date_of_hire', 'start_time_rp','end_time_rp','price/h','description'
     ];
 
     /**
@@ -22,7 +22,7 @@ class Rentable extends Model
      * @var array
      */
     protected $hidden = [
-        'bankaccount_nr',
+        'bankaccount_nr'
     ];
 
     /**
