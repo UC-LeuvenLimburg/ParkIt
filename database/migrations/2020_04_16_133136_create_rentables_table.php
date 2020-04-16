@@ -25,6 +25,7 @@ class CreateRentablesTable extends Migration
             $table->varchar('bankaccount_nr');
             $table->varchar('decription');
             
+            
         });
     }
 
