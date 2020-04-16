@@ -24,7 +24,7 @@ class CreateRentablesTable extends Migration
             $table->double('price/h');
             $table->varchar('bankaccount_nr');
             $table->varchar('decription');
-            $table->timestamps();
+            
         });
     }
 

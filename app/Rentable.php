@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Rentable extends Model
 {
+    public $timestamps = false;
     
     /**
      * The attributes that are mass assignable.
@@ -13,29 +14,20 @@ class Rentable extends Model
      * @var array
      */
     protected $fillable = [
-         'user_id', 'postal_code', 'address','date_of_hire', 'start_time_rp','end_time_rp','price/h','description'
+          'postal_code', 'address','date_of_hire', 'start_time_rp','end_time_rp','price/h','bankaccount_nr','description'
     ];
 
     /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'bankaccount_nr'
-    ];
-
-    /**
-    * Get the user that owns the phone.
+    * Get the user that owns the place
     */
     public function user()
     {
         return $this->belongsTo('App\User', 'user_id');
     }
     /**
-     * Get the comments for the blog post.
+     * Get the lease for the place.
      */
-    public function comments()
+    public function lease()
     {
         return $this->hasMany('App\Lease');
     }
