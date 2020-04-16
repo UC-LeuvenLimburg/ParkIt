@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Rentable;
+use App\Models\Rentable;
 use App\Repositories\Interfaces\IRentableRepository;
 use Illuminate\Http\Request;
 
@@ -49,7 +49,7 @@ class RentableController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Rentable  $rentable
+     * @param  \App\Models\Rentable  $rentable
      * @return \Illuminate\Http\Response
      */
     public function show(Rentable $rentable)
@@ -60,7 +60,7 @@ class RentableController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Rentable  $rentable
+     * @param  \App\Models\Rentable  $rentable
      * @return \Illuminate\Http\Response
      */
     public function edit(Rentable $rentable)
@@ -72,7 +72,7 @@ class RentableController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Rentable  $rentable
+     * @param  \App\Models\Rentable  $rentable
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Rentable $rentable)
@@ -83,7 +83,7 @@ class RentableController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Rentable  $rentable
+     * @param  \App\Models\Rentable  $rentable
      * @return \Illuminate\Http\Response
      */
     public function destroy(Rentable $rentable)
