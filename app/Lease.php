@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Lease extends Model
 {
+    // Disable timestamps
+    public $timestamps = false;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -20,7 +23,7 @@ class Lease extends Model
      */
     public function user()
     {
-        return $this->hasOne('App\User');
+        return $this->belongsTo('App\User', 'user_id');
     }
 
     /**
@@ -28,6 +31,6 @@ class Lease extends Model
      */
     public function rentable()
     {
-        return $this->hasOne('App\Rentable');
+        return $this->belongsTo('App\Rentable', 'rentable_id');
     }
 }
