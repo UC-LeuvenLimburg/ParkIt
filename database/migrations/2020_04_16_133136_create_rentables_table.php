@@ -23,7 +23,7 @@ class CreateRentablesTable extends Migration
             $table->time('end_time_rp');
             $table->double('price/h');
             $table->string('bankaccount_nr');
-            $table->string('decription');
+            $table->string('description');
 
 
         });
