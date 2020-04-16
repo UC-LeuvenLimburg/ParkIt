@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Lease;
+use App\Models\Lease;
 use Illuminate\Database\Eloquent\Collection;
 use App\Repositories\Interfaces\ILeaseRepository;
 
@@ -22,7 +22,7 @@ class LeaseRepository implements ILeaseRepository
      * Get's a lease by it's ID
      *
      * @param int
-     * @return \App\Lease
+     * @return \App\Models\Lease
      */
     public function getLease(int $lease_id): ?Lease
     {
@@ -33,7 +33,7 @@ class LeaseRepository implements ILeaseRepository
      * Add a lease
      *
      * @param lease
-     * @return \App\Lease
+     * @return \App\Models\Lease
      */
     public function addLease(Lease $lease): Lease
     {

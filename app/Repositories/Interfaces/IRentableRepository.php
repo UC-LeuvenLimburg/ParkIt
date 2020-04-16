@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Interfaces;
 
-use App\Rentable;
+use App\Models\Rentable;
 use Illuminate\Database\Eloquent\Collection;
 
 interface IRentableRepository
@@ -18,7 +18,7 @@ interface IRentableRepository
      * Get's a rentable by it's ID
      *
      * @param int
-     * @return \App\Rentable
+     * @return \App\Models\Rentable
      */
     public function getRentable(int $rentable_id): ?Rentable;
 
@@ -26,7 +26,7 @@ interface IRentableRepository
      * Add a rentable
      *
      * @param rentable
-     * @return \App\Rentable
+     * @return \App\Models\Rentable
      */
     public function addRentable(Rentable $rentable): Rentable;
 

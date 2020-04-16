@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Interfaces;
 
-use App\Lease;
+use App\Models\Lease;
 use Illuminate\Database\Eloquent\Collection;
 
 interface ILeaseRepository
@@ -18,7 +18,7 @@ interface ILeaseRepository
      * Get's a lease by it's ID
      *
      * @param int
-     * @return \App\Lease
+     * @return \App\Models\Lease
      */
     public function getLease(int $lease_id): ?Lease;
 
@@ -26,7 +26,7 @@ interface ILeaseRepository
      * Add a lease
      *
      * @param lease
-     * @return \App\Lease
+     * @return \App\Models\Lease
      */
     public function addLease(Lease $lease): Lease;
 

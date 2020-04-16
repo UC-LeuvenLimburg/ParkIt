@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Lease;
+use App\Models\Lease;
 use App\Repositories\Interfaces\ILeaseRepository;
 use Illuminate\Http\Request;
 
@@ -49,7 +49,7 @@ class LeaseController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Lease  $lease
+     * @param  \App\Models\Lease  $lease
      * @return \Illuminate\Http\Response
      */
     public function show(Lease $lease)
@@ -60,7 +60,7 @@ class LeaseController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Lease  $lease
+     * @param  \App\Models\Lease  $lease
      * @return \Illuminate\Http\Response
      */
     public function edit(Lease $lease)
@@ -72,7 +72,7 @@ class LeaseController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Lease  $lease
+     * @param  \App\Models\Lease  $lease
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Lease $lease)
@@ -83,7 +83,7 @@ class LeaseController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Lease  $lease
+     * @param  \App\Models\Lease  $lease
      * @return \Illuminate\Http\Response
      */
     public function destroy(Lease $lease)
