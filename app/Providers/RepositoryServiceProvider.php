@@ -14,7 +14,7 @@ class RepositoryServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind(
-            'App\Repositories\ILeaseRepository',
+            'App\Repositories\Interfaces\ILeaseRepository',
             'App\Repositories\LeaseRepository'
         );
     }
