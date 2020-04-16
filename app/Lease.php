@@ -12,6 +12,22 @@ class Lease extends Model
      * @var array
      */
     protected $fillable = [
-        'startTime', 'endTime',
+        'start_time', 'end_time',
     ];
+
+    /**
+     * Get the user record associated with this lease.
+     */
+    public function user()
+    {
+        return $this->hasOne('App\User');
+    }
+
+    /**
+     * Get the rentable record associated with this lease.
+     */
+    public function rentable()
+    {
+        return $this->hasOne('App\Rentable');
+    }
 }
