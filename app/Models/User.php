@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -38,12 +38,14 @@ class User extends Authenticatable
     ];
 
     //Relation with Rentables
-    public function rentable() {
-        return $this->hasMany('App\Rentable');
+    public function rentable()
+    {
+        return $this->hasMany('App\Models\Rentable');
     }
 
     //Relation with Leases
-    public function lease() {
-        return $this->hasMany('App\Lease');
+    public function lease()
+    {
+        return $this->hasMany('App\Models\Lease');
     }
 }

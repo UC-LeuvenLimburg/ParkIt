@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Rentable;
+use App\Models\Rentable;
 use Illuminate\Database\Eloquent\Collection;
 use App\Repositories\Interfaces\IRentableRepository;
 
@@ -22,7 +22,7 @@ class RentableRepository implements IRentableRepository
      * Get's a rentable by it's ID
      *
      * @param int
-     * @return \App\Rentable
+     * @return \App\Models\Rentable
      */
     public function getRentable(int $rentable_id): ?Rentable
     {
@@ -33,7 +33,7 @@ class RentableRepository implements IRentableRepository
      * Add a rentable
      *
      * @param rentable
-     * @return \App\Rentable
+     * @return \App\Models\Rentable
      */
     public function addRentable(Rentable $rentable): Rentable
     {
