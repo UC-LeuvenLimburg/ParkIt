@@ -17,6 +17,11 @@ class RepositoryServiceProvider extends ServiceProvider
             'App\Repositories\Interfaces\ILeaseRepository',
             'App\Repositories\LeaseRepository'
         );
+
+        $this->app->bind(
+            'App\Repositories\Interfaces\IRentableRepository',
+            'App\Repositories\RentableRepository'
+        );
     }
 
     /**

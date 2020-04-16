@@ -3,10 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Rentable;
+use App\Repositories\Interfaces\IRentableRepository;
 use Illuminate\Http\Request;
 
 class RentableController extends Controller
 {
+    private $rentableRepo;
+
+    public function __construct(IRentableRepository $rentableRepo)
+    {
+        $this->rentableRepo = $rentableRepo;
+    }
+
     /**
      * Display a listing of the resource.
      *
