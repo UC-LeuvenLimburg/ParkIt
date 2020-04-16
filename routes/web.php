@@ -19,3 +19,4 @@ Route::get('/', 'HomeController@index')->name('home');
 
 Route::resource('users','UserController');
 Route::resource('leases','LeaseController');
+Route::resource('rentables','RentableController');
