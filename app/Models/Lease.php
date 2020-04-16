@@ -23,7 +23,7 @@ class Lease extends Model
      */
     public function user()
     {
-        return $this->belongsTo('App\User', 'user_id');
+        return $this->belongsTo('App\Models\User', 'user_id');
     }
 
     /**
@@ -31,6 +31,6 @@ class Lease extends Model
      */
     public function rentable()
     {
-        return $this->belongsTo('App\Rentable', 'rentable_id');
+        return $this->belongsTo('App\Models\Rentable', 'rentable_id');
     }
 }

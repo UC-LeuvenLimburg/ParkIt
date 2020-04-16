@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\User;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
 use App\Repositories\Interfaces\IUserRepository;
 
@@ -22,7 +22,7 @@ class UserRepository implements IUserRepository
      * Get's a user by it's ID
      *
      * @param int
-     * @return \App\User
+     * @return \App\Models\User
      */
     public function getUser(int $user_id): ?User
     {
@@ -33,7 +33,7 @@ class UserRepository implements IUserRepository
      * Add a user
      *
      * @param user
-     * @return \App\User
+     * @return \App\Models\User
      */
     public function addUser(User $user): User
     {

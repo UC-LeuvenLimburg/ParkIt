@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Interfaces;
 
-use App\User;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
 
 interface IUserRepository
@@ -18,7 +18,7 @@ interface IUserRepository
      * Get's a user by it's ID
      *
      * @param int
-     * @return \App\User
+     * @return \App\Models\User
      */
     public function getUser(int $user_id): ?User;
 
@@ -26,7 +26,7 @@ interface IUserRepository
      * Add a user
      *
      * @param user
-     * @return \App\User
+     * @return \App\Models\User
      */
     public function addUser(User $user): User;
 
