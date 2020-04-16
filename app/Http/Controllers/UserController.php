@@ -2,10 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\Interfaces\IUserRepository;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    private $userRepo;
+
+    public function __construct(IUserRepository $userRepo)
+    {
+        $this->userRepo = $userRepo;
+    }
+
     /**
      * Display a listing of the resource.
      *
