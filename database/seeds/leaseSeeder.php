@@ -11,12 +11,6 @@ class leaseSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('leases')->insert([
-            'user_id' => 2,
-            'rentable_id' => 5 ,
-            'start_time' => now(),
-            'end_time' => now(),
-        ]);
         factory(App\Models\Lease::class, 100)->create();
     }
 
