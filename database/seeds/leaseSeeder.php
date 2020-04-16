@@ -17,7 +17,7 @@ class leaseSeeder extends Seeder
             'start_time' => now(),
             'end_time' => now(),
         ]);
-        factory(App\Models\Lease::class, 50)->create();
+        factory(App\Models\Lease::class, 100)->create();
     }
 
 }

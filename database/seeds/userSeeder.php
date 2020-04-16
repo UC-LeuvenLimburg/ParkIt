@@ -18,7 +18,7 @@ class userSeeder extends Seeder
             'password' => Hash::make('admin'),
             'remember_token' => Str::random(10),
         ]);
-        factory(App\Models\User::class, 50)->create();
+        factory(App\Models\User::class, 100)->create();
     }
     
 }
