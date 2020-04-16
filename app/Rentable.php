@@ -32,7 +32,7 @@ class Rentable extends Model
     {
         return $this->belongsTo('App\User', 'user_id');
     }
-        /**
+    /**
      * Get the comments for the blog post.
      */
     public function comments()
