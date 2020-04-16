@@ -12,11 +12,14 @@
                         <img src="images/parking.jpg" alt="parking image">
                     </div>
                 </p>
+                @guest
+                    
                 <hr class="my-4">
                 <p class="lead">To use our service you are required to have an account</p>
                 <p class="lead">
                     <a class="btn btn-primary btn-lg" href="/register" role="button">Sign up</a>
                 </p>
+                @endguest
             </div>
         </div>
     </div>
