@@ -3,10 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Lease;
+use App\Repositories\Interfaces\ILeaseRepository;
 use Illuminate\Http\Request;
 
 class LeaseController extends Controller
 {
+    private $leaseRepo;
+
+    public function __construct(ILeaseRepository $leaseRepo)
+    {
+        $this->leaseRepo = $leaseRepo;
+    }
+
     /**
      * Display a listing of the resource.
      *
