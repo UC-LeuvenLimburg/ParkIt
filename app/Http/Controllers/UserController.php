@@ -12,7 +12,7 @@ class UserController extends Controller
 
     public function __construct(IUserRepository $userRepo)
     {
-        $this->$this->authorizeResource(User::class, 'users');
+        $this->authorizeResource(User::class, 'users');
 
         $this->userRepo = $userRepo;
     }
