@@ -10,16 +10,6 @@ const mix = require("laravel-mix");
  | file for the application as well as bundling up all the JS files.
  |
  */
-mix.options({
-    cssNano: {
-        discardComments: {
-            removeAll: true
-        }
-    },
-    uglify: {
-        comments: false
-    }
-});
 
 mix.browserSync("parkit.local");
 
