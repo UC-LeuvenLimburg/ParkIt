@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Repositories\Interfaces\IUserRepository;
 use Illuminate\Http\Request;
 
@@ -11,6 +12,8 @@ class UserController extends Controller
 
     public function __construct(IUserRepository $userRepo)
     {
+        $this->$this->authorizeResource(User::class, 'users');
+
         $this->userRepo = $userRepo;
     }
 
