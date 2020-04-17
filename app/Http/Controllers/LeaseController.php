@@ -22,7 +22,8 @@ class LeaseController extends Controller
      */
     public function index()
     {
-        //
+        $leases =  $this->leaseRepo->getLeases();
+        return view('lease.index', compact('leases'));
     }
 
     /**
