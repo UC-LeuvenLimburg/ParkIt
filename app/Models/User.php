@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'role'
     ];
 
     /**
@@ -47,5 +47,10 @@ class User extends Authenticatable
     public function lease()
     {
         return $this->hasMany('App\Models\Lease');
+    }
+
+    public function isAdmin()
+    {
+        return $this->role === 'admin';
     }
 }
