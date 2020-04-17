@@ -38,13 +38,13 @@ class User extends Authenticatable
     ];
 
     //Relation with Rentables
-    public function rentable()
+    public function rentables()
     {
         return $this->hasMany('App\Models\Rentable');
     }
 
     //Relation with Leases
-    public function lease()
+    public function leases()
     {
         return $this->hasMany('App\Models\Lease');
     }

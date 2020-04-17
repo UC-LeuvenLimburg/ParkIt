@@ -22,12 +22,12 @@ class Rentable extends Model
      */
     public function user()
     {
-        return $this->belongsTo('App\Models\User', 'user_id');
+        return $this->belongsTo('App\Models\User');
     }
     /**
      * Get the lease for the place.
      */
-    public function lease()
+    public function leases()
     {
         return $this->hasMany('App\Models\Lease');
     }
