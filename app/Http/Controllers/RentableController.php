@@ -12,6 +12,8 @@ class RentableController extends Controller
 
     public function __construct(IRentableRepository $rentableRepo)
     {
+        $this->$this->authorizeResource(Rentable::class, 'rentables');
+
         $this->rentableRepo = $rentableRepo;
     }
 
