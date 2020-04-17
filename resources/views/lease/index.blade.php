@@ -5,8 +5,14 @@
     <div class="row justify-content-center">
         <div class="col-xl">
             <div class="card">
+
                 <div class="card-header">Leases</div>
+
                 <div class="card-body">
+                    <a href="{{ route('leases.create') }}" class="btn btn-sm btn-primary">Add New</a>
+                    <br />
+                    <br />
+
                     <table class="table">
                         <tr>
                             <th>Lease</th>
@@ -20,6 +26,9 @@
                             <td>{{$lease->rentable->date_of_hire}}</td>
                             <td>{{$lease->start_time}}</td>
                             <td>{{$lease->end_time}}</td>
+                            <td><a href="{{ url('leases/'.$lease->id.'/edit') }}"
+                                    class="btn btn-sm btn-primary">Edit</a>
+                            </td>
                         </tr>
                         @empty
                         <tr>
