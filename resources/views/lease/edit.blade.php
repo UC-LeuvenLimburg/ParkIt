@@ -12,7 +12,7 @@
                     <div>Adress: {{ $lease->rentable->adress }}</div>
                     <div>Date: {{ $lease->rentable->date_of_hire }}</div>
                     <div>Start Time: {{ $lease->start_time }}</div>
-                    <div>Start Time: {{ $lease->start_time }}</div>
+                    <div>End Time: {{ $lease->end_time }}</div>
                 </div>
             </div>
         </div>

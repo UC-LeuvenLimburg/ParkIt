@@ -11,8 +11,10 @@
                 <div class="card-body">
                     <div>Adress: {{ $lease->rentable->adress }}</div>
                     <div>Date: {{ $lease->rentable->date_of_hire }}</div>
+                    <div>Available Start Time: {{ $lease->rentable->start_time_rp }}</div>
+                    <div>Available End Time: {{ $lease->rentable->end_time_rp }}</div>
                     <div>Start Time: {{ $lease->start_time }}</div>
-                    <div>Start Time: {{ $lease->start_time }}</div>
+                    <div>End Time: {{ $lease->end_time }}</div>
                 </div>
             </div>
         </div>
