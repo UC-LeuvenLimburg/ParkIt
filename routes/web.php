@@ -18,6 +18,6 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 
-Route::middleware('isAdmin')->resource('users', 'UserController');
-Route::resource('leases', 'LeaseController');
-Route::resource('rentables', 'RentableController');
+Route::middleware('auth')->resource('users', 'UserController');
+Route::middleware('auth')->resource('leases', 'LeaseController');
+Route::middleware('auth')->resource('rentables', 'RentableController');
