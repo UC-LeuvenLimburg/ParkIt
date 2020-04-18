@@ -52,6 +52,7 @@ class LeaseController extends Controller
     {
         $lease = Lease::create($request->all());
         $this->leaseRepo->addLease($lease);
+        return redirect('/leases/' . $lease->id);
     }
 
     /**
