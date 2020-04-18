@@ -38,7 +38,7 @@ class LeaseController extends Controller
     public function create()
     {
         $user = Auth::user();
-        $rentable = Rentable::find(5);
+        $rentable = Rentable::find(1);
         return view('lease.create')->with(compact('user', 'rentable'));
     }
 

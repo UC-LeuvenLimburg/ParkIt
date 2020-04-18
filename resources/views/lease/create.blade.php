@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-xl">
             <h1>Edit Lease</h1>
-            {!! Form::open(['url' => 'leases', 'method' => 'POST']) !!}
+            {!! Form::open(['route' => 'leases.store']) !!}
             <div class="form-group">
                 {{Form::label('adress', 'Adress')}}
                 {{Form::text('adress', $rentable->adress, ['class' => 'form-control', 'placeholer' => 'Adress', 'disabled']) }}
@@ -14,8 +14,8 @@
                 {{Form::label('date', 'Date')}}
                 {{Form::date('date', $rentable->date_of_hire, ['class' => 'form-control', 'placeholer' => 'Date', 'disabled']) }}
             </div>
-            {{!! Form::hidden('user_id', $user->id) !!}}
-            {{!! Form::hidden('rentable_id', $rentable->id) !!}}
+            {{!! Form::text('user_id', $user->id) !!}}
+            {{!! Form::text('rentable_id', $rentable->id) !!}}
             <div class="form-group">
                 {{Form::label('start_time', 'Start Time')}}
                 {{Form::time('start_time', '', ['class' => 'form-control', 'placeholer' => 'Start Time']) }}
