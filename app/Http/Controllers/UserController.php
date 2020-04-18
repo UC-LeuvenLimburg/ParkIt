@@ -12,7 +12,7 @@ class UserController extends Controller
 
     public function __construct(IUserRepository $userRepo)
     {
-        $this->authorizeResource(User::class, 'users');
+        $this->authorizeResource(User::class, 'user');
 
         $this->userRepo = $userRepo;
     }
@@ -51,10 +51,10 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  App\Models\User
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
         //
     }
@@ -62,10 +62,10 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  App\Models\User
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
         //
     }
