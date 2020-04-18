@@ -6,10 +6,13 @@
         <div class="col-xl">
             <div class="card">
 
-                <div class="card-header">Leases</div>
+                <div class="card-header">Lease</div>
 
                 <div class="card-body">
-                    <div>{{ $lease->start_time }}</div>
+                    <div>Adress: {{ $lease->rentable->adress }}</div>
+                    <div>Date: {{ $lease->rentable->date_of_hire }}</div>
+                    <div>Start Time: {{ $lease->start_time }}</div>
+                    <div>Start Time: {{ $lease->start_time }}</div>
                 </div>
             </div>
         </div>
