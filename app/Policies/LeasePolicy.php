@@ -12,7 +12,9 @@ class LeasePolicy
 
     public function before($user, $ability)
     {
-        return $user->isAdmin();
+        if ($user->isAdmin()) {
+            return true;
+        }
     }
 
     /**
