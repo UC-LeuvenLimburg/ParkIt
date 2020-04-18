@@ -51,8 +51,8 @@ class LeaseController extends Controller
     public function store(Request $request)
     {
         $lease = Lease::create($request->all());
-        $this->leaseRepo->addLease($lease);
-        return redirect('/leases/' . $lease->id);
+        $newLease = $this->leaseRepo->addLease($lease);
+        return redirect('/leases/' . $newLease->id);
     }
 
     /**
