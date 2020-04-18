@@ -10,6 +10,12 @@ class LeasePolicy
 {
     use HandlesAuthorization;
 
+    /**
+     * Determine whether the user is an admin before any other authorizations
+     *
+     * @param  \App\Models\User  $user
+     * @return mixed
+     */
     public function before($user, $ability)
     {
         if ($user->isAdmin()) {
