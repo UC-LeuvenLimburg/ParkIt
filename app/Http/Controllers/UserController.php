@@ -24,7 +24,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = $this->userRepo->getUsers();
+        return view('users.index')->with('users', $users);
     }
 
     /**
@@ -56,7 +57,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $users = $this->userRepo->getUser($id);
+        return view('users.show')->with('user', $user);
     }
 
     /**
@@ -90,6 +92,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $users = $this->userRepo->deleteUser($id);
+        return redirect('/users')->with('success', 'User Removed');
     }
 }
