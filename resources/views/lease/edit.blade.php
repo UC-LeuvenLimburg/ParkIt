@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-xl">
             <h1>Edit Lease</h1>
-            {!! Form::model($lease, ['route' => ['leases.update', $lease]]) !!}
+            {!! Form::model($lease, ['route' => ['leases.update', $lease], 'method' => 'PUT']) !!}
             <div class="form-group">
                 {{Form::label('adress', 'Adress')}}
                 {{Form::text('adress', $lease->rentable->adress, ['class' => 'form-control', 'placeholer' => 'Adress', 'disabled']) }}
@@ -21,6 +21,19 @@
             <div class="form-group">
                 {{Form::label('end_time', 'End Time')}}
                 {{Form::time('end_time', $lease->end_time, ['class' => 'form-control', 'placeholer' => 'End Time']) }}
+            </div>
+            <div class="form-group">
+                {{Form::label('price', 'Price/h')}}
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">&euro;</span>
+                    </div>
+                    {{Form::text('price', $lease->rentable->{'price/h'}, ['class' => 'form-control', 'placeholer' => 'Date', 'disabled']) }}
+                    <div class="input-group-append">
+                        <span class="input-group-text">.00</span>
+                    </div>
+                </div>
+
             </div>
             {{Form::submit('Save', [ 'class' => 'btn btn-primary'])}}
             {!! Form::close() !!}
