@@ -3,7 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Lease;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 use App\Repositories\Interfaces\ILeaseRepository;
 
 class LeaseRepository implements ILeaseRepository
@@ -11,11 +11,11 @@ class LeaseRepository implements ILeaseRepository
     /**
      * Get's all leases
      *
-     * @return Illuminate\Database\Eloquent\Collection
+     * @return Illuminate\Pagination\LengthAwarePaginator
      */
-    public function getLeases(): Collection
+    public function getLeases(): LengthAwarePaginator
     {
-        return Lease::all();
+        return Lease::orderBy('id', 'asc')->paginate(15);
     }
 
     /**
