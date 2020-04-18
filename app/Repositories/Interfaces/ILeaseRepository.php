@@ -3,16 +3,16 @@
 namespace App\Repositories\Interfaces;
 
 use App\Models\Lease;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 interface ILeaseRepository
 {
     /**
      * Get's all leases
      *
-     * @return Illuminate\Database\Eloquent\Collection
+     * @return Illuminate\Pagination\LengthAwarePaginator
      */
-    public function getLeases(): Collection;
+    public function getLeases(): LengthAwarePaginator;
 
     /**
      * Get's a lease by it's ID

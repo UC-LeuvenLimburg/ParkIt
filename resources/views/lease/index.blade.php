@@ -36,6 +36,7 @@
                         </tr>
                         @endforelse
                     </table>
+                    {{ $leases->links() }}
                 </div>
             </div>
         </div>
