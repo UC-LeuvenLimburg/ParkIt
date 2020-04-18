@@ -48,7 +48,7 @@
 
                         {{-- These are ADMIN only --}}
                         <a class="dropdown-item" href="#">All places</a>
-                        <a class="dropdown-item" href="#">All users</a>
+                        <a class="dropdown-item" href="/users">All users</a>
                         {{--  --}}
 
                         <hr class="my-1">

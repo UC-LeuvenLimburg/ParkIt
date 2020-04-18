@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="container">
     <h1>All Users</h1>
     @if (count($users) > 0)
         <table class="table table-dark table-hover">
@@ -28,4 +29,5 @@
     @else
         <p>No Users Found</p>
     @endif
+</div>
 @endsection
