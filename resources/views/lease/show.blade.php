@@ -4,19 +4,38 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-xl">
-            <div class="card">
-
-                <div class="card-header">Lease</div>
-
-                <div class="card-body">
-                    <div>Adress: {{ $lease->rentable->adress }}</div>
-                    <div>Date: {{ $lease->rentable->date_of_hire }}</div>
-                    <div>Available Start Time: {{ $lease->rentable->start_time_rp }}</div>
-                    <div>Available End Time: {{ $lease->rentable->end_time_rp }}</div>
-                    <div>Start Time: {{ $lease->start_time }}</div>
-                    <div>End Time: {{ $lease->end_time }}</div>
-                </div>
+            <h1>Lease details</h1>
+            {!! Form::model($lease) !!}
+            <div class="form-group">
+                {{Form::label('adress', 'Adress')}}
+                {{Form::text('adress', $lease->rentable->adress, ['class' => 'form-control', 'placeholer' => 'Adress', 'disabled']) }}
             </div>
+            <div class="form-group">
+                {{Form::label('date', 'Date')}}
+                {{Form::date('date', $lease->rentable->date_of_hire, ['class' => 'form-control', 'placeholer' => 'Date', 'disabled']) }}
+            </div>
+            <div class="form-group">
+                {{Form::label('start_time', 'Start Time')}}
+                {{Form::time('start_time', $lease->start_time, ['class' => 'form-control', 'placeholer' => 'Start Time', 'disabled']) }}
+            </div>
+            <div class="form-group">
+                {{Form::label('end_time', 'End Time')}}
+                {{Form::time('end_time', $lease->end_time, ['class' => 'form-control', 'placeholer' => 'End Time', 'disabled']) }}
+            </div>
+            <div class="form-group">
+                {{Form::label('price', 'Price/h')}}
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">&euro;</span>
+                    </div>
+                    {{Form::text('price', $lease->rentable->{'price/h'}, ['class' => 'form-control', 'placeholer' => 'Date', 'disabled']) }}
+                    <div class="input-group-append">
+                        <span class="input-group-text">.00</span>
+                    </div>
+                </div>
+
+            </div>
+            {!! Form::close() !!}
         </div>
     </div>
 </div>
