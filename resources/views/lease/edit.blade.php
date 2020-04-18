@@ -4,17 +4,17 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-xl">
-            <div class="card">
-
-                <div class="card-header">Lease</div>
-
-                <div class="card-body">
-                    <div>Adress: {{ $lease->rentable->adress }}</div>
-                    <div>Date: {{ $lease->rentable->date_of_hire }}</div>
-                    <div>Start Time: {{ $lease->start_time }}</div>
-                    <div>End Time: {{ $lease->end_time }}</div>
-                </div>
+            <h1>Edit Lease</h1>
+            {!! Form::model($lease, ['route' => ['leases.update', $lease->id]]) !!}
+            <div class="form-group">
+                {{Form::label('start_time', 'Start Time')}}
+                {{Form::time('start_time', $lease->start_time, ['class' => 'form-control', 'placeholer' => 'Start Time']) }}
             </div>
+            <div class="form-group">
+                {{Form::label('end_time', 'End Time')}}
+                {{Form::time('end_time', $lease->end_time, ['class' => 'form-control', 'placeholer' => 'End Time']) }}
+            </div>
+            {!! Form::close() !!}
         </div>
     </div>
 </div>
