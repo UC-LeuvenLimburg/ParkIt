@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Lease;
+use App\Models\Rentable;
 use App\Repositories\Interfaces\ILeaseRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LeaseController extends Controller
 {
@@ -35,7 +37,9 @@ class LeaseController extends Controller
      */
     public function create()
     {
-        //
+        $user = Auth::user();
+        $rentable = Rentable::find(5);
+        return view('lease.create')->with(compact('user', 'rentable'));
     }
 
     /**
@@ -46,7 +50,8 @@ class LeaseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $lease = Lease::create($request->all());
+        $this->leaseRepo->addLease($lease);
     }
 
     /**
