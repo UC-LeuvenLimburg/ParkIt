@@ -68,6 +68,7 @@ class LeaseController extends Controller
      */
     public function edit(Lease $lease)
     {
+        return view('lease.edit', compact('lease'));
     }
 
     /**
