@@ -12,7 +12,7 @@
                     <a href="{{ route('leases.create') }}" class="btn btn-sm btn-primary">Add New</a>
                     <br />
                     <br />
-
+                    @if (count($leases) > 0)
                     <table class="table">
                         <tr>
                             <th>Lease</th>
@@ -20,7 +20,7 @@
                             <th>Start time</th>
                             <th>End time</th>
                         </tr>
-                        @forelse ($leases as $lease)
+                        @foreach ($leases as $lease)
                         <tr>
                             <td style="min-width: 250px">{{$lease->rentable->adress}}</td>
                             <td>{{$lease->rentable->date_of_hire}}</td>
@@ -30,13 +30,12 @@
                                     class="btn btn-sm btn-primary">Edit</a>
                             </td>
                         </tr>
-                        @empty
-                        <tr>
-                            <td colspan="3">No leases found.</td>
-                        </tr>
-                        @endforelse
+                        @endforeach
                     </table>
                     {{ $leases->links() }}
+                    @else
+                    <p>No leases found.</p>
+                    @endif
                 </div>
             </div>
         </div>
