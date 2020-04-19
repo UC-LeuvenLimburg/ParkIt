@@ -59,7 +59,7 @@ class RentableController extends Controller
      */
     public function show(Rentable $rentable)
     {
-        //
+        return view('rentable.show', compact('rentable'));
     }
 
     /**
@@ -70,7 +70,7 @@ class RentableController extends Controller
      */
     public function edit(Rentable $rentable)
     {
-        //
+        return view('rentable.edit', compact('rentable'));
     }
 
     /**
