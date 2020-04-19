@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Rentable;
 use App\Repositories\Interfaces\IRentableRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RentableController extends Controller
 {
@@ -24,7 +25,8 @@ class RentableController extends Controller
      */
     public function index()
     {
-        //
+        $rentables =  $this->rentableRepo->getRentables();
+        return view('rentable.index', compact('rentables'));
     }
 
     /**
@@ -56,7 +58,7 @@ class RentableController extends Controller
      */
     public function show(Rentable $rentable)
     {
-        //
+        return view('rentable.show', compact('rentable'));
     }
 
     /**
@@ -67,7 +69,7 @@ class RentableController extends Controller
      */
     public function edit(Rentable $rentable)
     {
-        //
+        return view('rentable.edit', compact('rentable'));
     }
 
     /**
@@ -79,7 +81,8 @@ class RentableController extends Controller
      */
     public function update(Request $request, Rentable $rentable)
     {
-        //
+        $this->rentableRepo->updateRentable($rentable, $request->all());
+        return redirect('/rentables/' . $rentable->id);
     }
 
     /**
@@ -90,6 +93,7 @@ class RentableController extends Controller
      */
     public function destroy(Rentable $rentable)
     {
-        //
+        $this->rentableRepo->deleteRentable($rentable->id);
+        return redirect('/rentables')->with('success', 'Place Removed');
     }
 }
