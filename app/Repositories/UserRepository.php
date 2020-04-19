@@ -11,7 +11,7 @@ class UserRepository implements IUserRepository
     /**
      * Get's all users
      *
-     * @return Illuminate\Database\Eloquent\Collection
+     * @return Illuminate\Pagination\LengthAwarePaginator
      */
     public function getUsers(): LengthAwarePaginator
     {
