@@ -11,8 +11,8 @@
             Role: {{ $user->role }}<br>
             Email verified at: {{ $user->email_verified_at }}<br>
             Created at: {{ $user->created_at }}
-            @if ($user->name != 'admin')
-                {!! Form::open(['action' => ['UserController@destroy', $user->id], 'method' => 'POST']) !!}
+            @if ($user->name != 'admin' /*&& $current_user->isAdmin()*/)
+                {!! Form::open(['action' => ['UserController@destroy', $user], 'method' => 'POST']) !!}
                     {{ Form::hidden('_method', 'DELETE') }}
                     {{ Form::submit('Delete', ['class' => 'btn btn-danger']) }}
                 {!! Form::close() !!}
