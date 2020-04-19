@@ -50,7 +50,6 @@
                     {{Form::text('description', $rentable->description, ['class' => 'form-control', 'placeholer' => 'Description', 'disabled']) }}
                 </div>
             </div>
-
             {!! Form::close() !!}
         </div>
     </div>

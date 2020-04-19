@@ -81,8 +81,6 @@ class RentableController extends Controller
      */
     public function update(Request $request, Rentable $rentable)
     {
-
-        //return $request;
         $this->rentableRepo->updateRentable($rentable, $request->all());
         return redirect('/rentables/' . $rentable->id);
     }
