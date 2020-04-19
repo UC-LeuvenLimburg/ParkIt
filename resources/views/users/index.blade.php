@@ -26,6 +26,7 @@
                 @endforeach
             </tbody>
         </table>
+        {{ $users->links() }}
     @else
         <p>No Users Found</p>
     @endif

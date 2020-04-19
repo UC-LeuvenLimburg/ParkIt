@@ -3,7 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\User;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 use App\Repositories\Interfaces\IUserRepository;
 
 class UserRepository implements IUserRepository
@@ -13,9 +13,9 @@ class UserRepository implements IUserRepository
      *
      * @return Illuminate\Database\Eloquent\Collection
      */
-    public function getUsers(): Collection
+    public function getUsers(): LengthAwarePaginator
     {
-        return User::all();
+        return User::orderBy('id', 'asc')->paginate(15);
     }
 
     /**

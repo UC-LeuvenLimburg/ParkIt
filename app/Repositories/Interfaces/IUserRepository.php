@@ -3,16 +3,16 @@
 namespace App\Repositories\Interfaces;
 
 use App\Models\User;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 interface IUserRepository
 {
     /**
      * Get's all users
      *
-     * @return Illuminate\Database\Eloquent\Collection
+     * @return Illuminate\Pagination\LengthAwarePaginator
      */
-    public function getUsers(): Collection;
+    public function getUsers(): LengthAwarePaginator;
 
     /**
      * Get's a user by it's ID
