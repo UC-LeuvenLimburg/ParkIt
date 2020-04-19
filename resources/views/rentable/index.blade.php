@@ -7,7 +7,7 @@
     <table class="table table-dark table-hover">
         <thead class="table-primary">
             <tr>
-                <th scope="col">user id</th>
+                <th scope="col">user</th>
                 <th scope="col">adress</th>
                 <th scope="col">postal code</th>
                 <th scope="col"> date of hire</th>
@@ -19,14 +19,15 @@
         <tbody>
             @foreach ($rentables as $rentable)
             <tr>
-                <td>{{ $rentable->user_id}}</td>
+                <td>{{ $rentable->user->name}}</td>
                 <td>{{ $rentable->adress}}</td>
                 <td>{{ $rentable->postal_code}}</td>
                 <td>{{ $rentable->date_of_hire}}</td>
                 <td>{{ $rentable->start_time_rp}}</td>
                 <td>{{ $rentable->end_time_rp}}</td>
                 <td>
-                    <a class="btn btn-info btn-sm" href='/rentable/edit{{ $rentable->id }}'>edit</a>
+                    <a class="btn btn-info btn-sm" href='/rentables/{{ $rentable->id }}'>show</a>
+                    <a class="btn btn-info btn-sm btn-warning " href='/rentables/{{$rentable->id}}/edit'>edit</a>
                 </td>
             </tr>
             @endforeach
