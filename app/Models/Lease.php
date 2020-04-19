@@ -15,7 +15,7 @@ class Lease extends Model
      * @var array
      */
     protected $fillable = [
-        'start_time', 'end_time',
+        'user_id', 'rentable_id', 'start_time', 'end_time',
     ];
 
     /**
@@ -23,7 +23,7 @@ class Lease extends Model
      */
     public function user()
     {
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo('App\Models\User', 'user_id');
     }
 
     /**
@@ -31,6 +31,6 @@ class Lease extends Model
      */
     public function rentable()
     {
-        return $this->belongsTo('App\Models\Rentable');
+        return $this->belongsTo('App\Models\Rentable', 'rentable_id');
     }
 }

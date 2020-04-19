@@ -19,6 +19,7 @@
                             <th>Date</th>
                             <th>Start time</th>
                             <th>End time</th>
+                            <th>Actions</th>
                         </tr>
                         @foreach ($leases as $lease)
                         <tr>

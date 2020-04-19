@@ -35,10 +35,11 @@ class LeaseRepository implements ILeaseRepository
      * @param lease
      * @return \App\Models\Lease
      */
-    public function addLease(Lease $lease): Lease
+    public function addLease($attributes): Lease
     {
         // Add lease to database
-        $lease::save();
+        $lease = Lease::create($attributes);
+        $lease->save();
 
         return $lease;
     }
