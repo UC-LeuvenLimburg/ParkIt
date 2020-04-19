@@ -14,7 +14,9 @@
                 {{Form::label('date', 'Date')}}
                 {{Form::date('date', $rentable->date_of_hire, ['class' => 'form-control', 'placeholer' => 'Date', 'disabled']) }}
             </div>
+            {{Form::label('user_id', 'User_id')}}
             {{Form::text('user_id', $user->id)}}
+            {{Form::label('rentable_id', 'Rentable_id')}}
             {{Form::text('rentable_id', $rentable->id)}}
             <div class="form-group">
                 {{Form::label('start_time', 'Start Time')}}
