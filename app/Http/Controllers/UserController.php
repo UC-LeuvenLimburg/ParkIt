@@ -57,7 +57,6 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        $users = $this->userRepo->getUser($id);
         return view('users.show')->with('user', $user);
     }
 
