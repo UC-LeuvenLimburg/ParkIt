@@ -3,7 +3,7 @@
 @endguest
 @auth
     @if (Auth::user()->role=="admin")
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-dark nav-background">
     @else
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     @endif

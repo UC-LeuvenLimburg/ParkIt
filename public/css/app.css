@@ -11116,3 +11116,7 @@ a.text-dark:focus {
     Styling for Lease views
 */
 
+.nav-background {
+  background-color: indigo;
+}
+
