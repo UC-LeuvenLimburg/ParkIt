@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Rentable;
 use App\Repositories\Interfaces\IRentableRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RentableController extends Controller
 {
@@ -24,7 +25,9 @@ class RentableController extends Controller
      */
     public function index()
     {
-        //
+        
+        $rentables =  $this->rentableRepo->getRentables();
+        return view('rentable.index', compact('rentables'));
     }
 
     /**

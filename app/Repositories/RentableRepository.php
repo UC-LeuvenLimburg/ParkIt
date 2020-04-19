@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Models\Rentable;
 use Illuminate\Database\Eloquent\Collection;
 use App\Repositories\Interfaces\IRentableRepository;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class RentableRepository implements IRentableRepository
 {
@@ -13,9 +14,9 @@ class RentableRepository implements IRentableRepository
      *
      * @return Illuminate\Database\Eloquent\Collection
      */
-    public function getRentables(): Collection
+    public function getRentables(): LengthAwarePaginator
     {
-        return Rentable::all();
+        return Rentable::orderBy('id', 'asc')->paginate(15);
     }
 
     /**

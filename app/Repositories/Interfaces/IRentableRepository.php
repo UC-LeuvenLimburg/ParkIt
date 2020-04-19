@@ -3,6 +3,8 @@
 namespace App\Repositories\Interfaces;
 
 use App\Models\Rentable;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Database\Eloquent\Collection;
 
 interface IRentableRepository
@@ -12,7 +14,7 @@ interface IRentableRepository
      *
      * @return Illuminate\Database\Eloquent\Collection
      */
-    public function getRentables(): Collection;
+    public function getRentables(): LengthAwarePaginator;
 
     /**
      * Get's a rentable by it's ID
