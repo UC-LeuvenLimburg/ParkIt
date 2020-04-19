@@ -8,12 +8,12 @@
         <thead class="table-primary">
             <tr>
                 <th scope="col">user</th>
-                <th scope="col">adress</th>
-                <th scope="col">postal code</th>
-                <th scope="col"> date of hire</th>
-                <th scope="col"> start time</th>
-                <th scope="col"> end time</th>
-                <th></th>
+                <th scope="col">Adress</th>
+                <th scope="col">Postal code</th>
+                <th scope="col"> Date of hire</th>
+                <th scope="col"> Start time</th>
+                <th scope="col"> End time</th>
+                <th scope="col"> Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -35,7 +35,7 @@
     </table>
     {{ $rentables->links() }}
     @else
-    <p>No Users Found</p>
+    <p>No Places Found</p>
     @endif
 </div>
 @endsection
