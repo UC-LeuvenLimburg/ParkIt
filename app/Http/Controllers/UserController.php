@@ -5,16 +5,19 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Repositories\Interfaces\IUserRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
     private $userRepo;
+    private $current_user;
 
     public function __construct(IUserRepository $userRepo)
     {
         $this->authorizeResource(User::class, 'user');
 
         $this->userRepo = $userRepo;
+        $this->current_user = Auth::user();
     }
 
     /**
@@ -24,7 +27,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = $this->userRepo->getUsers();
+        return view('users.index')->with('users', $users);
     }
 
     /**
@@ -56,7 +60,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        return view('users.show')->with('user', $user)->with('current_user', $this->current_user);
     }
 
     /**
@@ -85,11 +89,12 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  App\Models\User
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        $this->userRepo->deleteUser($user->id);
+        return redirect('/users')->with('success', 'User Removed');
     }
 }
