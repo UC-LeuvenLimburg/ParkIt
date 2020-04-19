@@ -98,6 +98,6 @@ class LeaseController extends Controller
      */
     public function destroy(Lease $lease)
     {
-        //
+        $this->leaseRepo->deleteLease($lease->id);
     }
 }
