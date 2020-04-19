@@ -1,14 +1,4 @@
-@guest
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-@endguest
-@auth
-    @if (Auth::user()->role=="admin")
-        <nav class="navbar navbar-expand-lg navbar-dark nav-background">
-    @else
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    @endif
-@endauth
-
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <img src="{{ asset('images/logo.svg') }}" width="125px">
