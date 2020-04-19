@@ -24,8 +24,7 @@ class CreateRentablesTable extends Migration
             $table->double('price');
             $table->string('bankaccount_nr');
             $table->string('description');
-
-
+            $table->softDeletes();
         });
     }
 
