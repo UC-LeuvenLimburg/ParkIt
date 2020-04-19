@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="background-gray">
+            <div class="home-background-gray">
                 <h1 class="display-4">Welcome to ParkIt</h1>
                 <h3 class="display-6" class="lead">What do we offer?</h3>
                 <p>We offer a service that makes it possible to rent or lease a parking spot.
