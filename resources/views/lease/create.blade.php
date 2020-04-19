@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-xl">
-            <h1>Edit Lease</h1>
+            <h1>Create Lease</h1>
             {!! Form::open(['route' => 'leases.store']) !!}
             <div class="form-group">
                 {{Form::label('adress', 'Adress')}}
@@ -14,8 +14,10 @@
                 {{Form::label('date', 'Date')}}
                 {{Form::date('date', $rentable->date_of_hire, ['class' => 'form-control', 'placeholer' => 'Date', 'disabled']) }}
             </div>
-            {{!! Form::text('user_id', $user->id) !!}}
-            {{!! Form::text('rentable_id', $rentable->id) !!}}
+            {{Form::label('user_id', 'User_id')}}
+            {{Form::text('user_id', $user->id)}}
+            {{Form::label('rentable_id', 'Rentable_id')}}
+            {{Form::text('rentable_id', $rentable->id)}}
             <div class="form-group">
                 {{Form::label('start_time', 'Start Time')}}
                 {{Form::time('start_time', '', ['class' => 'form-control', 'placeholer' => 'Start Time']) }}
@@ -35,7 +37,6 @@
                         <span class="input-group-text">.00</span>
                     </div>
                 </div>
-
             </div>
             {{Form::submit('Save', [ 'class' => 'btn btn-primary'])}}
             {!! Form::close() !!}
