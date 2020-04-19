@@ -8,6 +8,8 @@
         <div class="card-body">
             Email: {{ $user->email }}
             Role: {{ $user->role }}
+            Email verified at: {{ $user->email_verified_at }}
+            Created at: {{ $user->timestamp }}
         </div>
     </div>
 </div>
