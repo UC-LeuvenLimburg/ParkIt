@@ -48,6 +48,7 @@ class RentableRepository implements IRentableRepository
      * Update a Rentable
      *
      * @param Rentable
+     * @param $attributes
      * @return \App\Models\Rentable
      */
     public function updateRentable(Rentable $rentable, $attributes): Rentable

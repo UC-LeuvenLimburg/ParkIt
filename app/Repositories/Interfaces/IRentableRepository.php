@@ -31,11 +31,12 @@ interface IRentableRepository
      * @return \App\Models\Rentable
      */
     public function addRentable(Rentable $rentable): Rentable;
-    
+
     /**
      * Update a rentable
      *
      * @param Rentable
+     * @param $attributes
      * @return \App\Models\Rentable
      */
     
