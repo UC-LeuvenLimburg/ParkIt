@@ -11,10 +11,6 @@
                 {{Form::text('user', $rentable->user->name, ['class' => 'form-control', 'placeholer' => 'User', 'disabled']) }}
             </div>
             <div class="form-group">
-                {{Form::label('user_id', 'User id')}}
-                {{Form::text('user_id', $rentable->user_id, ['class' => 'form-control', 'placeholer' => 'User_id', 'disabled']) }}
-            </div>
-            <div class="form-group">
                 {{Form::label('adress', 'Adress')}}
                 {{Form::text('adress', $rentable->adress, ['class' => 'form-control', 'placeholer' => 'Adress', 'disabled']) }}
             </div>
@@ -40,7 +36,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text">&euro;</span>
                     </div>
-                    {{Form::text('price', $rentable->{'price/h'}, ['class' => 'form-control', 'placeholer' => 'Date', 'disabled']) }}
+                    {{Form::text('price', $rentable->price, ['class' => 'form-control', 'placeholer' => 'Date', 'disabled']) }}
                     <div class="input-group-append">
                         <span class="input-group-text">.00</span>
                     </div>

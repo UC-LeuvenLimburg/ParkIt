@@ -21,7 +21,7 @@ class CreateRentablesTable extends Migration
             $table->date('date_of_hire');
             $table->time('start_time_rp');
             $table->time('end_time_rp');
-            $table->double('price/h');
+            $table->double('price');
             $table->string('bankaccount_nr');
             $table->string('description');
 

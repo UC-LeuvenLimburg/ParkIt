@@ -31,6 +31,15 @@ interface IRentableRepository
      * @return \App\Models\Rentable
      */
     public function addRentable(Rentable $rentable): Rentable;
+    
+    /**
+     * Update a rentable
+     *
+     * @param Rentable
+     * @return \App\Models\Rentable
+     */
+    
+     public function updateRentable(Rentable $rentable, $attributes): Rentable;
 
     /**
      * Remove a rentable by it's ID
