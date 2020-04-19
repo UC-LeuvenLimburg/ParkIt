@@ -96,6 +96,7 @@ class RentableController extends Controller
      */
     public function destroy(Rentable $rentable)
     {
-        //
+        $this->rentableRepo->deleteRentable($rentable->id);
+        return redirect('/rentables')->with('success', 'Place Removed');
     }
 }

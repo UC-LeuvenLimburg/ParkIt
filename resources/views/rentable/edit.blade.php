@@ -50,7 +50,11 @@
                     {{Form::text('description', $rentable->description, ['class' => 'form-control', 'placeholer' => 'Description']) }}
                 </div>
             </div>
-            {{Form::submit('Save', [ 'class' => 'btn btn-primary'])}}
+            {{Form::submit('Save', ['class' => 'btn btn-primary'])}}
+            {!! Form::close() !!}
+            {!! Form::open(['action' => ['RentableController@destroy', $rentable], 'method' => 'POST']) !!}
+            {{ Form::hidden('_method', 'DELETE') }}
+            {{ Form::submit('Delete', ['class' => 'btn btn-danger']) }}
             {!! Form::close() !!}
         </div>
     </div>
