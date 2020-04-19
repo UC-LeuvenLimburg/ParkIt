@@ -28,7 +28,7 @@ interface ILeaseRepository
      * @param lease
      * @return \App\Models\Lease
      */
-    public function addLease(Lease $lease): Lease;
+    public function addLease($attributes): Lease;
 
     /**
      * Update a lease
