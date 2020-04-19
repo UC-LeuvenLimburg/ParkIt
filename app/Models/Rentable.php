@@ -2,10 +2,16 @@
 
 namespace App\Models;
 
+use Iatstuti\Database\Support\CascadeSoftDeletes;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Rentable extends Model
 {
+    use SoftDeletes, CascadeSoftDeletes;
+
+    protected $cascadeDeletes = ['leases'];
+
     public $timestamps = false;
 
     /**
@@ -14,7 +20,7 @@ class Rentable extends Model
      * @var array
      */
     protected $fillable = [
-        'postal_code', 'address', 'date_of_hire', 'start_time_rp', 'end_time_rp', 'price/h', 'bankaccount_nr', 'description'
+        'postal_code', 'address', 'date_of_hire', 'start_time_rp', 'end_time_rp', 'price', 'bankaccount_nr', 'description'
     ];
 
     /**

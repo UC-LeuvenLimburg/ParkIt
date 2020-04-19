@@ -15,7 +15,6 @@ class LeaseController extends Controller
     public function __construct(ILeaseRepository $leaseRepo)
     {
         $this->authorizeResource(Lease::class, 'lease');
-
         $this->leaseRepo = $leaseRepo;
     }
 

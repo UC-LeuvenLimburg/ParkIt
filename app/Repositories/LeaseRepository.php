@@ -15,6 +15,7 @@ class LeaseRepository implements ILeaseRepository
      */
     public function getLeases(): LengthAwarePaginator
     {
+
         return Lease::orderBy('id', 'asc')->paginate(15);
     }
 

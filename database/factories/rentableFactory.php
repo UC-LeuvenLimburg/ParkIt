@@ -13,7 +13,7 @@ $factory->define(Rentable::class, function (Faker $faker) {
         'date_of_hire' => $faker->date(),
         'start_time_rp' => $faker->time(),
         'end_time_rp' => $faker->time(),
-        'price/h' => $faker->randomDigitNotNull(),
+        'price' => $faker->randomDigitNotNull(),
         'bankaccount_nr' => $faker->bankAccountNumber(),
         'description' => $faker->sentence(),
     ];
