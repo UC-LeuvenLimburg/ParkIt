@@ -15,10 +15,10 @@
                     <a class="nav-link" href="{{ url('/') }}">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Rent</a>
+                    <a class="nav-link" href="/rent">Rent</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Lease</a>
+                    <a class="nav-link" href="/lease">Lease</a>
                 </li>
             </ul>
 
@@ -42,12 +42,12 @@
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">
+                        <a class="dropdown-item" href="/profile">
                             {{ __('My profile') }}
                         </a>
 
                         {{-- These are ADMIN only --}}
-                        <a class="dropdown-item" href="#">All places</a>
+                        <a class="dropdown-item" href="/places">All places</a>
                         <a class="dropdown-item" href="/users">All users</a>
                         {{--  --}}
 
