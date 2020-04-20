@@ -35,9 +35,14 @@
             @endforeach
         </tbody>
     </table>
-    {{ $rentables->links() }}
+    <div class="rentable-paginator">
+        {{ $rentables->links() }}
+        <div class="filler"></div>
+        <a href="{{ route('rentables.create') }}" class="btn btn-sm btn-primary">Add New</a>
+    </div>
     @else
     <p>No places found.</p>
+    <a href="{{ route('rentables.create') }}" class="btn btn-sm btn-primary">Add New</a>
     @endif
 </div>
 @endsection

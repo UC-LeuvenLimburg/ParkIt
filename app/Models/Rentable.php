@@ -20,7 +20,7 @@ class Rentable extends Model
      * @var array
      */
     protected $fillable = [
-        'postal_code', 'adress', 'date_of_hire', 'start_time', 'end_time', 'price', 'bankaccount_nr', 'description'
+        'user_id', 'postal_code', 'adress', 'date_of_hire', 'start_time', 'end_time', 'price', 'bankaccount_nr', 'description'
     ];
 
     /**
@@ -28,7 +28,7 @@ class Rentable extends Model
      */
     public function user()
     {
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo('App\Models\User', 'user_id');
     }
     /**
      * Get the lease for the place.
