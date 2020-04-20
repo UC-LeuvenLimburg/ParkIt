@@ -3,7 +3,6 @@
 namespace App\Repositories;
 
 use App\Models\Lease;
-use Illuminate\Pagination\LengthAwarePaginator;
 use App\Repositories\Interfaces\ILeaseRepository;
 
 class LeaseRepository implements ILeaseRepository
@@ -13,7 +12,7 @@ class LeaseRepository implements ILeaseRepository
      *
      * @return Illuminate\Pagination\LengthAwarePaginator
      */
-    public function getLeases(): LengthAwarePaginator
+    public function getLeases()
     {
 
         return Lease::orderBy('id', 'asc')->paginate(15);
@@ -22,10 +21,10 @@ class LeaseRepository implements ILeaseRepository
     /**
      * Get's a lease by it's ID
      *
-     * @param int
-     * @return \App\Models\Lease
+     * @param int lease_id
+     * @return lease
      */
-    public function getLease(int $lease_id): ?Lease
+    public function getLease(int $lease_id)
     {
         return Lease::find($lease_id);
     }
@@ -33,10 +32,10 @@ class LeaseRepository implements ILeaseRepository
     /**
      * Add a lease
      *
-     * @param lease
-     * @return \App\Models\Lease
+     * @param mixed attributes
+     * @return lease
      */
-    public function addLease($attributes): Lease
+    public function addLease($attributes)
     {
         // Add lease to database
         $lease = Lease::create($attributes);
@@ -48,12 +47,17 @@ class LeaseRepository implements ILeaseRepository
     /**
      * Update a lease
      *
-     * @param lease
-     * @return \App\Models\Lease
+     * @param int lease_id
+     * @param mixed attributes
+     * @return lease
      */
-    public function updateLease(Lease $lease): Lease
+    public function updateLease($lease_id, $attributes)
     {
+        // Find existing lease
+        $lease = Lease::find($lease_id);
+
         // Update lease
+        // todo update code
         $lease->save();
 
         return $lease;
@@ -62,9 +66,9 @@ class LeaseRepository implements ILeaseRepository
     /**
      * Remove a lease by it's ID
      *
-     * @param int
+     * @param int lease_id
      */
-    public function deleteLease(int $lease_id): void
+    public function deleteLease(int $lease_id)
     {
         Lease::destroy($lease_id);
     }

@@ -84,7 +84,7 @@ class LeaseController extends Controller
      */
     public function update(Request $request, Lease $lease)
     {
-        $this->leaseRepo->updateLease($lease);
+        $this->leaseRepo->updateLease($lease->id, $request->all());
         return redirect('/leases/' . $lease->id);
     }
 

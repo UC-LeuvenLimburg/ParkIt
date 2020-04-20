@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Rentable;
 use App\Repositories\Interfaces\IRentableRepository;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class RentableController extends Controller
 {
@@ -81,7 +80,7 @@ class RentableController extends Controller
      */
     public function update(Request $request, Rentable $rentable)
     {
-        $this->rentableRepo->updateRentable($rentable, $request->all());
+        $this->rentableRepo->updateRentable($rentable->id, $request->all());
         return redirect('/rentables/' . $rentable->id);
     }
 
