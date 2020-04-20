@@ -52,7 +52,7 @@ class UserRepository implements IUserRepository
      */
     public function updateUser($user_id, $attributes)
     {
-        // Find existing user
+        // Find existing user to update
         $user = User::find($user_id);
 
         // Update user

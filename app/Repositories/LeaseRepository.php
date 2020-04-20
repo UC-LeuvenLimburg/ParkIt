@@ -52,7 +52,7 @@ class LeaseRepository implements ILeaseRepository
      */
     public function updateLease($lease_id, $attributes)
     {
-        // Find existing lease
+        // Find existing lease to update
         $lease = Lease::find($lease_id);
 
         // Update lease

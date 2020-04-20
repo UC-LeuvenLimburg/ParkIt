@@ -48,19 +48,13 @@ class RentableRepository implements IRentableRepository
      */
     public function updateRentable(int $rentable_id, $attributes)
     {
-        // Find Rentable to update
+        // Find existing rentable to update
         $rentable = Rentable::find($rentable_id);
 
         // Update Rentable
-        $rentable->adress = $attributes['adress'];
-        $rentable->postal_code = $attributes['postal_code'];
-        $rentable->date_of_hire = $attributes['date'];
-        $rentable->start_time_rp = $attributes['start_time'];
-        $rentable->end_time_rp = $attributes['end_time'];
-        $rentable->price = $attributes['price'];
-        $rentable->bankaccount_nr = $attributes['bankaccount_nr'];
-        $rentable->description = $attributes['description'];
+        $rentable->update($attributes);
         $rentable->save();
+
         return $rentable;
     }
 
