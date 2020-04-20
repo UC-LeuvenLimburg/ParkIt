@@ -14,7 +14,7 @@ interface IRentableRepository
     /**
      * Get's a rentable by it's ID
      *
-     * @param int rentable_id
+     * @param int $rentable_id
      * @return rentables
      */
     public function getRentable(int $rentable_id);
@@ -22,7 +22,7 @@ interface IRentableRepository
     /**
      * Add a rentable
      *
-     * @param mixed attributes
+     * @param mixed $attributes
      * @return rentables
      */
     public function addRentable($attributes);
@@ -30,8 +30,8 @@ interface IRentableRepository
     /**
      * Update a rentable
      *
-     * @param int rentable_id
-     * @param mixed attributes
+     * @param int $rentable_id
+     * @param mixed $attributes
      * @return rentables
      */
 
@@ -40,7 +40,7 @@ interface IRentableRepository
     /**
      * Remove a rentable by it's ID
      *
-     * @param int rentable_id
+     * @param int $rentable_id
      */
     public function deleteRentable(int $rentable_id);
 }

@@ -14,7 +14,7 @@ interface ILeaseRepository
     /**
      * Get's a lease by it's ID
      *
-     * @param int lease_id
+     * @param int $lease_id
      * @return lease
      */
     public function getLease(int $lease_id);
@@ -22,7 +22,7 @@ interface ILeaseRepository
     /**
      * Add a lease
      *
-     * @param mixed attributes
+     * @param mixed $attributes
      * @return lease
      */
     public function addLease($attributes);
@@ -30,8 +30,8 @@ interface ILeaseRepository
     /**
      * Update a lease
      *
-     * @param int lease_id
-     * @param mixed attributes
+     * @param int $lease_id
+     * @param mixed $attributes
      * @return lease
      */
     public function updateLease($lease_id, $attributes);
@@ -39,7 +39,7 @@ interface ILeaseRepository
     /**
      * Remove a lease by it's ID
      *
-     * @param int lease_id
+     * @param int $lease_id
      */
     public function deleteLease(int $lease_id);
 }

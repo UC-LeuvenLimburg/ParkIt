@@ -20,7 +20,7 @@ class UserRepository implements IUserRepository
     /**
      * Get's a user by it's ID
      *
-     * @param int user_id
+     * @param int $user_id
      * @return user
      */
     public function getUser(int $user_id)
@@ -31,7 +31,7 @@ class UserRepository implements IUserRepository
     /**
      * Add a user
      *
-     * @param mixed attributes
+     * @param mixed $attributes
      * @return user
      */
     public function addUser($attributes)
@@ -46,8 +46,8 @@ class UserRepository implements IUserRepository
     /**
      * Update a user
      *
-     * @param int user_id
-     * @param mixed attributes
+     * @param int $user_id
+     * @param mixed $attributes
      * @return user
      */
     public function updateUser($user_id, $attributes)
@@ -65,7 +65,7 @@ class UserRepository implements IUserRepository
     /**
      * Remove a user by it's ID
      *
-     * @param int user_id
+     * @param int $user_id
      */
     public function deleteUser(int $user_id)
     {

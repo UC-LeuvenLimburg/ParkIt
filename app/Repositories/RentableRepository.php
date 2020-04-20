@@ -20,7 +20,7 @@ class RentableRepository implements IRentableRepository
     /**
      * Get's a rentable by it's ID
      *
-     * @param int rentable_id
+     * @param int $rentable_id
      * @return rentable
      */
     public function getRentable(int $rentable_id)
@@ -31,7 +31,7 @@ class RentableRepository implements IRentableRepository
     /**
      * Add a rentable
      *
-     * @param mixed attributes
+     * @param mixed $attributes
      * @return rentable
      */
     public function addRentable($attributes)
@@ -42,8 +42,8 @@ class RentableRepository implements IRentableRepository
     /**
      * Update a Rentable
      *
-     * @param int rentable_id
-     * @param mixed attributes
+     * @param int $rentable_id
+     * @param mixed $attributes
      * @return rentable
      */
     public function updateRentable(int $rentable_id, $attributes)
@@ -67,7 +67,7 @@ class RentableRepository implements IRentableRepository
     /**
      * Remove a rentable by it's ID
      *
-     * @param int rentable_id
+     * @param int $rentable_id
      */
     public function deleteRentable(int $rentable_id)
     {

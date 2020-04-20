@@ -21,7 +21,7 @@ class LeaseRepository implements ILeaseRepository
     /**
      * Get's a lease by it's ID
      *
-     * @param int lease_id
+     * @param int $lease_id
      * @return lease
      */
     public function getLease(int $lease_id)
@@ -32,7 +32,7 @@ class LeaseRepository implements ILeaseRepository
     /**
      * Add a lease
      *
-     * @param mixed attributes
+     * @param mixed $attributes
      * @return lease
      */
     public function addLease($attributes)
@@ -47,8 +47,8 @@ class LeaseRepository implements ILeaseRepository
     /**
      * Update a lease
      *
-     * @param int lease_id
-     * @param mixed attributes
+     * @param int $lease_id
+     * @param mixed $attributes
      * @return lease
      */
     public function updateLease($lease_id, $attributes)
@@ -66,7 +66,7 @@ class LeaseRepository implements ILeaseRepository
     /**
      * Remove a lease by it's ID
      *
-     * @param int lease_id
+     * @param int $lease_id
      */
     public function deleteLease(int $lease_id)
     {
