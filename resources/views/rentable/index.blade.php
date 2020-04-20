@@ -2,7 +2,9 @@
 
 @section('content')
 <div class="container">
+
     <h1>Places</h1>
+
     @if (count($rentables) > 0)
     <table class="table table-dark table-hover">
         <thead class="table-primary">

@@ -38,7 +38,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('user.create');
     }
 
     /**
@@ -49,7 +49,8 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $newUser = $this->userRepo->addUser($request->all());
+        return redirect('/users/' . $newUser->id);
     }
 
     /**

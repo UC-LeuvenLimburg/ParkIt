@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\User;
 use App\Repositories\Interfaces\IUserRepository;
+use Illuminate\Support\Facades\Hash;
 
 class UserRepository implements IUserRepository
 {
@@ -38,6 +39,7 @@ class UserRepository implements IUserRepository
     {
         // Add user to database
         $user = User::create($attributes);
+        $user->password = Hash::make($attributes['password']);
         $user->save();
 
         return $user;

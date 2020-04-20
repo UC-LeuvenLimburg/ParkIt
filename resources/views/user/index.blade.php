@@ -2,7 +2,10 @@
 
 @section('content')
 <div class="container">
+
     <h1>Users</h1>
+
+    <a href="{{ route('users.create') }}" class="btn btn-sm btn-primary">Add New</a>
     @if (count($users) > 0)
     <table class="table table-dark table-hover">
         <thead class="table-primary">
