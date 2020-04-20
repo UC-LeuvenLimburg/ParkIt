@@ -44,7 +44,7 @@ class LeaseController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -56,7 +56,7 @@ class LeaseController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Lease  $lease
+     * @param  \App\Models\Lease $lease
      * @return \Illuminate\Http\Response
      */
     public function show(Lease $lease)
@@ -67,7 +67,7 @@ class LeaseController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Lease  $lease
+     * @param  \App\Models\Lease $lease
      * @return \Illuminate\Http\Response
      */
     public function edit(Lease $lease)
@@ -78,20 +78,20 @@ class LeaseController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Lease  $lease
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Models\Lease $lease
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Lease $lease)
     {
-        $this->leaseRepo->updateLease($lease);
+        $this->leaseRepo->updateLease($lease->id, $request->all());
         return redirect('/leases/' . $lease->id);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Lease  $lease
+     * @param  \App\Models\Lease $lease
      * @return \Illuminate\Http\Response
      */
     public function destroy(Lease $lease)

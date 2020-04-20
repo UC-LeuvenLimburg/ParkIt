@@ -2,50 +2,45 @@
 
 namespace App\Repositories\Interfaces;
 
-use App\Models\Rentable;
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Contracts\Pagination\Paginator;
-use Illuminate\Database\Eloquent\Collection;
-
 interface IRentableRepository
 {
     /**
      * Get's all rentables
      *
-     * @return Illuminate\Database\Eloquent\Collection
+     * @return Illuminate\Pagination\LengthAwarePaginator
      */
-    public function getRentables(): LengthAwarePaginator;
+    public function getRentables();
 
     /**
      * Get's a rentable by it's ID
      *
-     * @param int
-     * @return \App\Models\Rentable
+     * @param int $rentable_id
+     * @return rentables
      */
-    public function getRentable(int $rentable_id): ?Rentable;
+    public function getRentable(int $rentable_id);
 
     /**
      * Add a rentable
      *
-     * @param rentable
-     * @return \App\Models\Rentable
+     * @param mixed $attributes
+     * @return rentables
      */
-    public function addRentable(Rentable $rentable): Rentable;
+    public function addRentable($attributes);
 
     /**
      * Update a rentable
      *
-     * @param Rentable
-     * @param $attributes
-     * @return \App\Models\Rentable
+     * @param int $rentable_id
+     * @param mixed $attributes
+     * @return rentables
      */
-    
-     public function updateRentable(Rentable $rentable, $attributes): Rentable;
+
+    public function updateRentable(int $rentable_id, $attributes);
 
     /**
      * Remove a rentable by it's ID
      *
-     * @param int
+     * @param int $rentable_id
      */
-    public function deleteRentable(int $rentable_id): void;
+    public function deleteRentable(int $rentable_id);
 }
