@@ -97,5 +97,6 @@ class LeaseController extends Controller
     public function destroy(Lease $lease)
     {
         $this->leaseRepo->deleteLease($lease->id);
+        return redirect('/leases')->with('success', 'Lease Removed');
     }
 }

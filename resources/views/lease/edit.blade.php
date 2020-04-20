@@ -37,6 +37,12 @@
             </div>
             {{Form::submit('Save', [ 'class' => 'btn btn-primary'])}}
             {!! Form::close() !!}
+            {!! Form::open(['action' => ['LeaseController@destroy', $lease], 'method' => 'POST']) !!}
+            @if (Auth::user()->role=="admin")
+            {{ Form::hidden('_method', 'DELETE') }}
+            {{ Form::submit('Delete', ['class' => 'btn btn-danger']) }}
+            {!! Form::close() !!}
+            @endif
         </div>
     </div>
 </div>
