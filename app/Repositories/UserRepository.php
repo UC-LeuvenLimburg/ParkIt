@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\User;
 use App\Repositories\Interfaces\IUserRepository;
+use Illuminate\Support\Facades\Hash;
 
 class UserRepository implements IUserRepository
 {
@@ -38,6 +39,7 @@ class UserRepository implements IUserRepository
     {
         // Add user to database
         $user = User::create($attributes);
+        $user->password = Hash::make($attributes['password']);
         $user->save();
 
         return $user;
@@ -52,11 +54,11 @@ class UserRepository implements IUserRepository
      */
     public function updateUser($user_id, $attributes)
     {
-        // Find existing user
+        // Find existing user to update
         $user = User::find($user_id);
 
-        // Update lease
-        // todo update code
+        // Update user
+        $user->update($attributes);
         $user->save();
 
         return $user;

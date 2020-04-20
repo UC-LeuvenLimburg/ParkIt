@@ -28,7 +28,7 @@ class UserController extends Controller
     public function index()
     {
         $users = $this->userRepo->getUsers();
-        return view('users.index')->with('users', $users);
+        return view('user.index')->with('users', $users);
     }
 
     /**
@@ -38,7 +38,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('user.create');
     }
 
     /**
@@ -49,7 +49,8 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $newUser = $this->userRepo->addUser($request->all());
+        return redirect('/users/' . $newUser->id);
     }
 
     /**
@@ -60,7 +61,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return view('users.show')->with('user', $user)->with('current_user', $this->current_user);
+        return view('user.show')->with('user', $user)->with('current_user', $this->current_user);
     }
 
     /**
@@ -71,7 +72,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('user.edit', compact('user'));
     }
 
     /**
@@ -95,6 +96,9 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+        if ($user->name === 'admin') {
+            return redirect('/users')->with('error', 'Admin user cannot be removed.');
+        }
         $this->userRepo->deleteUser($user->id);
         return redirect('/users')->with('success', 'User Removed');
     }

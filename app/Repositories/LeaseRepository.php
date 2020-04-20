@@ -14,7 +14,6 @@ class LeaseRepository implements ILeaseRepository
      */
     public function getLeases()
     {
-
         return Lease::orderBy('id', 'asc')->paginate(15);
     }
 
@@ -53,11 +52,11 @@ class LeaseRepository implements ILeaseRepository
      */
     public function updateLease($lease_id, $attributes)
     {
-        // Find existing lease
+        // Find existing lease to update
         $lease = Lease::find($lease_id);
 
         // Update lease
-        // todo update code
+        $lease->update($attributes);
         $lease->save();
 
         return $lease;

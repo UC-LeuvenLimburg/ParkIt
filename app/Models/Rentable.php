@@ -20,7 +20,7 @@ class Rentable extends Model
      * @var array
      */
     protected $fillable = [
-        'postal_code', 'address', 'date_of_hire', 'start_time_rp', 'end_time_rp', 'price', 'bankaccount_nr', 'description'
+        'postal_code', 'adress', 'date_of_hire', 'start_time', 'end_time', 'price', 'bankaccount_nr', 'description'
     ];
 
     /**

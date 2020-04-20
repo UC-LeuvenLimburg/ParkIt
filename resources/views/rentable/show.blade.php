@@ -24,11 +24,11 @@
             </div>
             <div class="form-group">
                 {{Form::label('start_time', 'Start Time')}}
-                {{Form::time('start_time', $rentable->start_time_rp, ['class' => 'form-control', 'placeholer' => 'Start Time', 'disabled']) }}
+                {{Form::time('start_time', $rentable->start_time, ['class' => 'form-control', 'placeholer' => 'Start Time', 'disabled']) }}
             </div>
             <div class="form-group">
                 {{Form::label('end_time', 'End Time')}}
-                {{Form::time('end_time', $rentable->end_time_rp, ['class' => 'form-control', 'placeholer' => 'End Time', 'disabled']) }}
+                {{Form::time('end_time', $rentable->end_time, ['class' => 'form-control', 'placeholer' => 'End Time', 'disabled']) }}
             </div>
             <div class="form-group">
                 {{Form::label('price', 'Price/h')}}
