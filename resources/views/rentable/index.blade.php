@@ -10,10 +10,10 @@
                 <th scope="col">user</th>
                 <th scope="col">Adress</th>
                 <th scope="col">Postal code</th>
-                <th scope="col"> Date of hire</th>
-                <th scope="col"> Start time</th>
-                <th scope="col"> End time</th>
-                <th scope="col"> Actions</th>
+                <th scope="col">Date of hire</th>
+                <th scope="col">Start time</th>
+                <th scope="col">End time</th>
+                <th scope="col">Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -26,8 +26,8 @@
                 <td>{{ $rentable->start_time_rp}}</td>
                 <td>{{ $rentable->end_time_rp}}</td>
                 <td>
-                    <a class="btn btn-info btn-sm" href='/rentables/{{ $rentable->id }}'>show</a>
-                    <a class="btn btn-info btn-sm btn-warning " href='/rentables/{{$rentable->id}}/edit'>edit</a>
+                    <a class="btn btn-info btn-sm" href='/rentables/{{ $rentable->id }}'>Show</a>
+                    <a class="btn btn-info btn-sm btn-warning" href='/rentables/{{ $rentable->id }}/edit'>Edit</a>
                 </td>
             </tr>
             @endforeach
@@ -35,7 +35,7 @@
     </table>
     {{ $rentables->links() }}
     @else
-    <p>No Places Found</p>
+    <p>No places found.</p>
     @endif
 </div>
 @endsection
