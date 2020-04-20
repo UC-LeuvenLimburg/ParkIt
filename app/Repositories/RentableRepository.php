@@ -14,7 +14,7 @@ class RentableRepository implements IRentableRepository
      */
     public function getRentables()
     {
-        return Rentable::orderBy('id', 'asc')->paginate(15);
+        return Rentable::with('user')->orderBy('id', 'asc')->paginate(15);
     }
 
     /**
