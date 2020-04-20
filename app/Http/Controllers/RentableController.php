@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Rentable;
 use App\Repositories\Interfaces\IRentableRepository;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class RentableController extends Controller
 {
@@ -42,7 +41,7 @@ class RentableController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -53,7 +52,7 @@ class RentableController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Rentable  $rentable
+     * @param  \App\Models\Rentable $rentable
      * @return \Illuminate\Http\Response
      */
     public function show(Rentable $rentable)
@@ -64,7 +63,7 @@ class RentableController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Rentable  $rentable
+     * @param  \App\Models\Rentable $rentable
      * @return \Illuminate\Http\Response
      */
     public function edit(Rentable $rentable)
@@ -75,20 +74,20 @@ class RentableController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Rentable  $rentable
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Models\Rentable $rentable
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Rentable $rentable)
     {
-        $this->rentableRepo->updateRentable($rentable, $request->all());
+        $this->rentableRepo->updateRentable($rentable->id, $request->all());
         return redirect('/rentables/' . $rentable->id);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Rentable  $rentable
+     * @param  \App\Models\Rentable $rentable
      * @return \Illuminate\Http\Response
      */
     public function destroy(Rentable $rentable)

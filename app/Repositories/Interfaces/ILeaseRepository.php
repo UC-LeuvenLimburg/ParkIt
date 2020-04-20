@@ -2,9 +2,6 @@
 
 namespace App\Repositories\Interfaces;
 
-use App\Models\Lease;
-use Illuminate\Pagination\LengthAwarePaginator;
-
 interface ILeaseRepository
 {
     /**
@@ -12,36 +9,37 @@ interface ILeaseRepository
      *
      * @return Illuminate\Pagination\LengthAwarePaginator
      */
-    public function getLeases(): LengthAwarePaginator;
+    public function getLeases();
 
     /**
      * Get's a lease by it's ID
      *
-     * @param int
-     * @return \App\Models\Lease
+     * @param int $lease_id
+     * @return lease
      */
-    public function getLease(int $lease_id): ?Lease;
+    public function getLease(int $lease_id);
 
     /**
      * Add a lease
      *
-     * @param lease
-     * @return \App\Models\Lease
+     * @param mixed $attributes
+     * @return lease
      */
-    public function addLease($attributes): Lease;
+    public function addLease($attributes);
 
     /**
      * Update a lease
      *
-     * @param lease
-     * @return \App\Models\Lease
+     * @param int $lease_id
+     * @param mixed $attributes
+     * @return lease
      */
-    public function updateLease(Lease $lease): Lease;
+    public function updateLease($lease_id, $attributes);
 
     /**
      * Remove a lease by it's ID
      *
-     * @param int
+     * @param int $lease_id
      */
-    public function deleteLease(int $lease_id): void;
+    public function deleteLease(int $lease_id);
 }
