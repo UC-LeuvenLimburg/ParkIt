@@ -32,7 +32,7 @@
     </table>
     {{ $users->links() }}
     @else
-    <p>No Users Found</p>
+    <p>No users found.</p>
     @endif
 </div>
 @endsection
