@@ -95,6 +95,9 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+        if ($user->name === 'admin') {
+            return redirect('/users')->with('error', 'Admin user cannot be removed.');
+        }
         $this->userRepo->deleteUser($user->id);
         return redirect('/users')->with('success', 'User Removed');
     }
