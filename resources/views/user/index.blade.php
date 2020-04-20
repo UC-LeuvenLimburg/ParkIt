@@ -5,7 +5,6 @@
 
     <h1>Users</h1>
 
-    <a href="{{ route('users.create') }}" class="btn btn-sm btn-primary">Add New</a>
     @if (count($users) > 0)
     <table class="table table-dark table-hover">
         <thead class="table-primary">
@@ -30,9 +29,14 @@
             @endforeach
         </tbody>
     </table>
-    {{ $users->links() }}
+    <div class="user-paginator">
+        {{ $users->links() }}
+        <div class="filler"></div>
+        <a href="{{ route('users.create') }}" class="btn btn-sm btn-primary">Add New</a>
+    </div>
     @else
     <p>No users found.</p>
+    <a href="{{ route('users.create') }}" class="btn btn-sm btn-primary">Add New</a>
     @endif
 </div>
 @endsection
