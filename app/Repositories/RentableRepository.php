@@ -20,7 +20,7 @@ class RentableRepository implements IRentableRepository
     /**
      * Get's a rentable by it's ID
      *
-     * @param int
+     * @param int rentable_id
      * @return rentable
      */
     public function getRentable(int $rentable_id)
@@ -67,7 +67,7 @@ class RentableRepository implements IRentableRepository
     /**
      * Remove a rentable by it's ID
      *
-     * @param int
+     * @param int rentable_id
      */
     public function deleteRentable(int $rentable_id)
     {

@@ -2,9 +2,6 @@
 
 namespace App\Repositories\Interfaces;
 
-use App\Models\User;
-use Illuminate\Pagination\LengthAwarePaginator;
-
 interface IUserRepository
 {
     /**
@@ -12,28 +9,37 @@ interface IUserRepository
      *
      * @return Illuminate\Pagination\LengthAwarePaginator
      */
-    public function getUsers(): LengthAwarePaginator;
+    public function getUsers();
 
     /**
      * Get's a user by it's ID
      *
-     * @param int
-     * @return \App\Models\User
+     * @param int user_id
+     * @return user
      */
-    public function getUser(int $user_id): ?User;
+    public function getUser(int $user_id);
 
     /**
      * Add a user
      *
-     * @param user
-     * @return \App\Models\User
+     * @param mixed attributes
+     * @return user
      */
-    public function addUser(User $user): User;
+    public function addUser($attributes);
+
+    /**
+     * Update a user
+     *
+     * @param int user_id
+     * @param mixed attributes
+     * @return user
+     */
+    public function updateUser($user_id, $attributes);
 
     /**
      * Remove a user by it's ID
      *
-     * @param int
+     * @param int user_id
      */
-    public function deleteUser(int $user_id): void;
+    public function deleteUser(int $user_id);
 }
