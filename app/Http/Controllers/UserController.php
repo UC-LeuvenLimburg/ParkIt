@@ -28,7 +28,7 @@ class UserController extends Controller
     public function index()
     {
         $users = $this->userRepo->getUsers();
-        return view('users.index')->with('users', $users);
+        return view('user.index')->with('users', $users);
     }
 
     /**
@@ -60,7 +60,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return view('users.show')->with('user', $user)->with('current_user', $this->current_user);
+        return view('user.show')->with('user', $user)->with('current_user', $this->current_user);
     }
 
     /**
@@ -71,7 +71,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('user.edit', compact('user'));
     }
 
     /**
