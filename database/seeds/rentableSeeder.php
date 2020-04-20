@@ -14,5 +14,4 @@ class rentableSeeder extends Seeder
     {
         factory(App\Models\Rentable::class, 100)->create();
     }
-    
 }

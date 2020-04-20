@@ -19,16 +19,16 @@
                 {{Form::text('postal_code', $rentable->postal_code, ['class' => 'form-control', 'placeholer' => 'PostalCode']) }}
             </div>
             <div class="form-group">
-                {{Form::label('date', 'Date')}}
-                {{Form::date('date', $rentable->date_of_hire, ['class' => 'form-control', 'placeholer' => 'Date']) }}
+                {{Form::label('date_of_hire', 'Date')}}
+                {{Form::date('date_of_hire', $rentable->date_of_hire, ['class' => 'form-control', 'placeholer' => 'Date']) }}
             </div>
             <div class="form-group">
                 {{Form::label('start_time', 'Start Time')}}
-                {{Form::time('start_time', $rentable->start_time_rp, ['class' => 'form-control', 'placeholer' => 'Start Time']) }}
+                {{Form::time('start_time', $rentable->start_time, ['class' => 'form-control', 'placeholer' => 'Start Time']) }}
             </div>
             <div class="form-group">
                 {{Form::label('end_time', 'End Time')}}
-                {{Form::time('end_time', $rentable->end_time_rp, ['class' => 'form-control', 'placeholer' => 'End Time']) }}
+                {{Form::time('end_time', $rentable->end_time, ['class' => 'form-control', 'placeholer' => 'End Time']) }}
             </div>
             <div class="form-group">
                 {{Form::label('price', 'Price/h')}}

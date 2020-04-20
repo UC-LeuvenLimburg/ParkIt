@@ -13,5 +13,4 @@ class leaseSeeder extends Seeder
     {
         factory(App\Models\Lease::class, 100)->create();
     }
-
 }
