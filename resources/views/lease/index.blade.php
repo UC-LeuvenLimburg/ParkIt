@@ -5,7 +5,6 @@
 
     <h1>Leases</h1>
 
-    <a href="{{ route('leases.create') }}" class="btn btn-sm btn-primary">Add New</a>
     @if (count($leases) > 0)
     <table class="table table-dark table-hover">
         <thead class="table-primary">
@@ -32,9 +31,14 @@
             @endforeach
         </tbody>
     </table>
-    {{ $leases->links() }}
+    <div class="lease-paginator">
+        {{ $leases->links() }}
+        <div class="filler"></div>
+        <a href="{{ route('leases.create') }}" class="btn btn-sm btn-primary">Add New</a>
+    </div>
     @else
     <p>No leases found.</p>
+    <a href="{{ route('leases.create') }}" class="btn btn-sm btn-primary">Add New</a>
     @endif
 </div>
 @endsection

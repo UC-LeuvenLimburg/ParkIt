@@ -11116,3 +11116,37 @@ a.text-dark:focus {
     Styling for Lease views
 */
 
+.lease-paginator {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.lease-paginator .filler {
+  flex: 1;
+}
+
+.lease-paginator nav {
+  margin: 0;
+}
+
+/*
+    Styling for User views
+*/
+
+.user-paginator {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.user-paginator .filler {
+  flex: 1;
+}
+
+.user-paginator nav {
+  margin: 0;
+}
+
