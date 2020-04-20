@@ -11125,6 +11125,13 @@ a.text-dark:focus {
   margin: 0;
 }
 
+.parkit-delete-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-top: -37px;
+}
+
 .home-background-gray {
   background-color: #e6e6e6;
   padding: 2em;
