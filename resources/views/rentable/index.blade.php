@@ -25,8 +25,8 @@
                 <td>{{ $rentable->adress}}</td>
                 <td>{{ $rentable->postal_code}}</td>
                 <td>{{ $rentable->date_of_hire}}</td>
-                <td>{{ $rentable->start_time_rp}}</td>
-                <td>{{ $rentable->end_time_rp}}</td>
+                <td>{{ $rentable->start_time}}</td>
+                <td>{{ $rentable->end_time}}</td>
                 <td>
                     <a class="btn btn-info btn-sm" href='/rentables/{{ $rentable->id }}'>Show</a>
                     <a class="btn btn-info btn-sm btn-warning" href='/rentables/{{ $rentable->id }}/edit'>Edit</a>
@@ -35,7 +35,7 @@
             @endforeach
         </tbody>
     </table>
-    <div class="rentable-paginator">
+    <div class="parkit-paginator">
         {{ $rentables->links() }}
         <div class="filler"></div>
         <a href="{{ route('rentables.create') }}" class="btn btn-sm btn-primary">Add New</a>

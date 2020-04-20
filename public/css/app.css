@@ -11106,6 +11106,25 @@ a.text-dark:focus {
   color: #000;
 }
 
+/*
+    Styling for shared parkit elements
+*/
+
+.parkit-paginator {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.parkit-paginator .filler {
+  flex: 1;
+}
+
+.parkit-paginator nav {
+  margin: 0;
+}
+
 .home-background-gray {
   background-color: #e6e6e6;
   padding: 2em;
@@ -11116,56 +11135,11 @@ a.text-dark:focus {
     Styling for Lease views
 */
 
-.lease-paginator {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: flex-start;
-}
-
-.lease-paginator .filler {
-  flex: 1;
-}
-
-.lease-paginator nav {
-  margin: 0;
-}
-
 /*
     Styling for Rentable views
 */
 
-.rentable-paginator {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: flex-start;
-}
-
-.rentable-paginator .filler {
-  flex: 1;
-}
-
-.rentable-paginator nav {
-  margin: 0;
-}
-
 /*
     Styling for User views
 */
-
-.user-paginator {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: flex-start;
-}
-
-.user-paginator .filler {
-  flex: 1;
-}
-
-.user-paginator nav {
-  margin: 0;
-}
 

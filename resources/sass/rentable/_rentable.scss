@@ -1,17 +1,3 @@
 /*
     Styling for Rentable views
 */
-.rentable-paginator {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: flex-start;
-
-    .filler {
-        flex: 1;
-    }
-
-    nav {
-        margin: 0;
-    }
-}

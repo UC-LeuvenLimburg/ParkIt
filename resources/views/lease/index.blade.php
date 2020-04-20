@@ -31,7 +31,7 @@
             @endforeach
         </tbody>
     </table>
-    <div class="lease-paginator">
+    <div class="parkit-paginator">
         {{ $leases->links() }}
         <div class="filler"></div>
         <a href="{{ route('leases.create') }}" class="btn btn-sm btn-primary">Add New</a>
