@@ -56,7 +56,7 @@ class UserRepository implements IUserRepository
         $user = User::find($user_id);
 
         // Update lease
-        // todo update code
+        $user->update($attributes);
         $user->save();
 
         return $user;
