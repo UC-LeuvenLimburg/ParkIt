@@ -83,7 +83,7 @@ class StoreLeaseRequest extends FormRequest
                     $query->where('start_time', '>', $start_time);
                     $query->where('end_time', '<', $end_time);
                 })->get();
-            //dd($overLappingLeases);
+            dd($overLappingLeases);
         });
     }
 
