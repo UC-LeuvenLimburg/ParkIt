@@ -20,15 +20,4 @@ class StoreUserRequest extends FormRequest
             'role' => 'required|string|min:1|max:150',
         ];
     }
-
-    /**
-     * Validate request
-     * @return Illuminate\Foundation\Http\FormRequest::getValidatorInstance
-     */
-    protected function getValidatorInstance()
-    {
-        return parent::getValidatorInstance()->after(function () {
-            // todo custom validation for user
-        });
-    }
 }
