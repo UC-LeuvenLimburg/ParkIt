@@ -30,7 +30,7 @@
             {!! Form::close() !!}
             <div class="parkit-delete-button">
                 {!! Form::open(['action' => ['UserController@destroy', $user], 'method' => 'POST']) !!}
-                @if (Auth::user()->role==="admin" && $user->name!=="admin")
+                @if (Auth::user()->role==="admin" && $user->name!=="admin" && $user!==Auth::User())
                 {{ Form::hidden('_method', 'DELETE') }}
                 {{ Form::submit('Delete', ['class' => 'btn btn-danger']) }}
                 {!! Form::close() !!}
