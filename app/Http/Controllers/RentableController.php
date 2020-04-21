@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Rentable;
 use App\Repositories\Interfaces\IRentableRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RentableController extends Controller
 {
@@ -95,5 +96,21 @@ class RentableController extends Controller
     {
         $this->rentableRepo->deleteRentable($rentable->id);
         return redirect('/rentables')->with('success', 'Place Removed');
+    }
+
+    /**
+     * Display the specified rentables
+     *
+     * @param  App\Models\Rentable $rentable
+     * @return \Illuminate\Http\Response
+     */
+    public function myplaces()
+    {
+        $user = Auth::user();
+        //$rentables =  $this->rentableRepo->getUserRentables($user);
+        return view(
+            'rentable.myplaces'
+            //,compact('rentables')
+        );
     }
 }

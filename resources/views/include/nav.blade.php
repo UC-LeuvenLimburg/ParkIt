@@ -1,7 +1,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <img src="{{ asset('images/logo.svg') }}" width="125px">
+                    <object data="{{ asset('images/logo.svg') }}" type="image/svg+xml" width="125px"></object>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -43,15 +43,21 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="/profile">
+                            <a class="dropdown-item" href="{{action('UserController@profile')}}">
                                     {{ __('My profile') }}
                                 </a>
-
                                 {{-- These are ADMIN only --}}
-                                @if (Auth::user()->role=="admin")
+                                @if (Auth::user()->role==="admin")
                                 <a class="dropdown-item" href="/leases">Leases</a>
                                 <a class="dropdown-item" href="/rentables">Places</a>
                                 <a class="dropdown-item" href="/users">Users</a>
+                                @endif
+                                {{--  --}}
+
+                                {{-- These are USER only --}}
+                                @if (Auth::user()->role==="user")
+                                <a class="dropdown-item" href="{{action('LeaseController@myleases')}}">My Leases</a>
+                                <a class="dropdown-item" href="{{action('RentableController@myplaces')}}">My Places</a>
                                 @endif
                                 {{--  --}}
 
