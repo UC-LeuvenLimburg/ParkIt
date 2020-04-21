@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreRentableRequest;
 use App\Models\Rentable;
 use App\Repositories\Interfaces\IRentableRepository;
 use Illuminate\Http\Request;
@@ -45,7 +46,7 @@ class RentableController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRentableRequest $request)
     {
         $newRentable = $this->rentableRepo->addRentable($request->all());
         return redirect('/rentables/' . $newRentable->id);
