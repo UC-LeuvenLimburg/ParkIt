@@ -28,7 +28,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text">&euro;</span>
                     </div>
-                    {{Form::text('price', $lease->rentable->{'price/h'}, ['class' => 'form-control', 'placeholer' => 'Date', 'disabled']) }}
+                    {{Form::text('price', $lease->rentable->price, ['class' => 'form-control', 'placeholer' => 'Date', 'disabled']) }}
                     <div class="input-group-append">
                         <span class="input-group-text">.00</span>
                     </div>
@@ -37,6 +37,14 @@
             </div>
             {{Form::submit('Save', [ 'class' => 'btn btn-primary'])}}
             {!! Form::close() !!}
+            <div class="parkit-delete-button">
+                {!! Form::open(['action' => ['LeaseController@destroy', $lease], 'method' => 'POST']) !!}
+                @if (Auth::user()->role==="admin")
+                {{ Form::hidden('_method', 'DELETE') }}
+                {{ Form::submit('Delete', ['class' => 'btn btn-danger']) }}
+                {!! Form::close() !!}
+                @endif
+            </div>
         </div>
     </div>
 </div>

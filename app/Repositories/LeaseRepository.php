@@ -3,7 +3,6 @@
 namespace App\Repositories;
 
 use App\Models\Lease;
-use Illuminate\Pagination\LengthAwarePaginator;
 use App\Repositories\Interfaces\ILeaseRepository;
 
 class LeaseRepository implements ILeaseRepository
@@ -13,18 +12,18 @@ class LeaseRepository implements ILeaseRepository
      *
      * @return Illuminate\Pagination\LengthAwarePaginator
      */
-    public function getLeases(): LengthAwarePaginator
+    public function getLeases()
     {
-        return Lease::orderBy('id', 'asc')->paginate(15);
+        return Lease::with('rentable')->orderBy('id', 'asc')->paginate(15);
     }
 
     /**
      * Get's a lease by it's ID
      *
-     * @param int
-     * @return \App\Models\Lease
+     * @param int $lease_id
+     * @return lease
      */
-    public function getLease(int $lease_id): ?Lease
+    public function getLease(int $lease_id)
     {
         return Lease::find($lease_id);
     }
@@ -32,13 +31,14 @@ class LeaseRepository implements ILeaseRepository
     /**
      * Add a lease
      *
-     * @param lease
-     * @return \App\Models\Lease
+     * @param mixed $attributes
+     * @return lease
      */
-    public function addLease(Lease $lease): Lease
+    public function addLease($attributes)
     {
         // Add lease to database
-        $lease::save();
+        $lease = Lease::create($attributes);
+        $lease->save();
 
         return $lease;
     }
@@ -46,12 +46,17 @@ class LeaseRepository implements ILeaseRepository
     /**
      * Update a lease
      *
-     * @param lease
-     * @return \App\Models\Lease
+     * @param int $lease_id
+     * @param mixed $attributes
+     * @return lease
      */
-    public function updateLease(Lease $lease): Lease
+    public function updateLease($lease_id, $attributes)
     {
+        // Find existing lease to update
+        $lease = Lease::find($lease_id);
+
         // Update lease
+        $lease->update($attributes);
         $lease->save();
 
         return $lease;
@@ -60,9 +65,9 @@ class LeaseRepository implements ILeaseRepository
     /**
      * Remove a lease by it's ID
      *
-     * @param int
+     * @param int $lease_id
      */
-    public function deleteLease(int $lease_id): void
+    public function deleteLease(int $lease_id)
     {
         Lease::destroy($lease_id);
     }

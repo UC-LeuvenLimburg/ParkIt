@@ -24,7 +24,8 @@ class RentableController extends Controller
      */
     public function index()
     {
-        //
+        $rentables =  $this->rentableRepo->getRentables();
+        return view('rentable.index', compact('rentables'));
     }
 
     /**
@@ -34,62 +35,65 @@ class RentableController extends Controller
      */
     public function create()
     {
-        //
+        return view('rentable.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        $newRentable = $this->rentableRepo->addRentable($request->all());
+        return redirect('/rentables/' . $newRentable->id);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Rentable  $rentable
+     * @param  \App\Models\Rentable $rentable
      * @return \Illuminate\Http\Response
      */
     public function show(Rentable $rentable)
     {
-        //
+        return view('rentable.show', compact('rentable'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Rentable  $rentable
+     * @param  \App\Models\Rentable $rentable
      * @return \Illuminate\Http\Response
      */
     public function edit(Rentable $rentable)
     {
-        //
+        return view('rentable.edit', compact('rentable'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Rentable  $rentable
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Models\Rentable $rentable
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Rentable $rentable)
     {
-        //
+        $this->rentableRepo->updateRentable($rentable->id, $request->all());
+        return redirect('/rentables/' . $rentable->id);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Rentable  $rentable
+     * @param  \App\Models\Rentable $rentable
      * @return \Illuminate\Http\Response
      */
     public function destroy(Rentable $rentable)
     {
-        //
+        $this->rentableRepo->deleteRentable($rentable->id);
+        return redirect('/rentables')->with('success', 'Place Removed');
     }
 }

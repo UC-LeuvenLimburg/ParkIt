@@ -15,7 +15,6 @@ class LeaseController extends Controller
     public function __construct(ILeaseRepository $leaseRepo)
     {
         $this->authorizeResource(Lease::class, 'lease');
-
         $this->leaseRepo = $leaseRepo;
     }
 
@@ -45,20 +44,19 @@ class LeaseController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $lease = Lease::create($request->all());
-        $newLease = $this->leaseRepo->addLease($lease);
+        $newLease = $this->leaseRepo->addLease($request->all());
         return redirect('/leases/' . $newLease->id);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Lease  $lease
+     * @param  \App\Models\Lease $lease
      * @return \Illuminate\Http\Response
      */
     public function show(Lease $lease)
@@ -69,7 +67,7 @@ class LeaseController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Lease  $lease
+     * @param  \App\Models\Lease $lease
      * @return \Illuminate\Http\Response
      */
     public function edit(Lease $lease)
@@ -80,24 +78,25 @@ class LeaseController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Lease  $lease
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Models\Lease $lease
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Lease $lease)
     {
-        $this->leaseRepo->updateLease($lease);
+        $this->leaseRepo->updateLease($lease->id, $request->all());
         return redirect('/leases/' . $lease->id);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Lease  $lease
+     * @param  \App\Models\Lease $lease
      * @return \Illuminate\Http\Response
      */
     public function destroy(Lease $lease)
     {
-        //
+        $this->leaseRepo->deleteLease($lease->id);
+        return redirect('/leases')->with('success', 'Lease Removed');
     }
 }

@@ -3,8 +3,8 @@
 namespace App\Repositories;
 
 use App\Models\User;
-use Illuminate\Pagination\LengthAwarePaginator;
 use App\Repositories\Interfaces\IUserRepository;
+use Illuminate\Support\Facades\Hash;
 
 class UserRepository implements IUserRepository
 {
@@ -13,7 +13,7 @@ class UserRepository implements IUserRepository
      *
      * @return Illuminate\Pagination\LengthAwarePaginator
      */
-    public function getUsers(): LengthAwarePaginator
+    public function getUsers()
     {
         return User::orderBy('id', 'asc')->paginate(15);
     }
@@ -21,10 +21,10 @@ class UserRepository implements IUserRepository
     /**
      * Get's a user by it's ID
      *
-     * @param int
-     * @return \App\Models\User
+     * @param int $user_id
+     * @return user
      */
-    public function getUser(int $user_id): ?User
+    public function getUser(int $user_id)
     {
         return User::find($user_id);
     }
@@ -32,13 +32,34 @@ class UserRepository implements IUserRepository
     /**
      * Add a user
      *
-     * @param user
-     * @return \App\Models\User
+     * @param mixed $attributes
+     * @return user
      */
-    public function addUser(User $user): User
+    public function addUser($attributes)
     {
         // Add user to database
-        $user::save();
+        $user = User::create($attributes);
+        $user->password = Hash::make($attributes['password']);
+        $user->save();
+
+        return $user;
+    }
+
+    /**
+     * Update a user
+     *
+     * @param int $user_id
+     * @param mixed $attributes
+     * @return user
+     */
+    public function updateUser($user_id, $attributes)
+    {
+        // Find existing user to update
+        $user = User::find($user_id);
+
+        // Update user
+        $user->update($attributes);
+        $user->save();
 
         return $user;
     }
@@ -46,9 +67,9 @@ class UserRepository implements IUserRepository
     /**
      * Remove a user by it's ID
      *
-     * @param int
+     * @param int $user_id
      */
-    public function deleteUser(int $user_id): void
+    public function deleteUser(int $user_id)
     {
         User::destroy($user_id);
     }

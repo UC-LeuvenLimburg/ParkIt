@@ -3,7 +3,6 @@
 namespace App\Repositories;
 
 use App\Models\Rentable;
-use Illuminate\Database\Eloquent\Collection;
 use App\Repositories\Interfaces\IRentableRepository;
 
 class RentableRepository implements IRentableRepository
@@ -11,20 +10,20 @@ class RentableRepository implements IRentableRepository
     /**
      * Get's all rentables
      *
-     * @return Illuminate\Database\Eloquent\Collection
+     * @return Illuminate\Pagination\LengthAwarePaginator
      */
-    public function getRentables(): Collection
+    public function getRentables()
     {
-        return Rentable::all();
+        return Rentable::with('user')->orderBy('id', 'asc')->paginate(15);
     }
 
     /**
      * Get's a rentable by it's ID
      *
-     * @param int
-     * @return \App\Models\Rentable
+     * @param int $rentable_id
+     * @return rentable
      */
-    public function getRentable(int $rentable_id): ?Rentable
+    public function getRentable(int $rentable_id)
     {
         return Rentable::find($rentable_id);
     }
@@ -32,13 +31,33 @@ class RentableRepository implements IRentableRepository
     /**
      * Add a rentable
      *
-     * @param rentable
-     * @return \App\Models\Rentable
+     * @param mixed $attributes
+     * @return rentable
      */
-    public function addRentable(Rentable $rentable): Rentable
+    public function addRentable($attributes)
     {
         // Add rentable to database
-        $rentable::save();
+        $rentable = Rentable::create($attributes);
+        $rentable->save();
+
+        return $rentable;
+    }
+
+    /**
+     * Update a Rentable
+     *
+     * @param int $rentable_id
+     * @param mixed $attributes
+     * @return rentable
+     */
+    public function updateRentable(int $rentable_id, $attributes)
+    {
+        // Find existing rentable to update
+        $rentable = Rentable::find($rentable_id);
+
+        // Update Rentable
+        $rentable->update($attributes);
+        $rentable->save();
 
         return $rentable;
     }
@@ -46,9 +65,9 @@ class RentableRepository implements IRentableRepository
     /**
      * Remove a rentable by it's ID
      *
-     * @param int
+     * @param int $rentable_id
      */
-    public function deleteRentable(int $rentable_id): void
+    public function deleteRentable(int $rentable_id)
     {
         Rentable::destroy($rentable_id);
     }
