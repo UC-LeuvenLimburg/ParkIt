@@ -10,14 +10,12 @@ use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
     private $userRepo;
-    private $current_user;
 
     public function __construct(IUserRepository $userRepo)
     {
         $this->authorizeResource(User::class, 'user');
 
         $this->userRepo = $userRepo;
-        $this->current_user = Auth::user();
     }
 
     /**
@@ -61,7 +59,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return view('user.show')->with('user', $user)->with('current_user', $this->current_user);
+        return view('user.show')->with('user', $user);
     }
 
     /**
