@@ -39,8 +39,10 @@ class StoreLeaseRequest extends FormRequest
             // Get the asociated rentable
             $rentable = $this->rentableRepo->getRentable($this->input('rentable_id'));
             // convert to unix timestamps
-            $lease_start_time = strtotime($this->input('start_time'));
-            $lease_end_time = strtotime($this->input('end_time'));
+            $start_time = $this->input('start_time');
+            $end_time = $this->input('end_time');
+            $lease_start_time = strtotime($start_time);
+            $lease_end_time = strtotime($end_time);
             $rentable_start_time = strtotime($rentable->start_time);
             $rentable_end_time = strtotime($rentable->end_time);
 
@@ -65,6 +67,23 @@ class StoreLeaseRequest extends FormRequest
             if ($lease_end_time > $rentable_end_time) {
                 $this->validator->errors()->add('available_time', 'Your current end time is after the available end time!');
             }
+
+            // Get the leases on same rentable with overlapping time
+            $overLappingLeases = $rentable->leases()
+                ->where(function ($query) use ($start_time, $end_time) {
+                    $query->where('start_time', '>', $start_time);
+                    $query->where('start_time', '<', $end_time);
+                })->orWhere(function ($query) use ($start_time, $end_time) {
+                    $query->where('end_time', '>', $start_time);
+                    $query->where('end_time', '<', $end_time);
+                })->orWhere(function ($query) use ($start_time, $end_time) {
+                    $query->where('start_time', '<', $start_time);
+                    $query->where('end_time', '>', $end_time);
+                })->orWhere(function ($query) use ($start_time, $end_time) {
+                    $query->where('start_time', '>', $start_time);
+                    $query->where('end_time', '<', $end_time);
+                })->get();
+            dd($overLappingLeases);
         });
     }
 
