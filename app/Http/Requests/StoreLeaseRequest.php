@@ -22,7 +22,7 @@ class StoreLeaseRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_id' => 'required|integer|exists:App\Models\User,id',
+            'user_id' => 'required|integer|min:1|exists:App\Models\User,id',
             'rentable_id' => 'required|integer|exists:App\Models\Rentable,id',
             'start_time' => 'required',
             'end_time' => 'required',

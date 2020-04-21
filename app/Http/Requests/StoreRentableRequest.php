@@ -14,10 +14,10 @@ class StoreRentableRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_id' => 'required|integer|exists:App\Models\User,id',
-            'postal_code' => 'required|digits:4|min:0001',
+            'user_id' => 'required|integer|min:1|exists:App\Models\User,id',
+            'postal_code' => 'required|digits:4|min:0001|max:9999',
             'adress' => 'required|string|min:2',
-            'date_of_hire' => 'required',
+            'date_of_hire' => 'required|date_format:d-m-Y',
             'start_time' => 'required',
             'end_time' => 'required',
             'price' => 'required|numeric',
