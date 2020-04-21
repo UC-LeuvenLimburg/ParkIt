@@ -47,7 +47,7 @@
                                     {{ __('My profile') }}
                                 </a>
                                 {{-- These are ADMIN only --}}
-                                @if (Auth::user()->role=="admin")
+                                @if (Auth::user()->role==="admin")
                                 <a class="dropdown-item" href="/leases">Leases</a>
                                 <a class="dropdown-item" href="/rentables">Places</a>
                                 <a class="dropdown-item" href="/users">Users</a>
@@ -55,7 +55,7 @@
                                 {{--  --}}
 
                                 {{-- These are USER only --}}
-                                @if (Auth::user()->role=="user")
+                                @if (Auth::user()->role==="user")
                                 <a class="dropdown-item" href="{{action('LeaseController@myleases')}}">My Leases</a>
                                 <a class="dropdown-item" href="{{action('RentableController@myplaces')}}">My Places</a>
                                 @endif
