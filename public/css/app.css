@@ -11110,6 +11110,10 @@ a.text-dark:focus {
     Styling for shared parkit elements
 */
 
+.parkit-logo {
+  pointer-events: none;
+}
+
 .parkit-paginator {
   display: flex;
   flex-direction: row;

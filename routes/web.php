@@ -23,3 +23,4 @@ Route::middleware('auth')->get('/rentables/myplaces','RentableController@myplace
 Route::middleware('auth')->resource('users', 'UserController');
 Route::middleware('auth')->resource('leases', 'LeaseController');
 Route::middleware('auth')->resource('rentables', 'RentableController');
+Route::middleware('auth')->get('/lease','RentableController@create');

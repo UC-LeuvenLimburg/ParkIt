@@ -6,10 +6,14 @@
         <div class="col-xl">
             <h1>Create Place</h1>
             {!! Form::open(['route' => 'rentables.store']) !!}
+            @if (Auth::user()->role==="admin")
             <div class="form-group">
                 {{Form::label('user_id', 'User_id')}}
                 {{Form::number('user_id', '', ['class' => 'form-control', 'placeholer' => 'User_id']) }}
             </div>
+            @else
+            {{Form::hidden('user_id', Auth::user()->id, ['class' => 'form-control', 'placeholer' => 'User_id', 'hidden']) }}
+            @endif
             <div class="form-group">
                 {{Form::label('adress', 'Adress')}}
                 {{Form::text('adress', '', ['class' => 'form-control', 'placeholer' => 'Adress']) }}
