@@ -21,8 +21,8 @@ class StoreRentableRequest extends FormRequest
             'start_time' => 'required',
             'end_time' => 'required',
             'price' => 'required|numeric|min:0.01|max:1000',
-            'bankaccount_nr' => 'required',
-            'description' => 'required',
+            'bankaccount_nr' => 'required|string|regex:/^[A-Z]{2}(?:[ ]?[0-9]){14,20}$/', // Regex for IBAN numbers
+            'description' => 'string|max:255',
         ];
     }
 
