@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreLeaseRequest;
 use App\Models\Lease;
 use App\Models\Rentable;
 use App\Repositories\Interfaces\ILeaseRepository;
@@ -47,9 +48,9 @@ class LeaseController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreLeaseRequest $request)
     {
-        $newLease = $this->leaseRepo->addLease($request->all());
+        $newLease = $this->leaseRepo->addLease($request->validated());
         return redirect('/leases/' . $newLease->id);
     }
 
