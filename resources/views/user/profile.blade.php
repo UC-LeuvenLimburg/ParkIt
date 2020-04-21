@@ -17,6 +17,10 @@
                 {{Form::label('password', 'Password')}}
                 {{Form::password('password', ['class' => 'form-control', 'placeholer' => 'Password']) }}
             </div>
+            <div class="form-group">
+                {{Form::label('password', 'Confirm New Password')}}
+                {{Form::password('password', ['class' => 'form-control', 'placeholer' => 'Password']) }}
+            </div>
             {!! Form::close() !!}
         </div>
     </div>
