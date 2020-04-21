@@ -23,7 +23,7 @@ class StoreLeaseRequest extends FormRequest
     {
         return [
             'user_id' => 'required|integer|min:1|exists:App\Models\User,id',
-            'rentable_id' => 'required|integer|exists:App\Models\Rentable,id',
+            'rentable_id' => 'required|integer|min:1|exists:App\Models\Rentable,id',
             'start_time' => 'required',
             'end_time' => 'required',
         ];
@@ -83,7 +83,7 @@ class StoreLeaseRequest extends FormRequest
                     $query->where('start_time', '>', $start_time);
                     $query->where('end_time', '<', $end_time);
                 })->get();
-            dd($overLappingLeases);
+            //dd($overLappingLeases);
         });
     }
 
