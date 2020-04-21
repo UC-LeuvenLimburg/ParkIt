@@ -100,4 +100,16 @@ class UserController extends Controller
         $this->userRepo->deleteUser($user->id);
         return redirect('/users')->with('success', 'User Removed');
     }
+
+    /**
+     * Display the specified profile.
+     *
+     * @param  App\Models\User $user
+     * @return \Illuminate\Http\Response
+     */
+    public function profile()
+    {
+        $user= Auth::user();
+        return view('user.profile')->with('user', $user);
+    }
 }

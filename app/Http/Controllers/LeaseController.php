@@ -99,4 +99,20 @@ class LeaseController extends Controller
         $this->leaseRepo->deleteLease($lease->id);
         return redirect('/leases')->with('success', 'Lease Removed');
     }
+
+    /**
+     * Display the specified leases
+     *
+     * @param  App\Models\Lease $lease
+     * @return \Illuminate\Http\Response
+     */
+    public function myleases()
+    {
+        $user = Auth::user();
+        //$leases =  $this->leasesRepo->getUserLeases($user);
+        return view(
+            'lease.myleases'
+            //, compact('leases')
+        );
+    }
 }
