@@ -37,6 +37,10 @@ class RentableRepository implements IRentableRepository
     public function addRentable($attributes)
     {
         // Add rentable to database
+        $rentable = Rentable::create($attributes);
+        $rentable->save();
+
+        return $rentable;
     }
 
     /**

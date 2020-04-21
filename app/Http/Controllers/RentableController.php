@@ -35,7 +35,7 @@ class RentableController extends Controller
      */
     public function create()
     {
-        //
+        return view('rentable.create');
     }
 
     /**
@@ -46,7 +46,8 @@ class RentableController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $newRentable = $this->rentableRepo->addRentable($request->all());
+        return redirect('/rentables/' . $newRentable->id);
     }
 
     /**

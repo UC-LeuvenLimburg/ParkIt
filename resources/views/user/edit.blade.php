@@ -28,12 +28,14 @@
             </div>
             {{Form::submit('Save', [ 'class' => 'btn btn-primary'])}}
             {!! Form::close() !!}
-            {!! Form::open(['action' => ['UserController@destroy', $user], 'method' => 'POST']) !!}
-            @if (Auth::user()->role==="admin" && Auth::user()->name!=="admin")
-            {{ Form::hidden('_method', 'DELETE') }}
-            {{ Form::submit('Delete', ['class' => 'btn btn-danger']) }}
-            {!! Form::close() !!}
-            @endif
+            <div class="parkit-delete-button">
+                {!! Form::open(['action' => ['UserController@destroy', $user], 'method' => 'POST']) !!}
+                @if (Auth::user()->role==="admin" && $user->name!=="admin")
+                {{ Form::hidden('_method', 'DELETE') }}
+                {{ Form::submit('Delete', ['class' => 'btn btn-danger']) }}
+                {!! Form::close() !!}
+                @endif
+            </div>
         </div>
     </div>
 </div>

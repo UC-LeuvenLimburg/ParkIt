@@ -29,7 +29,7 @@
             @endforeach
         </tbody>
     </table>
-    <div class="user-paginator">
+    <div class="parkit-paginator">
         {{ $users->links() }}
         <div class="filler"></div>
         <a href="{{ route('users.create') }}" class="btn btn-sm btn-primary">Add New</a>

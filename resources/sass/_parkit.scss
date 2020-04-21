@@ -1,0 +1,24 @@
+/*
+    Styling for shared parkit elements
+*/
+.parkit-paginator {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    .filler {
+        flex: 1;
+    }
+
+    nav {
+        margin: 0;
+    }
+}
+
+.parkit-delete-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-top: -37px;
+}
