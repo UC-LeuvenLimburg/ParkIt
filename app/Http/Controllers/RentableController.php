@@ -107,7 +107,10 @@ class RentableController extends Controller
     public function myplaces()
     {
         $user = Auth::user();
-        $rentables =  $this->rentableRepo->getUserRentables($user);
-        return view('rentable.myplaces', compact('rentables'));
+        //$rentables =  $this->rentableRepo->getUserRentables($user);
+        return view(
+            'rentable.myplaces'
+            //,compact('rentables')
+        );
     }
 }

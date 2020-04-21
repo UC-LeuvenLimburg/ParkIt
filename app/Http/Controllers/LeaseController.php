@@ -106,10 +106,13 @@ class LeaseController extends Controller
      * @param  App\Models\Lease $lease
      * @return \Illuminate\Http\Response
      */
-    public function myplaces()
+    public function myleases()
     {
         $user = Auth::user();
-        $leases =  $this->leasesRepo->getUserLeases($user);
-        return view('lease.myplaces', compact('leases'));
+        //$leases =  $this->leasesRepo->getUserLeases($user);
+        return view(
+            'lease.myleases'
+            //, compact('leases')
+        );
     }
 }
