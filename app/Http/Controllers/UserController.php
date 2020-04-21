@@ -17,7 +17,6 @@ class UserController extends Controller
         $this->authorizeResource(User::class, 'user');
 
         $this->userRepo = $userRepo;
-        $this->current_user = Auth::user();
     }
 
     /**
@@ -61,6 +60,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
+        //for solution check profile
         return view('user.show')->with('user', $user)->with('current_user', $this->current_user);
     }
 
@@ -101,5 +101,17 @@ class UserController extends Controller
         }
         $this->userRepo->deleteUser($user->id);
         return redirect('/users')->with('success', 'User Removed');
+    }
+
+    /**
+     * Display the specified profile.
+     *
+     * @param  App\Models\User $user
+     * @return \Illuminate\Http\Response
+     */
+    public function profile()
+    {
+        $user= Auth::user();
+        return view('user.profile')->with('user', $user);
     }
 }
