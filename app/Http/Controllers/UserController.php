@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
     private $userRepo;
-    private $current_user;
 
     public function __construct(IUserRepository $userRepo)
     {
@@ -60,8 +59,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //for solution check profile
-        return view('user.show')->with('user', $user)->with('current_user', $this->current_user);
+        return view('user.show')->with('user', $user);
     }
 
     /**
