@@ -15,14 +15,14 @@ class StoreRentableRequest extends FormRequest
     {
         return [
             'user_id' => 'required|integer|min:1|exists:App\Models\User,id',
-            'adress' => 'required|string|min:3|max:255',
+            'adress' => 'required|string|min:3|max:150',
             'postal_code' => 'required|numeric|digits:4|min:1|max:9999',
             'date_of_hire' => 'required|date_format:Y-m-d',
             'start_time' => 'required',
             'end_time' => 'required',
             'price' => 'required|numeric|min:0.01|max:1000',
             'bankaccount_nr' => 'required|string|regex:/^[A-Z]{2}(?:[ ]?[0-9]){14,20}$/', // Regex for IBAN numbers
-            'description' => 'string|max:255',
+            'description' => 'max:150',
         ];
     }
 
@@ -33,7 +33,30 @@ class StoreRentableRequest extends FormRequest
     protected function getValidatorInstance()
     {
         return parent::getValidatorInstance()->after(function () {
-            // todo custom validation for rentable
+            // convert to unix timestamps
+            $start_time = $this->input('start_time');
+            $end_time = $this->input('end_time');
+            $rentable_start_time = strtotime($start_time);
+            $rentable_end_time = strtotime($end_time);
+
+            // Check if start_time is before end_time
+            if ($rentable_start_time >= $rentable_end_time) {
+                $this->validator->errors()->add('end_time', 'End time cannot be before start time!');
+            }
+
+            // Check if minimum rented time is greater then 30 minutes
+            if ($this->timeDiffInMinutes($rentable_start_time, $rentable_end_time) < 30) {
+                $this->validator->errors()->add('rented_time', 'At least 30 minutes have to be available for rent!');
+            }
         });
+    }
+
+    protected function timeDiffInMinutes($firstTime, $lastTime)
+    {
+        // perform subtraction to get the difference (in seconds) between times
+        $timeDiff = ($lastTime - $firstTime) / 60;
+
+        // return the difference
+        return $timeDiff;
     }
 }
