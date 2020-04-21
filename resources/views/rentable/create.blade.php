@@ -12,7 +12,7 @@
                 {{Form::number('user_id', '', ['class' => 'form-control', 'placeholer' => 'User_id']) }}
             </div>
             @else
-                {{Form::number('user_id', Auth::user()->id, ['class' => 'form-control', 'placeholer' => 'User_id', 'hidden']) }}
+            {{Form::hidden('user_id', Auth::user()->id, ['class' => 'form-control', 'placeholer' => 'User_id', 'hidden']) }}
             @endif
             <div class="form-group">
                 {{Form::label('adress', 'Adress')}}
