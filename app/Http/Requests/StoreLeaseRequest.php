@@ -2,11 +2,18 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Rentable;
 use Illuminate\Foundation\Http\FormRequest;
+use App\Repositories\Interfaces\IRentableRepository;
 
 class StoreLeaseRequest extends FormRequest
 {
+    protected $rentableRepo;
+
+    public function __construct(IRentableRepository $rentableRepo)
+    {
+        $this->rentableRepo = $rentableRepo;
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -30,7 +37,7 @@ class StoreLeaseRequest extends FormRequest
     {
         return parent::getValidatorInstance()->after(function () {
             // Get the asociated rentable
-            $rentable = Rentable::find($this->input('rentable_id'));
+            $rentable = $this->rentableRepo->getRentable($this->input('rentable_id'));
             // convert to unix timestamps
             $lease_start_time = strtotime($this->input('start_time'));
             $lease_end_time = strtotime($this->input('end_time'));
