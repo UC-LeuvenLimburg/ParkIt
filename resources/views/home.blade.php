@@ -9,7 +9,7 @@
                 <h3 class="display-6" class="lead">What do we offer?</h3>
                 <p>We offer a service that makes it possible to rent or lease a parking spot.
                     <div class="row justify-content-center">
-                        <img src="{{ asset('images/parking.jpg') }}" alt="parking image">
+                        <img src="{{ asset('images/parking.jpg') }}" class="home-img-responsive" alt="parking image">
                     </div>
                 </p>
                 @guest
