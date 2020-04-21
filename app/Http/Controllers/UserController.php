@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUserRequest;
 use App\Models\User;
 use App\Repositories\Interfaces\IUserRepository;
 use Illuminate\Http\Request;
@@ -45,7 +46,7 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
         $newUser = $this->userRepo->addUser($request->all());
         return redirect('/users/' . $newUser->id);
@@ -109,7 +110,7 @@ class UserController extends Controller
      */
     public function profile()
     {
-        $user= Auth::user();
+        $user = Auth::user();
         return view('user.profile')->with('user', $user);
     }
 }
