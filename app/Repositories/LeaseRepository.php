@@ -14,7 +14,7 @@ class LeaseRepository implements ILeaseRepository
      */
     public function getLeases()
     {
-        return Lease::orderBy('id', 'asc')->paginate(15);
+        return Lease::with('rentable')->orderBy('id', 'asc')->paginate(15);
     }
 
     /**
