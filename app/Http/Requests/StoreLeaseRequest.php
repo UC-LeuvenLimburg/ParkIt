@@ -87,6 +87,12 @@ class StoreLeaseRequest extends FormRequest
         });
     }
 
+    /**
+     * Calculates the time difference between two unix timestamps in minutes
+     *
+     * @param $firstTime
+     * @param $lastTime
+     */
     protected function timeDiffInMinutes($firstTime, $lastTime)
     {
         // perform subtraction to get the difference (in seconds) between times

@@ -7,16 +7,6 @@ use Illuminate\Foundation\Http\FormRequest;
 class StoreUserRequest extends FormRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return false;
-    }
-
-    /**
      * Get the validation rules that apply to the request.
      *
      * @return array
@@ -24,7 +14,21 @@ class StoreUserRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required|string|min:1|max:150',
+            'email' => 'required|email:rfc,dns',
+            'password' => 'required|string|min:8|max:128',
+            'role' => 'required|string|min:1|max:150',
         ];
+    }
+
+    /**
+     * Validate request
+     * @return Illuminate\Foundation\Http\FormRequest::getValidatorInstance
+     */
+    protected function getValidatorInstance()
+    {
+        return parent::getValidatorInstance()->after(function () {
+            // todo custom validation for user
+        });
     }
 }
