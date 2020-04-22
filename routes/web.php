@@ -18,8 +18,8 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::middleware('auth')->get('/profile', 'UserController@profile');
-Route::middleware('auth')->get('/myleases', 'LeaseController@index');
-Route::middleware('auth')->get('/myplaces', 'RentableController@index');
+Route::middleware('auth')->get('/myleases', 'LeaseController@myleases');
+Route::middleware('auth')->get('/myplaces', 'RentableController@myplaces');
 Route::middleware('auth')->resource('users', 'UserController');
 Route::middleware('auth')->resource('leases', 'LeaseController');
 Route::middleware('auth')->resource('rentables', 'RentableController');
