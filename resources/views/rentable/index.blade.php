@@ -9,32 +9,36 @@
     <table class="table table-dark table-hover">
         <thead class="table-primary">
             <tr>
+                @if (Auth::user()->role==="admin")
                 <th scope="col">user</th>
+                @endif
                 <th scope="col">Adress</th>
                 <th scope="col">Postal code</th>
                 <th scope="col">Date of hire</th>
                 <th scope="col">Start time</th>
                 <th scope="col">End time</th>
-                <th scope="col">Price/H</th>
+                <th scope="col">Price/h</th>
                 <th scope="col">Actions</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($rentables as $rentable)
             <tr>
+                @if (Auth::user()->role==="admin")
                 <td>{{ $rentable->user->name}}</td>
+                @endif
                 <td>{{ $rentable->adress}}</td>
                 <td>{{ $rentable->postal_code}}</td>
                 <td>{{ $rentable->date_of_hire}}</td>
                 <td>{{ $rentable->start_time}}</td>
                 <td>{{ $rentable->end_time}}</td>
+                @if (Auth::user()->role==="user")
                 <td>{{ $rentable->price}}</td>
+                @endif
                 <td>
-                    @if (Auth::user()->role==="admin")
                     <a class="btn btn-info btn-sm" href='/rentables/{{ $rentable->id }}'>Show</a>
+                    @if (Auth::user()->role==="admin")
                     <a class="btn btn-info btn-sm btn-warning" href='/rentables/{{ $rentable->id }}/edit'>Edit</a>
-                    @else
-                    <a class="btn btn-info btn-sm" href='/leases/create/{{ $rentable->id }}'>Rent</a>
                     @endif
                 </td>
             </tr>
