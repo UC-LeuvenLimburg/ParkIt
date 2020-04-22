@@ -17,7 +17,9 @@
                 <th scope="col">Date of hire</th>
                 <th scope="col">Start time</th>
                 <th scope="col">End time</th>
+                @if (Auth::user()->role==="user")
                 <th scope="col">Price/h</th>
+                @endif
                 <th scope="col">Actions</th>
             </tr>
         </thead>
