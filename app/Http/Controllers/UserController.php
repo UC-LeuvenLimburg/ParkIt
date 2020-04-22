@@ -86,7 +86,7 @@ class UserController extends Controller
         if ($user->role === 'admin') {
             return redirect('/users/' . $user->id);
         } else {
-            return redirect('/users/profile');
+            return redirect('/profile');
         }
     }
 
