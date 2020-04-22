@@ -25,7 +25,10 @@ class RentableController extends Controller
      */
     public function index()
     {
-        $rentables =  $this->rentableRepo->getRentables();
+        if (Auth::user()->role === 'admin') {
+            $rentables =  $this->rentableRepo->getRentables();
+        } else
+            $rentables = $this->rentableRepo->getUserRentables(Auth::id());
         return view('rentable.index', compact('rentables'));
     }
 

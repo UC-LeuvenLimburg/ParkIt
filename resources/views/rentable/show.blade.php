@@ -6,10 +6,12 @@
         <div class="col-xl">
             <h1>Place details</h1>
             {!! Form::model($rentable) !!}
+            @if (Auth::user()->role==="admin")
             <div class="form-group">
                 {{Form::label('user', 'User')}}
                 {{Form::text('user', $rentable->user->name, ['class' => 'form-control', 'placeholer' => 'User', 'disabled']) }}
             </div>
+            @endif
             <div class="form-group">
                 {{Form::label('adress', 'Adress')}}
                 {{Form::text('adress', $rentable->adress, ['class' => 'form-control', 'placeholer' => 'Adress', 'disabled']) }}

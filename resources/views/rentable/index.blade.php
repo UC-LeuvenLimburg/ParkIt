@@ -18,7 +18,6 @@
                 <th scope="col">Actions</th>
             </tr>
         </thead>
-        @if (Auth::user()->role==="admin")
         <tbody>
             @foreach ($rentables as $rentable)
             <tr>
@@ -30,20 +29,19 @@
                 <td>{{ $rentable->end_time}}</td>
                 <td>
                     <a class="btn btn-info btn-sm" href='/rentables/{{ $rentable->id }}'>Show</a>
+                    @if (Auth::user()->role==="admin")
                     <a class="btn btn-info btn-sm btn-warning" href='/rentables/{{ $rentable->id }}/edit'>Edit</a>
+                    @endif
                 </td>
             </tr>
             @endforeach
         </tbody>
-        @endif
     </table>
-    @if (Auth::user()->role==="admin")
     <div class="parkit-paginator">
         {{ $rentables->links() }}
         <div class="filler"></div>
         <a href="{{ route('rentables.create') }}" class="btn btn-sm btn-primary">Add New</a>
     </div>
-    @endif
     @else
     <p>No places found.</p>
     <a href="{{ route('rentables.create') }}" class="btn btn-sm btn-primary">Add New</a>
