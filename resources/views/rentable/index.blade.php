@@ -15,6 +15,7 @@
                 <th scope="col">Date of hire</th>
                 <th scope="col">Start time</th>
                 <th scope="col">End time</th>
+                <th scope="col">Price/H</th>
                 <th scope="col">Actions</th>
             </tr>
         </thead>
@@ -27,9 +28,14 @@
                 <td>{{ $rentable->date_of_hire}}</td>
                 <td>{{ $rentable->start_time}}</td>
                 <td>{{ $rentable->end_time}}</td>
+                <td>{{ $rentable->price}}</td>
                 <td>
+                    @if (Auth::user()->role==="admin")
                     <a class="btn btn-info btn-sm" href='/rentables/{{ $rentable->id }}'>Show</a>
                     <a class="btn btn-info btn-sm btn-warning" href='/rentables/{{ $rentable->id }}/edit'>Edit</a>
+                    @else
+                    <a class="btn btn-info btn-sm" href='/leases/create/{{ $rentable->id }}'>Rent</a>
+                    @endif
                 </td>
             </tr>
             @endforeach
