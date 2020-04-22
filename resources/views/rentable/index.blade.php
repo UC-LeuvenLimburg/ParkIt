@@ -10,7 +10,7 @@
         <thead class="table-primary">
             <tr>
                 @if (Auth::user()->role==="admin")
-                <th scope="col">email</th>
+                <th scope="col">Email</th>
                 @endif
                 <th scope="col">Adress</th>
                 <th scope="col">Postal code</th>
