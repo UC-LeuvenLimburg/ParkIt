@@ -25,7 +25,11 @@ class LeaseController extends Controller
      */
     public function index()
     {
-        $leases =  $this->leaseRepo->getLeases();
+        if (Auth::user()->role === 'admin') {
+            $leases =  $this->leaseRepo->getLeases();
+        } else {
+            $leases = $this->leaseRepo->getUserLeases(Auth::id());
+        }
         return view('lease.index', compact('leases'));
     }
 

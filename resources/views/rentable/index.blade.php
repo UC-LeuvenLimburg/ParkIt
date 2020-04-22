@@ -9,7 +9,9 @@
     <table class="table table-dark table-hover">
         <thead class="table-primary">
             <tr>
+                @if (Auth::user()->role==="admin")
                 <th scope="col">user</th>
+                @endif
                 <th scope="col">Adress</th>
                 <th scope="col">Postal code</th>
                 <th scope="col">Date of hire</th>
@@ -21,7 +23,9 @@
         <tbody>
             @foreach ($rentables as $rentable)
             <tr>
+                @if (Auth::user()->role==="admin")
                 <td>{{ $rentable->user->name}}</td>
+                @endif
                 <td>{{ $rentable->adress}}</td>
                 <td>{{ $rentable->postal_code}}</td>
                 <td>{{ $rentable->date_of_hire}}</td>

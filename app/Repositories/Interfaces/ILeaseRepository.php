@@ -20,6 +20,14 @@ interface ILeaseRepository
     public function getLease(int $lease_id);
 
     /**
+     * Get's all leases by someones ID
+     *
+     * @param int $user_id
+     * @return lease
+     */
+    public function getUserLeases(int $user_id);
+
+    /**
      * Add a lease
      *
      * @param mixed $attributes
