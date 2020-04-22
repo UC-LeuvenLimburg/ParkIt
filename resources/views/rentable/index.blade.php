@@ -10,10 +10,7 @@
         <thead class="table-primary">
             <tr>
                 @if (Auth::user()->role==="admin")
-                <<<<<<< HEAD <th scope="col">user</th>
-                    =======
                     <th scope="col">Email</th>
-                    >>>>>>> develop
                     @endif
                     <th scope="col">Adress</th>
                     <th scope="col">Postal code</th>
