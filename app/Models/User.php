@@ -1,13 +1,19 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Iatstuti\Database\Support\CascadeSoftDeletes;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
+    use SoftDeletes, CascadeSoftDeletes;
+
+    protected $cascadeDeletes = ['rentables','leases'];
+
     use Notifiable;
 
     /**
@@ -16,7 +22,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'role'
     ];
 
     /**
@@ -36,4 +42,21 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    //Relation with Rentables
+    public function rentables()
+    {
+        return $this->hasMany('App\Models\Rentable');
+    }
+
+    //Relation with Leases
+    public function leases()
+    {
+        return $this->hasMany('App\Models\Lease');
+    }
+
+    public function isAdmin()
+    {
+        return $this->role === 'admin';
+    }
 }
