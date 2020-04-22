@@ -1,7 +1,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <object data="{{ asset('images/logo.svg') }}" type="image/svg+xml" width="125px"></object>
+                    <object data="{{ asset('images/logo.svg') }}" type="image/svg+xml" width="125px" class="parkit-logo"></object>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
