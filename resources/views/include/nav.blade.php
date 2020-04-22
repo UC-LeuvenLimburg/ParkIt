@@ -56,8 +56,8 @@
 
                         {{-- These are USER only --}}
                         @if (Auth::user()->role==="user")
-                        <a class="dropdown-item" href="/myleases">My Leases</a>
-                        <a class="dropdown-item" href="/myplaces">My Places</a>
+                        <a class="dropdown-item" href="{{action('LeaseController@myleases')}}">My Leases</a>
+                        <a class="dropdown-item" href="{{action('RentableController@myplaces')}}">My Places</a>
                         @endif
                         {{--  --}}
 
