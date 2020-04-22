@@ -32,7 +32,7 @@ class LeaseRepository implements ILeaseRepository
      * Get's all leases by someones ID
      *
      * @param int $user_id
-     * @return lease
+     * @return Illuminate\Pagination\LengthAwarePaginator
      */
     public function getUserLeases(int $user_id)
     {
