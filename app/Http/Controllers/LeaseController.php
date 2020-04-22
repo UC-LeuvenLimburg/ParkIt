@@ -25,7 +25,11 @@ class LeaseController extends Controller
      */
     public function index()
     {
-        $leases =  $this->leaseRepo->getLeases();
+        if (Auth::user()->role === 'admin') {
+            $leases =  $this->leaseRepo->getLeases();
+        } else {
+            $leases = $this->leaseRepo->getUserLeases(Auth::id());
+        }
         return view('lease.index', compact('leases'));
     }
 
@@ -98,21 +102,5 @@ class LeaseController extends Controller
     {
         $this->leaseRepo->deleteLease($lease->id);
         return redirect('/leases')->with('success', 'Lease Removed');
-    }
-
-    /**
-     * Display the specified leases
-     *
-     * @param  App\Models\Lease $lease
-     * @return \Illuminate\Http\Response
-     */
-    public function myleases()
-    {
-        $user = Auth::user();
-        //$leases =  $this->leasesRepo->getUserLeases($user);
-        return view(
-            'lease.myleases'
-            //, compact('leases')
-        );
     }
 }

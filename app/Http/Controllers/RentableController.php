@@ -25,7 +25,10 @@ class RentableController extends Controller
      */
     public function index()
     {
-        $rentables =  $this->rentableRepo->getRentables();
+        if (Auth::user()->role === 'admin') {
+            $rentables =  $this->rentableRepo->getRentables();
+        } else
+            $rentables = $this->rentableRepo->getUserRentables(Auth::id());
         return view('rentable.index', compact('rentables'));
     }
 
@@ -100,21 +103,5 @@ class RentableController extends Controller
     {
         $this->rentableRepo->deleteRentable($rentable->id);
         return redirect('/rentables')->with('success', 'Place Removed');
-    }
-
-    /**
-     * Display the specified rentables
-     *
-     * @param  App\Models\Rentable $rentable
-     * @return \Illuminate\Http\Response
-     */
-    public function myplaces()
-    {
-        $user = Auth::user();
-        //$rentables =  $this->rentableRepo->getUserRentables($user);
-        return view(
-            'rentable.myplaces'
-            //,compact('rentables')
-        );
     }
 }

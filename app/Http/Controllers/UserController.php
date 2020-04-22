@@ -83,7 +83,11 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $this->userRepo->updateUser($user->id, $request->all());
-        return redirect('/users/' . $user->id);
+        if ($user->role === 'admin') {
+            return redirect('/users/' . $user->id);
+        } else {
+            return redirect('/users/profile');
+        }
     }
 
     /**
@@ -109,7 +113,7 @@ class UserController extends Controller
      */
     public function profile()
     {
-        $user= Auth::user();
+        $user = Auth::user();
         return view('user.profile')->with('user', $user);
     }
 }
