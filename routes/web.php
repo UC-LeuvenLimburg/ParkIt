@@ -24,3 +24,4 @@ Route::middleware('auth')->resource('users', 'UserController');
 Route::middleware('auth')->resource('leases', 'LeaseController');
 Route::middleware('auth')->resource('rentables', 'RentableController');
 Route::middleware('auth')->get('/lease','RentableController@create');
+Route::middleware('auth')->get('/rent','RentableController@index');
