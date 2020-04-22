@@ -10,7 +10,7 @@
         <thead class="table-primary">
             <tr>
                 @if (Auth::user()->role==="admin")
-                <th scope="col">user</th>
+                <th scope="col">email</th>
                 @endif
                 <th scope="col">Adress</th>
                 <th scope="col">Postal code</th>
@@ -27,7 +27,7 @@
             @foreach ($rentables as $rentable)
             <tr>
                 @if (Auth::user()->role==="admin")
-                <td>{{ $rentable->user->name}}</td>
+                <td>{{ $rentable->user->email}}</td>
                 @endif
                 <td>{{ $rentable->adress}}</td>
                 <td>{{ $rentable->postal_code}}</td>
