@@ -37,10 +37,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text">&euro;</span>
                     </div>
-                    {{Form::text('price', $rentable->price, ['class' => 'form-control', 'placeholer' => 'Price', 'required']) }}
-                    <div class="input-group-append">
-                        <span class="input-group-text">.00</span>
-                    </div>
+                    {{Form::number('price', $rentable->price, ['class' => 'form-control', 'placeholer' => 'Price', 'step' => '.01', 'required']) }}
                 </div>
                 <div class="form-group">
                     {{Form::label('bankaccount_nr', 'Bankaccount Number')}}
