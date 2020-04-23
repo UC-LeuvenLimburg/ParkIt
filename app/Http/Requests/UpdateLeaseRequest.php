@@ -61,17 +61,18 @@ class UpdateLeaseRequest extends FormRequest
 
             // Check if start_time lease is before start_time rentable
             if ($lease_start_time < $rentable_start_time) {
-                $this->validator->errors()->add('available_time', 'Your current start time is before the available start time');
+                $this->validator->errors()->add('available_time', 'Your current start time is before the available start time: ' . $rentable->start_time);
             }
 
             // Check if end_time lease is after end_time rentable
             if ($lease_end_time > $rentable_end_time) {
-                $this->validator->errors()->add('available_time', 'Your current end time is after the available end time');
+                $this->validator->errors()->add('available_time', 'Your current end time is after the available end time: ' . $rentable->end_time);
             }
 
             // Get the leases on same rentable with overlapping time
             $overLappingLeases = $rentable->leases()
                 ->where([
+                    ['id', '!=', $this->input('lease_id')],
                     ['rentable_id', '=', $this->input('rentable_id')],
                     [function ($query) use ($start_time, $end_time) {
                         $query->where([

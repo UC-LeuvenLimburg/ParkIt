@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreLeaseRequest;
+use App\Http\Requests\UpdateLeaseRequest;
 use App\Models\Lease;
 use App\Models\Rentable;
 use App\Repositories\Interfaces\ILeaseRepository;
@@ -44,12 +45,12 @@ class LeaseController extends Controller
         $rentable = new Rentable();
         return view('lease.create')->with(compact('user_id', 'rentable'));
     }
-    
+
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param  App\Http\Requests\StoreLeaseRequest $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreLeaseRequest $request)
@@ -87,9 +88,9 @@ class LeaseController extends Controller
      * @param  \App\Models\Lease $lease
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Lease $lease)
+    public function update(UpdateLeaseRequest $request, Lease $lease)
     {
-        $this->leaseRepo->updateLease($lease->id, $request->all());
+        $this->leaseRepo->updateLease($lease->id, $request->validated());
         return redirect('/leases/' . $lease->id);
     }
 
@@ -128,5 +129,4 @@ class LeaseController extends Controller
         $rentable = $this->rentableRepo->getRentable($id);
         return view('lease.create')->with(compact('user_id', 'rentable'));
     }
-
 }
