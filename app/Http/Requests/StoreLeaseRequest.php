@@ -74,23 +74,12 @@ class StoreLeaseRequest extends FormRequest
                     ['rentable_id', '=', $this->input('rentable_id')],
                     [function ($query) use ($start_time, $end_time) {
                         $query->where([
-                            ['start_time', '>', $start_time],
                             ['start_time', '<', $end_time],
-                        ]);
-                        $query->orWhere([
                             ['end_time', '>', $start_time],
-                            ['end_time', '<', $end_time],
-                        ]);
-                        $query->orWhere([
-                            ['start_time', '<', $start_time],
-                            ['end_time', '>', $end_time],
-                        ]);
-                        $query->orWhere([
-                            ['start_time', '>', $start_time],
-                            ['end_time', '<', $end_time],
                         ]);
                     }],
                 ])->get();
+            dd($overLappingLeases);
             if (count($overLappingLeases) > 0) {
                 $this->validator->errors()->add('available_time', 'Your current selected time is no longer available');
             }
