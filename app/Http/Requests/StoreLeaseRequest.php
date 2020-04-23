@@ -57,6 +57,11 @@ class StoreLeaseRequest extends FormRequest
                 $this->validator->errors()->add('rented_time', 'At least 30 minutes have to be rented');
             }
 
+            // Check if we are not trying to rent our own property
+            if ($this->input('user_id') == $rentable->user_id) {
+                $this->validator->errors()->add('rented_time', 'You cannot rent your own property');
+            }
+
             // Check if lease time is available on rentable
 
             // Check if start_time lease is before start_time rentable

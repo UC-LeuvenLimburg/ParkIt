@@ -22,6 +22,7 @@ class UpdateLeaseRequest extends FormRequest
     public function rules()
     {
         return [
+            'lease_id' => 'required|integer|min:1|exists:App\Models\Lease,id',
             'user_id' => 'required|integer|min:1|exists:App\Models\User,id',
             'rentable_id' => 'required|integer|min:1|exists:App\Models\Rentable,id',
             'start_time' => 'required',
@@ -55,6 +56,11 @@ class UpdateLeaseRequest extends FormRequest
             // Check if minimum rented time is greater then 30 minutes
             if ($this->timeDiffInMinutes($lease_start_time, $lease_end_time) < 30) {
                 $this->validator->errors()->add('rented_time', 'At least 30 minutes have to be rented');
+            }
+
+            // Check if we are not trying to rent our own property
+            if ($this->input('user_id') == $rentable->user_id) {
+                $this->validator->errors()->add('rented_time', 'You cannot rent your own property');
             }
 
             // Check if lease time is available on rentable
