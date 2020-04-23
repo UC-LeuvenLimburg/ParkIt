@@ -16,20 +16,20 @@
             </div>
             @if (Auth::user()->role==="admin")
             {{Form::label('user_id', 'User_id')}}
-            {{Form::text('user_id', $user_id)}}
+            {{Form::text('user_id', $user_id, ['required'])}}
             {{Form::label('rentable_id', 'Rentable_id')}}
-            {{Form::text('rentable_id', $rentable->id)}}
+            {{Form::text('rentable_id', $rentable->id, ['required'])}}
             @else
-            {{Form::hidden('user_id', $user_id, ['hidden'])}}
-            {{Form::hidden('rentable_id', $rentable->id, ['hidden'])}}
+            {{Form::hidden('user_id', $user_id, ['hidden', 'required'])}}
+            {{Form::hidden('rentable_id', $rentable->id, ['hidden', 'required'])}}
             @endif
             <div class="form-group">
                 {{Form::label('start_time', 'Start Time')}}
-                {{Form::time('start_time', '', ['class' => 'form-control', 'placeholer' => 'Start Time']) }}
+                {{Form::time('start_time', '', ['class' => 'form-control', 'placeholer' => 'Start Time', 'required']) }}
             </div>
             <div class="form-group">
                 {{Form::label('end_time', 'End Time')}}
-                {{Form::time('end_time', '', ['class' => 'form-control', 'placeholer' => 'End Time']) }}
+                {{Form::time('end_time', '', ['class' => 'form-control', 'placeholer' => 'End Time', 'required']) }}
             </div>
             <div class="form-group">
                 {{Form::label('price', 'Price/h')}}

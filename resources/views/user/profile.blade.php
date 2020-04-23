@@ -7,7 +7,7 @@
             {!! Form::model($user, ['route' => ['users.update', $user], 'method' => 'PUT']) !!}
             <div class="form-group">
                 {{Form::label('name', 'Name')}}
-                {{Form::text('name', $user->name, ['class' => 'form-control', 'placeholer' => 'Name']) }}
+                {{Form::text('name', $user->name, ['class' => 'form-control', 'placeholer' => 'Name', 'required']) }}
             </div>
             <div class="form-group">
                 {{Form::label('email', 'Email')}}

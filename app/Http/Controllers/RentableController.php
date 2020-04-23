@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreRentableRequest;
+use App\Http\Requests\UpdateRentableRequest;
 use App\Models\Rentable;
 use App\Repositories\Interfaces\IRentableRepository;
 use Illuminate\Http\Request;
@@ -42,10 +44,10 @@ class RentableController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param  App\Http\Requests\StoreRentableRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRentableRequest $request)
     {
         $newRentable = $this->rentableRepo->addRentable($request->all());
         if (Auth::user()->role === "admin") {
@@ -80,13 +82,13 @@ class RentableController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param  App\Http\Requests\UpdateRentableRequest $request
      * @param  \App\Models\Rentable $rentable
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Rentable $rentable)
+    public function update(UpdateRentableRequest $request, Rentable $rentable)
     {
-        $this->rentableRepo->updateRentable($rentable->id, $request->all());
+        $this->rentableRepo->updateRentable($rentable->id, $request->validated());
         return redirect('/rentables/' . $rentable->id);
     }
 

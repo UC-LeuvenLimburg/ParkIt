@@ -8,15 +8,15 @@
             {!! Form::model($user, ['route' => ['users.update', $user], 'method' => 'PUT']) !!}
             <div class="form-group">
                 {{Form::label('name', 'Name')}}
-                {{Form::text('name', $user->name, ['class' => 'form-control', 'placeholer' => 'Name']) }}
+                {{Form::text('name', $user->name, ['class' => 'form-control', 'placeholer' => 'Name', 'required']) }}
             </div>
             <div class="form-group">
                 {{Form::label('email', 'Email')}}
-                {{Form::email('email', $user->email, ['class' => 'form-control', 'placeholer' => 'Email']) }}
+                {{Form::email('email', $user->email, ['class' => 'form-control', 'placeholer' => 'Email', 'required']) }}
             </div>
             <div class="form-group">
                 {{Form::label('role', 'Role')}}
-                {{Form::text('role', $user->role, ['class' => 'form-control', 'placeholer' => 'Role']) }}
+                {{Form::text('role', $user->role, ['class' => 'form-control', 'placeholer' => 'Role', 'required']) }}
             </div>
             <div class="form-group">
                 {{Form::label('email_verified_at', 'Email verified at')}}
