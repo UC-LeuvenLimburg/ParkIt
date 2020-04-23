@@ -84,7 +84,7 @@ class LeaseController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param  App\Http\Requests\UpdateLeaseRequest $request
      * @param  \App\Models\Lease $lease
      * @return \Illuminate\Http\Response
      */
