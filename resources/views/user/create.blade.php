@@ -8,19 +8,19 @@
             {!! Form::open(['route' => 'users.store']) !!}
             <div class="form-group">
                 {{Form::label('name', 'Name')}}
-                {{Form::text('name', '', ['class' => 'form-control', 'placeholer' => 'Name']) }}
+                {{Form::text('name', '', ['class' => 'form-control', 'placeholer' => 'Name', 'required']) }}
             </div>
             <div class="form-group">
                 {{Form::label('email', 'Email')}}
-                {{Form::email('email', '', ['class' => 'form-control', 'placeholer' => 'email@example.com']) }}
+                {{Form::email('email', '', ['class' => 'form-control', 'placeholer' => 'email@example.com', 'required']) }}
             </div>
             <div class="form-group">
                 {{Form::label('role', 'Role')}}
-                {{Form::text('role', '', ['class' => 'form-control', 'placeholer' => 'Role']) }}
+                {{Form::text('role', '', ['class' => 'form-control', 'placeholer' => 'Role', 'required']) }}
             </div>
             <div class="form-group">
                 {{Form::label('password', 'Password')}}
-                {{Form::password('password', ['class' => 'form-control', 'placeholer' => 'Password']) }}
+                {{Form::password('password', ['class' => 'form-control', 'placeholer' => 'Password', 'required']) }}
             </div>
             {{Form::submit('Save', [ 'class' => 'btn btn-primary'])}}
             {!! Form::close() !!}
