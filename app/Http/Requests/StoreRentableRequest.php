@@ -13,11 +13,13 @@ class StoreRentableRequest extends FormRequest
      */
     public function rules()
     {
+        $todayDate = date('Y-m-d');
+
         return [
             'user_id' => 'required|integer|min:1|exists:App\Models\User,id',
             'adress' => 'required|string|min:3|max:150',
             'postal_code' => 'required|numeric|digits:4|min:1|max:9999',
-            'date_of_hire' => 'required|date_format:Y-m-d',
+            'date_of_hire' => 'required|date_format:Y-m-d|after_or_equal:' . $todayDate,
             'start_time' => 'required',
             'end_time' => 'required',
             'price' => 'required|numeric|min:0.01|max:1000',
