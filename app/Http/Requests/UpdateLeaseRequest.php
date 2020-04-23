@@ -63,7 +63,7 @@ class UpdateLeaseRequest extends FormRequest
                 $this->validator->errors()->add('rented_time', 'You cannot rent your own property');
             }
 
-            // Check if lease time is available on rentable
+            // Check if lease time is available on rentable:
 
             // Check if start_time lease is before start_time rentable
             if ($lease_start_time < $rentable_start_time) {
