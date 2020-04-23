@@ -22,6 +22,10 @@
                 {{Form::label('password', 'Password')}}
                 {{Form::password('password', ['class' => 'form-control', 'placeholer' => 'Password', 'required']) }}
             </div>
+            <div class="form-group">
+                {{Form::label('confirm_password', 'Confirm Password')}}
+                {{Form::password('confirm_password', ['class' => 'form-control', 'placeholer' => 'Password', 'required']) }}
+            </div>
             {{Form::submit('Save', [ 'class' => 'btn btn-primary'])}}
             {!! Form::close() !!}
         </div>

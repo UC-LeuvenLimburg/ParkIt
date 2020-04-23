@@ -43,12 +43,12 @@ class StoreRentableRequest extends FormRequest
 
             // Check if start_time is before end_time
             if ($rentable_start_time >= $rentable_end_time) {
-                $this->validator->errors()->add('end_time', 'End time cannot be before start time!');
+                $this->validator->errors()->add('end_time', 'End time cannot be before start time');
             }
 
             // Check if minimum rented time is greater then 30 minutes
             if ($this->timeDiffInMinutes($rentable_start_time, $rentable_end_time) < 30) {
-                $this->validator->errors()->add('rented_time', 'At least 30 minutes have to be available for rent!');
+                $this->validator->errors()->add('rented_time', 'At least 30 minutes have to be available for rent');
             }
         });
     }

@@ -20,4 +20,18 @@ class StoreUserRequest extends FormRequest
             'role' => 'required|string|min:1|max:150',
         ];
     }
+
+    /**
+     * Validate request
+     * @return Illuminate\Foundation\Http\FormRequest::getValidatorInstance
+     */
+    protected function getValidatorInstance()
+    {
+        return parent::getValidatorInstance()->after(function () {
+            // Check if password and confirm password match
+            if ($this->input('password') != $this->input('confirm_password')) {
+                $this->validator->errors()->add('password', 'Your confirmed password does not match your password');
+            }
+        });
+    }
 }
