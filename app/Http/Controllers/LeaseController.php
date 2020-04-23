@@ -8,7 +8,6 @@ use App\Repositories\Interfaces\ILeaseRepository;
 use App\Repositories\Interfaces\IRentableRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use rentableSeeder;
 
 class LeaseController extends Controller
 {
