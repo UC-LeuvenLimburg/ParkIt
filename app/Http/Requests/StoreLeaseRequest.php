@@ -31,6 +31,7 @@ class StoreLeaseRequest extends FormRequest
 
     /**
      * Validate request
+     *
      * @return Illuminate\Foundation\Http\FormRequest::getValidatorInstance
      */
     protected function getValidatorInstance()
