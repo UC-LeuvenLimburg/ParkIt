@@ -2,10 +2,18 @@
 
 namespace App\Http\Requests;
 
+use App\Repositories\Interfaces\IRentableRepository;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateRentableRequest extends FormRequest
 {
+    protected $rentableRepo;
+
+    public function __construct(IRentableRepository $rentableRepo)
+    {
+        $this->rentableRepo = $rentableRepo;
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -16,6 +24,7 @@ class UpdateRentableRequest extends FormRequest
         $todayDate = date('Y-m-d');
 
         return [
+            'rentable_id' => 'required|integer|min:1|exists:App\Models\Rentable,id',
             'user_id' => 'required|integer|min:1|exists:App\Models\User,id',
             'adress' => 'required|string|min:3|max:150',
             'postal_code' => 'required|numeric|digits:4|min:1|max:9999',
@@ -36,6 +45,14 @@ class UpdateRentableRequest extends FormRequest
     protected function getValidatorInstance()
     {
         return parent::getValidatorInstance()->after(function () {
+            // Get the current rentable
+            $rentable = $this->rentableRepo->getRentable($this->input('rentable_id'));
+
+            // Check if there are any leases on the current rentable
+            if (count($rentable->leases) > 0) {
+                $this->validator->errors()->add('rented', 'Another user has already rented your lease, you are no longer allowed to make any changes. If you wish to correct any wrong information please contact our helpfull support staff');
+            }
+
             // convert to unix timestamps
             $start_time = $this->input('start_time');
             $end_time = $this->input('end_time');

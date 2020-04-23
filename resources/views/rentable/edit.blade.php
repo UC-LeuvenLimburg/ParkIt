@@ -6,6 +6,7 @@
         <div class="col-xl">
             <h1>Edit Place</h1>
             {!! Form::model($rentable, ['route' => ['rentables.update', $rentable], 'method' => 'PUT']) !!}
+            {{Form::hidden('rentable_id', $rentable->id, ['hidden', 'required'])}}
             <div class="form-group">
                 {{Form::label('user', 'Owner')}}
                 {{Form::text('user', $rentable->user->name, ['class' => 'form-control', 'placeholer' => 'User', 'disabled']) }}
