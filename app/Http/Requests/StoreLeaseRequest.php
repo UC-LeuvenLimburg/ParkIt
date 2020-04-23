@@ -48,42 +48,52 @@ class StoreLeaseRequest extends FormRequest
 
             // Check if start_time is before end_time
             if ($lease_start_time >= $lease_end_time) {
-                $this->validator->errors()->add('end_time', 'End time cannot be before start time!');
+                $this->validator->errors()->add('end_time', 'End time cannot be before start time');
             }
 
             // Check if minimum rented time is greater then 30 minutes
             if ($this->timeDiffInMinutes($lease_start_time, $lease_end_time) < 30) {
-                $this->validator->errors()->add('rented_time', 'At least 30 minutes have to be rented!');
+                $this->validator->errors()->add('rented_time', 'At least 30 minutes have to be rented');
             }
 
             // Check if lease time is available on rentable
 
             // Check if start_time lease is before start_time rentable
             if ($lease_start_time < $rentable_start_time) {
-                $this->validator->errors()->add('available_time', 'Your current start time is before the available start time!');
+                $this->validator->errors()->add('available_time', 'Your current start time is before the available start time');
             }
 
             // Check if end_time lease is after end_time rentable
             if ($lease_end_time > $rentable_end_time) {
-                $this->validator->errors()->add('available_time', 'Your current end time is after the available end time!');
+                $this->validator->errors()->add('available_time', 'Your current end time is after the available end time');
             }
 
             // Get the leases on same rentable with overlapping time
             $overLappingLeases = $rentable->leases()
-                ->where(function ($query) use ($start_time, $end_time) {
-                    $query->where('start_time', '>', $start_time);
-                    $query->where('start_time', '<', $end_time);
-                })->orWhere(function ($query) use ($start_time, $end_time) {
-                    $query->where('end_time', '>', $start_time);
-                    $query->where('end_time', '<', $end_time);
-                })->orWhere(function ($query) use ($start_time, $end_time) {
-                    $query->where('start_time', '<', $start_time);
-                    $query->where('end_time', '>', $end_time);
-                })->orWhere(function ($query) use ($start_time, $end_time) {
-                    $query->where('start_time', '>', $start_time);
-                    $query->where('end_time', '<', $end_time);
-                })->get();
-            dd($overLappingLeases);
+                ->where([
+                    ['rentable_id', '=', $this->input('rentable_id')],
+                    [function ($query) use ($start_time, $end_time) {
+                        $query->where([
+                            ['start_time', '>', $start_time],
+                            ['start_time', '<', $end_time],
+                        ]);
+                        $query->orWhere([
+                            ['end_time', '>', $start_time],
+                            ['end_time', '<', $end_time],
+                        ]);
+                        $query->orWhere([
+                            ['start_time', '<', $start_time],
+                            ['end_time', '>', $end_time],
+                        ]);
+                        $query->orWhere([
+                            ['start_time', '>', $start_time],
+                            ['end_time', '<', $end_time],
+                        ]);
+                    }],
+                ])->get();
+            if (count($overLappingLeases) > 0) {
+                $this->validator->errors()->add('available_time', 'Your current selected time is no longer available');
+            }
         });
     }
 
