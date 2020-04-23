@@ -14,10 +14,15 @@
                 {{Form::label('date', 'Date')}}
                 {{Form::date('date', $rentable->date_of_hire, ['class' => 'form-control', 'placeholer' => 'Date', 'disabled']) }}
             </div>
+            @if (Auth::user()->role==="admin")
             {{Form::label('user_id', 'User_id')}}
-            {{Form::text('user_id', $user->id)}}
+            {{Form::text('user_id', $user_id)}}
             {{Form::label('rentable_id', 'Rentable_id')}}
             {{Form::text('rentable_id', $rentable->id)}}
+            @else
+            {{Form::hidden('user_id', $user_id, ['hidden'])}}
+            {{Form::hidden('rentable_id', $rentable->id, ['hidden'])}}
+            @endif
             <div class="form-group">
                 {{Form::label('start_time', 'Start Time')}}
                 {{Form::time('start_time', '', ['class' => 'form-control', 'placeholer' => 'Start Time']) }}
@@ -38,7 +43,12 @@
                     </div>
                 </div>
             </div>
+            @if (Auth::user()->role==="admin")
             {{Form::submit('Save', [ 'class' => 'btn btn-primary'])}}
+            @else
+            {{Form::submit('Pay', [ 'class' => 'btn btn-primary'])}}
+            @endif
+            <a href="javascript:history.back()" class="btn btn-primary">Back</a>
             {!! Form::close() !!}
         </div>
     </div>

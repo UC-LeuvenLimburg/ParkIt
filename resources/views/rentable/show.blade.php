@@ -54,7 +54,7 @@
                     {{Form::text('description', $rentable->description, ['class' => 'form-control', 'placeholer' => 'Description', 'disabled']) }}
                 </div>
             </div>
-            <a href="/leases/create/{{ $rentable->id }}/" class="btn btn-sm btn-primary">Rent</a>
+            <a href="{{ url('/createlease/' . $rentable->id ) }}" class="btn btn-sm btn-primary">Rent</a>
             <a href="javascript:history.back()" class="btn btn-sm btn-primary">Back</a>
             {!! Form::close() !!}
         </div>
