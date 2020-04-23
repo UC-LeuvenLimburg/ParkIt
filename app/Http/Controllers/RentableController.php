@@ -43,7 +43,7 @@ class RentableController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param  App\Http\Requests\StoreRentableRequest $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreRentableRequest $request)
