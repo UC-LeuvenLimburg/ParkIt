@@ -3,9 +3,17 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Repositories\Interfaces\IRentableRepository;
 
 class UpdateLeaseRequest extends FormRequest
 {
+    protected $rentableRepo;
+
+    public function __construct(IRentableRepository $rentableRepo)
+    {
+        $this->rentableRepo = $rentableRepo;
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *
