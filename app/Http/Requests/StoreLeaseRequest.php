@@ -79,7 +79,9 @@ class StoreLeaseRequest extends FormRequest
                             ]);
                     }],
                     ])->get();
-            dd($overLappingLeases);
+            if (count($overLappingLeases) > 0) {
+                $this->validator->errors()->add('available_time', 'Your current selected time is no longer available');
+            }
         });
     }
 
