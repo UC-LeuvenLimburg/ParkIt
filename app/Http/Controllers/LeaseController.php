@@ -40,6 +40,7 @@ class LeaseController extends Controller
         $rentable = Rentable::find(1);
         return view('lease.create')->with(compact('user', 'rentable'));
     }
+    
 
     /**
      * Store a newly created resource in storage.
@@ -110,4 +111,17 @@ class LeaseController extends Controller
         $leases = $this->leaseRepo->getUserLeases(Auth::id());
         return view('lease.index', compact('leases'));
     }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function createlease(int $id)
+    {
+        $user = Auth::user();
+        $rentable = Rentable::find($id);
+        return view('lease.create')->with(compact('user', 'rentable'));
+    }
+
 }
