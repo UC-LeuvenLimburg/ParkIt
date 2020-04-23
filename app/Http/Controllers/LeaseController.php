@@ -6,17 +6,20 @@ use App\Http\Requests\StoreLeaseRequest;
 use App\Models\Lease;
 use App\Models\Rentable;
 use App\Repositories\Interfaces\ILeaseRepository;
+use App\Repositories\Interfaces\IRentableRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class LeaseController extends Controller
 {
     private $leaseRepo;
+    private $rentableRepo;
 
-    public function __construct(ILeaseRepository $leaseRepo)
+    public function __construct(ILeaseRepository $leaseRepo, IRentableRepository $rentableRepo)
     {
         $this->authorizeResource(Lease::class, 'lease');
         $this->leaseRepo = $leaseRepo;
+        $this->rentableRepo = $rentableRepo;
     }
 
     /**
@@ -37,10 +40,11 @@ class LeaseController extends Controller
      */
     public function create()
     {
-        $user = Auth::user();
-        $rentable = Rentable::find(1);
-        return view('lease.create')->with(compact('user', 'rentable'));
+        $user_id = Auth::id();
+        $rentable = new Rentable();
+        return view('lease.create')->with(compact('user_id', 'rentable'));
     }
+    
 
     /**
      * Store a newly created resource in storage.
@@ -102,18 +106,27 @@ class LeaseController extends Controller
     }
 
     /**
-     * Display the specified leases
+     * Display my leases
      *
-     * @param  App\Models\Lease $lease
      * @return \Illuminate\Http\Response
      */
     public function myleases()
     {
-        $user = Auth::user();
-        //$leases =  $this->leasesRepo->getUserLeases($user);
-        return view(
-            'lease.myleases'
-            //, compact('leases')
-        );
+        $leases = $this->leaseRepo->getUserLeases(Auth::id());
+        return view('lease.index', compact('leases'));
     }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+
+    public function createlease(int $id)
+    {
+        $user_id = Auth::id();
+        $rentable = $this->rentableRepo->getRentable($id);
+        return view('lease.create')->with(compact('user_id', 'rentable'));
+    }
+
 }

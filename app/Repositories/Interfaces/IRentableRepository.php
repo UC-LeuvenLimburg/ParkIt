@@ -20,6 +20,14 @@ interface IRentableRepository
     public function getRentable(int $rentable_id);
 
     /**
+     * Get's all rentables by someones ID
+     *
+     * @param int $user_id
+     * @return rentables
+     */
+    public function getUserRentables(int $user_id);
+
+    /**
      * Add a rentable
      *
      * @param mixed $attributes

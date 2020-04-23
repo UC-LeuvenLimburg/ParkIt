@@ -104,18 +104,13 @@ class RentableController extends Controller
     }
 
     /**
-     * Display the specified rentables
+     * Display my places
      *
-     * @param  App\Models\Rentable $rentable
      * @return \Illuminate\Http\Response
      */
     public function myplaces()
     {
-        $user = Auth::user();
-        //$rentables =  $this->rentableRepo->getUserRentables($user);
-        return view(
-            'rentable.myplaces'
-            //,compact('rentables')
-        );
+        $rentables = $this->rentableRepo->getUserRentables(Auth::id());
+        return view('rentable.index', compact('rentables'));
     }
 }

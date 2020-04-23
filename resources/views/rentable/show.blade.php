@@ -6,10 +6,12 @@
         <div class="col-xl">
             <h1>Place details</h1>
             {!! Form::model($rentable) !!}
+            @if (Auth::user()->role==="admin")
             <div class="form-group">
-                {{Form::label('user', 'User')}}
-                {{Form::text('user', $rentable->user->name, ['class' => 'form-control', 'placeholer' => 'User', 'disabled']) }}
+                {{Form::label('email', 'Email')}}
+                {{Form::email('email', $rentable->user->name, ['class' => 'form-control', 'placeholer' => 'Email', 'disabled']) }}
             </div>
+            @endif
             <div class="form-group">
                 {{Form::label('adress', 'Adress')}}
                 {{Form::text('adress', $rentable->adress, ['class' => 'form-control', 'placeholer' => 'Adress', 'disabled']) }}
@@ -41,15 +43,19 @@
                         <span class="input-group-text">.00</span>
                     </div>
                 </div>
+                @if (Auth::user()->role==="admin")
                 <div class="form-group">
                     {{Form::label('bancaccount_nr', 'Bankaccount Number')}}
                     {{Form::text('bancaccount_nr', $rentable->bankaccount_nr, ['class' => 'form-control', 'placeholer' => 'Bankaccount number', 'disabled']) }}
                 </div>
+                @endif
                 <div class="form-group">
                     {{Form::label('description', 'Description')}}
                     {{Form::text('description', $rentable->description, ['class' => 'form-control', 'placeholer' => 'Description', 'disabled']) }}
                 </div>
             </div>
+            <a href="{{ url('/createlease/' . $rentable->id ) }}" class="btn btn-sm btn-primary">Rent</a>
+            <a href="javascript:history.back()" class="btn btn-sm btn-primary">Back</a>
             {!! Form::close() !!}
         </div>
     </div>

@@ -84,7 +84,11 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $this->userRepo->updateUser($user->id, $request->all());
-        return redirect('/users/' . $user->id);
+        if ($user->role === 'admin') {
+            return redirect('/users/' . $user->id);
+        } else {
+            return redirect('/profile');
+        }
     }
 
     /**
