@@ -20,8 +20,8 @@
             {{Form::label('rentable_id', 'Rentable_id')}}
             {{Form::text('rentable_id', $rentable->id)}}
             @else
-            {{Form::hidden('user_id', $user->id, ["hidden"])}}
-            {{Form::hidden('rentable_id', $rentable->id, ["hidden"])}}
+            {{Form::hidden('user_id', $user->id, ['hidden'])}}
+            {{Form::hidden('rentable_id', $rentable->id, ['hidden'])}}
             @endif
             <div class="form-group">
                 {{Form::label('start_time', 'Start Time')}}
