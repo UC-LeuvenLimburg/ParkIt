@@ -16,11 +16,11 @@
             </div>
             @if (Auth::user()->role==="admin")
             {{Form::label('user_id', 'User_id')}}
-            {{Form::text('user_id', $user->id)}}
+            {{Form::text('user_id', $user_id)}}
             {{Form::label('rentable_id', 'Rentable_id')}}
             {{Form::text('rentable_id', $rentable->id)}}
             @else
-            {{Form::hidden('user_id', $user->id, ['hidden'])}}
+            {{Form::hidden('user_id', $user_id, ['hidden'])}}
             {{Form::hidden('rentable_id', $rentable->id, ['hidden'])}}
             @endif
             <div class="form-group">
