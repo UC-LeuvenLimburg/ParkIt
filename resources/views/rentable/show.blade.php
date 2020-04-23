@@ -9,7 +9,7 @@
             @if (Auth::user()->role==="admin")
             <div class="form-group">
                 {{Form::label('email', 'Email')}}
-                {{Form::text('email', $rentable->user->name, ['class' => 'form-control', 'placeholer' => 'Email', 'disabled']) }}
+                {{Form::email('email', $rentable->user->name, ['class' => 'form-control', 'placeholer' => 'Email', 'disabled']) }}
             </div>
             @endif
             <div class="form-group">
