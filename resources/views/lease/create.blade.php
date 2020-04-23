@@ -43,7 +43,11 @@
                     </div>
                 </div>
             </div>
+            @if (Auth::user()->role==="admin")
+            {{Form::submit('Save', [ 'class' => 'btn btn-primary'])}}
+            @else
             {{Form::submit('Pay', [ 'class' => 'btn btn-primary'])}}
+            @endif
             <a href="javascript:history.back()" class="btn btn-primary">Back</a>
             {!! Form::close() !!}
         </div>
