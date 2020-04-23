@@ -87,8 +87,14 @@ class UpdateLeaseRequest extends FormRequest
                         ]);
                     }],
                 ])->get();
+
+            // Check if there are leases on the same rentable with overlapping time
             if (count($overLappingLeases) > 0) {
-                $this->validator->errors()->add('available_time', 'Your current selected time is no longer available');
+                $errorMessage = 'Your current selected time is no longer available, please selsect a time outside of ';
+                foreach ($overLappingLeases as $overLappingLease) {
+                    $errorMessage .= '(' . $overLappingLease->start_time . ' -> ' . $overLappingLease->end_time . ') ';
+                }
+                $this->validator->errors()->add('available_time', $errorMessage);
             }
         });
     }
