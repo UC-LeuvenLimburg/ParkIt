@@ -71,26 +71,14 @@ class StoreLeaseRequest extends FormRequest
             // Get the leases on same rentable with overlapping time
             $overLappingLeases = $rentable->leases()
                 ->where([
-                    ['rentable_id', '=', $this->input('rentable_id')],
+                    ['rentable_id', '=',$this->input('rentable_id')],
                     [function ($query) use ($start_time, $end_time) {
                         $query->where([
-                            ['start_time', '>', $start_time],
                             ['start_time', '<', $end_time],
-                        ]);
-                        $query->orWhere([
                             ['end_time', '>', $start_time],
-                            ['end_time', '<', $end_time],
-                        ]);
-                        $query->orWhere([
-                            ['start_time', '<', $start_time],
-                            ['end_time', '>', $end_time],
-                        ]);
-                        $query->orWhere([
-                            ['start_time', '>', $start_time],
-                            ['end_time', '<', $end_time],
-                        ]);
+                            ]);
                     }],
-                ])->get();
+                    ])->get();
             if (count($overLappingLeases) > 0) {
                 $this->validator->errors()->add('available_time', 'Your current selected time is no longer available');
             }
