@@ -5,17 +5,21 @@ namespace App\Http\Controllers;
 use App\Models\Lease;
 use App\Models\Rentable;
 use App\Repositories\Interfaces\ILeaseRepository;
+use App\Repositories\Interfaces\IRentableRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use rentableSeeder;
 
 class LeaseController extends Controller
 {
     private $leaseRepo;
+    private $rentableRepo;
 
-    public function __construct(ILeaseRepository $leaseRepo)
+    public function __construct(ILeaseRepository $leaseRepo, IRentableRepository $rentableRepo)
     {
         $this->authorizeResource(Lease::class, 'lease');
         $this->leaseRepo = $leaseRepo;
+        $this->rentableRepo = $rentableRepo;
     }
 
     /**
@@ -37,7 +41,7 @@ class LeaseController extends Controller
     public function create()
     {
         $user = Auth::user();
-        $rentable = Rentable::find(1);
+        $rentable = new Rentable();
         return view('lease.create')->with(compact('user', 'rentable'));
     }
     
@@ -117,10 +121,11 @@ class LeaseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function createlease(int $id)
     {
         $user = Auth::user();
-        $rentable = Rentable::find($id);
+        $rentable = $this->rentableRepo->getRentable($id);
         return view('lease.create')->with(compact('user', 'rentable'));
     }
 
