@@ -1,19 +1,23 @@
 <template>
     <div class="autocomplete">
         <div
-            class="input"
+            class="autocomplete-input"
             @click="toggleVisible"
             v-text="selectedItem ? selectedItem[filterby] : ''"
         ></div>
         <div
-            class="placeholder"
+            class="autocomplete-placeholder"
             v-if="selectedItem == null"
             v-text="placeholder"
         ></div>
-        <button class="close" @click="selectedItem = null" v-if="selectedItem">
+        <button
+            class="autocomplete-close"
+            @click="selectedItem = null"
+            v-if="selectedItem"
+        >
             x
         </button>
-        <div class="popover" v-show="visible">
+        <div class="autocomplete-popover" v-show="visible">
             <input
                 type="text"
                 ref="input"
@@ -23,7 +27,7 @@
                 @keydown.enter="selectItem"
                 placeholder="Start Typing..."
             />
-            <div class="options" ref="optionsList">
+            <div class="autocomplete-options" ref="optionsList">
                 <ul>
                     <li
                         v-for="(match, index) in matches"
@@ -47,6 +51,10 @@ export default {
         },
         filterby: {
             type: String
+        },
+        outputkey: {
+            type: String,
+            default: ""
         },
         placeholder: {
             default: "Select One...",
@@ -87,10 +95,19 @@ export default {
                 this.query = "";
                 this.selected = 0;
             }
-            this.$emit(
-                "selected",
-                JSON.parse(JSON.stringify(this.selectedItem))
-            );
+            if (this.outputkey == "") {
+                this.$emit(
+                    "selected",
+                    JSON.parse(JSON.stringify(this.selectedItem))
+                );
+            } else {
+                this.$emit(
+                    "selected",
+                    JSON.parse(JSON.stringify(this.selectedItem))[
+                        this.outputkey
+                    ]
+                );
+            }
         },
         up() {
             if (this.selected == 0) {
@@ -128,84 +145,125 @@ export default {
 </script>
 
 <style scoped>
+/*
+  Layout
+*/
 .autocomplete {
     width: 100%;
     position: relative;
 }
-.input {
+
+.autocomplete-input {
     height: 40px;
-    border-radius: 3px;
-    border: 2px solid lightgray;
-    box-shadow: 0 0 10px #eceaea;
-    font-size: 25px;
     padding-left: 10px;
     padding-top: 10px;
-    cursor: text;
 }
-.close {
+
+.autocomplete-close {
     position: absolute;
     right: 2px;
     top: 4px;
+}
+
+.autocomplete-placeholder {
+    position: absolute;
+    top: 11px;
+    left: 11px;
+    pointer-events: none;
+}
+
+.autocomplete-popover {
+    min-height: 50px;
+    position: absolute;
+    top: 46px;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+
+.autocomplete-popover input {
+    width: 95%;
+    margin-top: 5px;
+    height: 40px;
+    padding-left: 8px;
+}
+
+.autocomplete-options {
+    max-height: 150px;
+    overflow-y: auto;
+    margin-top: 5px;
+}
+
+.autocomplete-options ul {
+    list-style-type: none;
+    text-align: left;
+    padding-left: 0;
+}
+
+.autocomplete-options ul li {
+    padding: 10px;
+    margin: 0 2px;
+    margin-bottom: 2px;
+}
+
+/*
+  Styling
+*/
+.autocomplete {
+    font-family: sans-serif;
+}
+
+.autocomplete-input {
+    border-radius: 4px;
+    border: 2px solid lightgray;
+    box-shadow: 0 0 10px #eceaea;
+    font-size: 25px;
+    cursor: text;
+}
+
+.autocomplete-close {
     background: none;
     border: none;
     font-size: 30px;
     color: lightgrey;
     cursor: pointer;
 }
-.placeholder {
-    position: absolute;
-    top: 11px;
-    left: 11px;
+
+.autocomplete-placeholder {
     font-size: 25px;
     color: #d0d0d0;
-    pointer-events: none;
 }
-.popover {
-    min-height: 50px;
+
+.autocomplete-popover {
     border: 2px solid lightgray;
-    position: absolute;
-    top: 46px;
-    left: 0;
-    right: 0;
     background: #fff;
-    border-radius: 3px;
-    text-align: center;
+    border-radius: 4px;
 }
-.popover input {
-    width: 95%;
-    margin-top: 5px;
-    height: 40px;
+
+.autocomplete-popover input {
     font-size: 16px;
-    border-radius: 3px;
+    border-radius: 4px;
     border: 1px solid lightgray;
-    padding-left: 8px;
 }
-.options {
-    max-height: 150px;
-    overflow-y: auto;
-    margin-top: 5px;
-}
-.options ul {
-    list-style-type: none;
-    text-align: left;
-    padding-left: 0;
-}
-.options ul li {
+
+.autocomplete-options ul li {
     border-bottom: 1px solid lightgray;
-    padding: 10px;
     cursor: pointer;
-    background: #f1f1f1;
+    color: white;
+    background: #7b8a8b;
+    border-radius: 10px;
 }
-.options ul li:first-child {
+
+.autocomplete-options ul li:first-child {
     border-top: 2px solid #d6d6d6;
 }
-.options ul li:not(.selected):hover {
-    background: #8c8c8c;
-    color: #fff;
+
+.autocomplete-options ul li:not(.selected):hover {
+    background: #6a7677;
 }
-.options ul li.selected {
-    background: #58bd4c;
-    color: #fff;
+
+.autocomplete-options ul li.selected {
+    background: #2c3e50;
     font-weight: 600;
 }
 </style>
