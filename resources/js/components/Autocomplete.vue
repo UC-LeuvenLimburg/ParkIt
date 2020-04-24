@@ -25,6 +25,7 @@
                 @keydown.up="up"
                 @keydown.down="down"
                 @keydown.enter="selectItem"
+                @input="emitQuery"
                 placeholder="Start Typing..."
             />
             <div class="autocomplete-options" ref="optionsList">
@@ -126,11 +127,13 @@ export default {
         scrollToItem() {
             this.$refs.optionsList.scrollTop =
                 this.selected * this.itemHeight - this.itemHeight;
+        },
+        emitQuery() {
+            this.$emit("change", this.query);
         }
     },
     computed: {
         matches() {
-            this.$emit("change", this.query);
             if (this.query == "") {
                 return [];
             }
@@ -156,18 +159,18 @@ export default {
 .autocomplete-input {
     height: 40px;
     padding-left: 10px;
-    padding-top: 10px;
+    padding-top: 5px;
 }
 
 .autocomplete-close {
     position: absolute;
     right: 2px;
-    top: 4px;
+    top: -5px;
 }
 
 .autocomplete-placeholder {
     position: absolute;
-    top: 11px;
+    top: 2px;
     left: 11px;
     pointer-events: none;
 }
@@ -215,9 +218,8 @@ export default {
 
 .autocomplete-input {
     border-radius: 4px;
-    border: 2px solid lightgray;
-    box-shadow: 0 0 10px #eceaea;
-    font-size: 25px;
+    border: 1px solid lightgray;
+    font-size: 1.2em;
     cursor: text;
 }
 
