@@ -39,6 +39,7 @@ class APIUserController extends Controller
      */
     public function indexall(ModelFilters $query)
     {
+        $this->authorize('viewAny', User::class);
         $users = $this->userRepo->getAllUsers($query);
         return response()->json($users);
     }
