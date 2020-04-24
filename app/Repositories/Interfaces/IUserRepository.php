@@ -7,9 +7,10 @@ interface IUserRepository
     /**
      * Get's all users
      *
+     * @param \eloquentFilter\QueryFilter\ModelFilters\ModelFilters $query
      * @return Illuminate\Pagination\LengthAwarePaginator
      */
-    public function getUsers();
+    public function getUsers($query);
 
     /**
      * Get's a user by it's ID

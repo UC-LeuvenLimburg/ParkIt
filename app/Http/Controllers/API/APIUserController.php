@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Models\User;
 use App\Repositories\Interfaces\IUserRepository;
 use App\Http\Controllers\Controller;
+use eloquentFilter\QueryFilter\ModelFilters\ModelFilters;
 use Illuminate\Http\Request;
 
 class APIUserController extends Controller
@@ -21,17 +22,12 @@ class APIUserController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \eloquentFilter\QueryFilter\ModelFilters\ModelFilters $query
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(ModelFilters $query)
     {
-        if ($request->has('name')) {
-            $users = $this->userRepo->getUsers();
-        } else {
-            $users = $this->userRepo->getUsers();
-        }
-
+        $users = $this->userRepo->getUsers($query);
         return response()->json($users);
     }
 
