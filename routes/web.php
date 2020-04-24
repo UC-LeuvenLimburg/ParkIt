@@ -17,10 +17,13 @@ use Illuminate\Support\Facades\Auth;
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
-Route::middleware('auth')->get('/users/profile','UserController@profile');
-Route::middleware('auth')->get('/leases/myleases','LeaseController@myleases');
-Route::middleware('auth')->get('/rentables/myplaces','RentableController@myplaces');
+Route::middleware('auth')->get('/users/profile', 'UserController@profile');
+Route::middleware('auth')->get('/leases/myleases', 'LeaseController@myleases');
+Route::middleware('auth')->get('/rentables/myplaces', 'RentableController@myplaces');
 Route::middleware('auth')->resource('users', 'UserController');
 Route::middleware('auth')->resource('leases', 'LeaseController');
 Route::middleware('auth')->resource('rentables', 'RentableController');
-Route::middleware('auth')->get('/lease','RentableController@create');
+Route::middleware('auth')->get('/lease', 'RentableController@create');
+
+// API Routes using the web auth middelware
+Route::middleware('auth')->resource('web/api/users', 'API\APIUserController');
