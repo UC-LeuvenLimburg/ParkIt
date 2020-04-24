@@ -27,3 +27,4 @@ Route::middleware('auth')->get('/lease', 'RentableController@create');
 
 // API Routes using the web auth middelware
 Route::middleware('auth')->resource('web/api/users', 'API\APIUserController');
+Route::middleware('auth')->get('web/api/all/users', 'API\APIUserController@indexall');

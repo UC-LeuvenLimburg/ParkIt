@@ -8,6 +8,14 @@ interface IUserRepository
      * Get's all users
      *
      * @param \eloquentFilter\QueryFilter\ModelFilters\ModelFilters $query
+     * @return users
+     */
+    public function getAllUsers($query);
+
+    /**
+     * Get's all users paginated
+     *
+     * @param \eloquentFilter\QueryFilter\ModelFilters\ModelFilters $query
      * @return Illuminate\Pagination\LengthAwarePaginator
      */
     public function getUsers($query);

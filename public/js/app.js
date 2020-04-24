@@ -1956,7 +1956,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     items: {
-      "default": [],
+      "default": function _default() {
+        return [];
+      },
       type: Array
     },
     filterby: {
@@ -2131,27 +2133,16 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    axios.get("/web/api/users").then(function (response) {
-      _this.users = response.data.data;
+    axios.get("/web/api/all/users").then(function (response) {
+      console.log(response);
+      _this.users = response.data;
     });
   },
   methods: {
     userSelected: function userSelected(output) {
       console.log(output);
     },
-    onChange: function onChange(value) {
-      var _this2 = this;
-
-      console.log("refreshing data");
-      axios.get("/web/api/users", {
-        params: {
-          email_like: value
-        }
-      }).then(function (response) {
-        console.log("data received");
-        _this2.users = response.data.data;
-      });
-    }
+    onChange: function onChange(value) {}
   },
   components: {
     Autocomplete: _Autocomplete__WEBPACK_IMPORTED_MODULE_0__["default"]
@@ -6703,7 +6694,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*\n  Layout\n*/\n.autocomplete[data-v-c191a05a] {\n    width: 100%;\n    position: relative;\n}\n.autocomplete-input[data-v-c191a05a] {\n    height: 40px;\n    padding-left: 10px;\n    padding-top: 5px;\n}\n.autocomplete-close[data-v-c191a05a] {\n    position: absolute;\n    right: 2px;\n    top: -5px;\n}\n.autocomplete-placeholder[data-v-c191a05a] {\n    position: absolute;\n    top: 2px;\n    left: 11px;\n    pointer-events: none;\n}\n.autocomplete-popover[data-v-c191a05a] {\n    min-height: 50px;\n    position: absolute;\n    top: 46px;\n    left: 0;\n    right: 0;\n    text-align: center;\n}\n.autocomplete-popover input[data-v-c191a05a] {\n    width: 95%;\n    margin-top: 5px;\n    height: 40px;\n    padding-left: 8px;\n}\n.autocomplete-options[data-v-c191a05a] {\n    max-height: 150px;\n    overflow-y: auto;\n    margin-top: 5px;\n}\n.autocomplete-options ul[data-v-c191a05a] {\n    list-style-type: none;\n    text-align: left;\n    padding-left: 0;\n}\n.autocomplete-options ul li[data-v-c191a05a] {\n    padding: 10px;\n    margin: 0 2px;\n    margin-bottom: 2px;\n}\n\n/*\n  Styling\n*/\n.autocomplete[data-v-c191a05a] {\n    font-family: sans-serif;\n}\n.autocomplete-input[data-v-c191a05a] {\n    border-radius: 4px;\n    border: 1px solid lightgray;\n    font-size: 1.2em;\n    cursor: text;\n}\n.autocomplete-close[data-v-c191a05a] {\n    background: none;\n    border: none;\n    font-size: 30px;\n    color: lightgrey;\n    cursor: pointer;\n}\n.autocomplete-placeholder[data-v-c191a05a] {\n    font-size: 25px;\n    color: #d0d0d0;\n}\n.autocomplete-popover[data-v-c191a05a] {\n    border: 2px solid lightgray;\n    background: #fff;\n    border-radius: 4px;\n}\n.autocomplete-popover input[data-v-c191a05a] {\n    font-size: 16px;\n    border-radius: 4px;\n    border: 1px solid lightgray;\n}\n.autocomplete-options ul li[data-v-c191a05a] {\n    border-bottom: 1px solid lightgray;\n    cursor: pointer;\n    color: white;\n    background: #7b8a8b;\n    border-radius: 10px;\n}\n.autocomplete-options ul li[data-v-c191a05a]:first-child {\n    border-top: 2px solid #d6d6d6;\n}\n.autocomplete-options ul li[data-v-c191a05a]:not(.selected):hover {\n    background: #6a7677;\n}\n.autocomplete-options ul li.selected[data-v-c191a05a] {\n    background: #2c3e50;\n    font-weight: 600;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*\n  Layout\n*/\n.autocomplete[data-v-c191a05a] {\n    width: 100%;\n    position: relative;\n}\n.autocomplete-input[data-v-c191a05a] {\n    height: 40px;\n    padding-left: 10px;\n    padding-top: 5px;\n}\n.autocomplete-close[data-v-c191a05a] {\n    position: absolute;\n    right: 2px;\n    top: -5px;\n}\n.autocomplete-placeholder[data-v-c191a05a] {\n    position: absolute;\n    top: 2px;\n    left: 11px;\n    pointer-events: none;\n}\n.autocomplete-popover[data-v-c191a05a] {\n    min-height: 50px;\n    position: absolute;\n    top: 46px;\n    left: 0;\n    right: 0;\n    text-align: center;\n}\n.autocomplete-popover input[data-v-c191a05a] {\n    width: 95%;\n    margin-top: 5px;\n    height: 40px;\n    padding-left: 8px;\n}\n.autocomplete-options[data-v-c191a05a] {\n    max-height: 150px;\n    overflow-y: auto;\n    margin-top: 5px;\n}\n.autocomplete-options ul[data-v-c191a05a] {\n    list-style-type: none;\n    text-align: left;\n    padding-left: 0;\n}\n.autocomplete-options ul li[data-v-c191a05a] {\n    padding: 10px;\n    margin: 0 2px;\n    margin-bottom: 2px;\n}\n\n/*\n  Styling\n*/\n.autocomplete[data-v-c191a05a] {\n    font-family: sans-serif;\n}\n.autocomplete-input[data-v-c191a05a] {\n    border-radius: 4px;\n    border: 1px solid lightgray;\n    font-size: 1.2em;\n    cursor: text;\n}\n.autocomplete-close[data-v-c191a05a] {\n    background: none;\n    border: none;\n    font-size: 30px;\n    color: lightgrey;\n    cursor: pointer;\n}\n.autocomplete-placeholder[data-v-c191a05a] {\n    font-size: 25px;\n    color: #d0d0d0;\n}\n.autocomplete-popover[data-v-c191a05a] {\n    border: 1px solid lightgray;\n    background: #fff;\n    border-radius: 4px;\n}\n.autocomplete-popover input[data-v-c191a05a] {\n    font-size: 16px;\n    border-radius: 4px;\n    border: 1px solid lightgray;\n}\n.autocomplete-options ul li[data-v-c191a05a] {\n    border-bottom: 1px solid lightgray;\n    cursor: pointer;\n    color: white;\n    background: #7b8a8b;\n    border-radius: 10px;\n}\n.autocomplete-options ul li[data-v-c191a05a]:first-child {\n    border-top: 2px solid #d6d6d6;\n}\n.autocomplete-options ul li[data-v-c191a05a]:not(.selected):hover {\n    background: #6a7677;\n}\n.autocomplete-options ul li.selected[data-v-c191a05a] {\n    background: #2c3e50;\n    font-weight: 600;\n}\n", ""]);
 
 // exports
 

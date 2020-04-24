@@ -32,6 +32,18 @@ class APIUserController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @param \eloquentFilter\QueryFilter\ModelFilters\ModelFilters $query
+     * @return \Illuminate\Http\Response
+     */
+    public function indexall(ModelFilters $query)
+    {
+        $users = $this->userRepo->getAllUsers($query);
+        return response()->json($users);
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request

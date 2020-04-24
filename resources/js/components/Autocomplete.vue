@@ -47,7 +47,7 @@
 export default {
     props: {
         items: {
-            default: [],
+            default: () => [],
             type: Array
         },
         filterby: {
@@ -237,7 +237,7 @@ export default {
 }
 
 .autocomplete-popover {
-    border: 2px solid lightgray;
+    border: 1px solid lightgray;
     background: #fff;
     border-radius: 4px;
 }

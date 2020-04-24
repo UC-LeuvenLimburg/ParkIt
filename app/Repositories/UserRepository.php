@@ -12,11 +12,22 @@ class UserRepository implements IUserRepository
      * Get's all users
      *
      * @param \eloquentFilter\QueryFilter\ModelFilters\ModelFilters $query
+     * @return users
+     */
+    public function getAllUsers($query)
+    {
+        return User::filter($query)->orderBy('email', 'asc')->get();
+    }
+
+    /**
+     * Get's all users paginated
+     *
+     * @param \eloquentFilter\QueryFilter\ModelFilters\ModelFilters $query
      * @return Illuminate\Pagination\LengthAwarePaginator
      */
     public function getUsers($query)
     {
-        return User::filter($query)->orderBy('id', 'asc')->paginate(15);
+        return User::filter($query)->orderBy('email', 'asc')->paginate(15);
     }
 
     /**

@@ -29,23 +29,16 @@ export default {
         };
     },
     mounted() {
-        axios.get("/web/api/users").then(response => {
-            this.users = response.data.data;
+        axios.get("/web/api/all/users").then(response => {
+            console.log(response);
+            this.users = response.data;
         });
     },
     methods: {
         userSelected(output) {
             console.log(output);
         },
-        onChange(value) {
-            console.log("refreshing data");
-            axios
-                .get("/web/api/users", { params: { email_like: value } })
-                .then(response => {
-                    console.log("data received");
-                    this.users = response.data.data;
-                });
-        }
+        onChange(value) {}
     },
     components: {
         Autocomplete
