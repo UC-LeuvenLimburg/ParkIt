@@ -41,4 +41,19 @@ trait UserFilter
     {
         return $builder->where('role', 'like', '%' . $value . '%');
     }
+
+    /**
+     * @param \Illuminate\Database\Eloquent\Builder $builder
+     * @param                                       $value
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function query_like(Builder $builder, $value)
+    {
+        $builder->where('name', 'like', '%' . $value . '%');
+        $builder->orWhere('email', 'like', '%' . $value . '%');
+        $builder->orWhere('role', 'like', '%' . $value . '%');
+
+        return $builder;
+    }
 }
