@@ -21,11 +21,17 @@ class APIUserController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = $this->userRepo->getUsers();
+        if ($request->has('name')) {
+            $users = $this->userRepo->getUsers();
+        } else {
+            $users = $this->userRepo->getUsers();
+        }
+
         return response()->json($users);
     }
 
