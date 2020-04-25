@@ -15,7 +15,6 @@ class UserController extends Controller
     public function __construct(IUserRepository $userRepo)
     {
         $this->authorizeResource(User::class, 'user');
-
         $this->userRepo = $userRepo;
     }
 

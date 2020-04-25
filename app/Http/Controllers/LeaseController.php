@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Lease;
 use App\Models\Rentable;
 use App\Repositories\Interfaces\ILeaseRepository;
+use eloquentFilter\QueryFilter\ModelFilters\ModelFilters;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,11 +22,12 @@ class LeaseController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param \eloquentFilter\QueryFilter\ModelFilters\ModelFilters $query
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(ModelFilters $query)
     {
-        $leases =  $this->leaseRepo->getLeases();
+        $leases =  $this->leaseRepo->getLeases($query);
         return view('lease.index', compact('leases'));
     }
 
