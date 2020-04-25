@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+
+@include('map')
+
 <div class="container">
 
     <h1>Places</h1>

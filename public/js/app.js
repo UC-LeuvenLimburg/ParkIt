@@ -49505,6 +49505,8 @@ module.exports = function(module) {
  */
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+__webpack_require__(/*! ./map */ "./resources/js/map.js");
+
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /**
  * The following block of code may be used to automatically register your
@@ -49643,6 +49645,92 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/map.js":
+/*!*****************************!*\
+  !*** ./resources/js/map.js ***!
+  \*****************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// Initialize the platform object:
+var platform = new H.service.Platform({
+  apikey: "wIrLYhE1R2UaGWbY369VpRZHSKDrPLD_SXOsnOpK-1A"
+}); // Obtain the default map types from the platform object
+
+var defaultLayers = platform.createDefaultLayers(); // Instantiate (and display) a map object:
+
+var map = new H.Map(document.getElementById("mapContainer"), defaultLayers.vector.normal.map, {
+  zoom: 14,
+  center: {
+    lng: 5.39559,
+    lat: 50.92906
+  }
+}); //traffic toevoegen
+
+map.addLayer(defaultLayers.vector.normal.traffic); // Enable the event system on the map instance:
+
+var mapEvents = new H.mapevents.MapEvents(map);
+map.addEventListener("tap", function (evt) {
+  // Log 'tap' and 'mouse' events:
+  console.log(evt.type, evt.currentPointer.type);
+}); // Instantiate the default behavior, providing the mapEvents object:
+
+var behavior = new H.mapevents.Behavior(mapEvents); // Create a marker icon from an image URL:
+//werkt niet op chrome en firefox, dit gaat wel bij chrome in de developper mode, dit is een beveiliging
+//dit doe je via een nieuwe snelkoppeling
+//"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --disable-web-security --user-data-dir="C:/ChromeDevSession"
+//anchor => middelpunt anker zetten
+
+var icon = new H.map.Icon("/images/logoParkSpace.png", {
+  anchor: {
+    x: 20,
+    y: 20
+  }
+}); //___________________________________________________________________________hier zouden we ze moeten uit de database halen_____________________________________________________________________-
+
+var markerPosities = [{
+  title: "UCLL Diepenbeek 390 free spaces",
+  position: {
+    lat: 50.92906,
+    lng: 5.39559
+  }
+}];
+var group = new H.map.Group(); // add markers to the group
+
+map.addObject(group); // Create the default UI:
+
+var ui = H.ui.UI.createDefault(map, defaultLayers);
+
+for (var i = 0; i < markerPosities.length; i++) {
+  // Create a marker using the previously instantiated icon:
+  var marker = new H.map.Marker(markerPosities[i].position, {
+    icon: icon,
+    data: markerPosities[i].title
+  }); // Add event listener:
+
+  marker.addEventListener("tap", function (evt) {
+    var position = evt.target.getGeometry(); //marker zelf op deze plaats
+
+    var data = evt.target.getData(); // Create an info bubble object at a specific geographic location:
+    //var bubble = new H.ui.InfoBubble(markerPosities[i].position, { content: markerPosities[i].title });
+
+    var bubble = new H.ui.InfoBubble(position, {
+      content: data
+    }); // Add info bubble to the UI:
+
+    ui.addBubble(bubble);
+  });
+  group.addObject(marker);
+}
+
+map.setCenter(evt.target.getPosition()); //   get geo bounding box for the group and set it to the map
+
+map.getViewModel().setLookAtData({
+  bounds: group.getBoundingBox()
+});
+
+/***/ }),
+
 /***/ "./resources/sass/app.scss":
 /*!*********************************!*\
   !*** ./resources/sass/app.scss ***!
@@ -49661,8 +49749,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\repos\homesteadProjects\ParkIt\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\repos\homesteadProjects\ParkIt\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\homesteadProjects\ParkIt\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\homesteadProjects\ParkIt\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
