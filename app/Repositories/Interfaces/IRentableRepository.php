@@ -7,9 +7,18 @@ interface IRentableRepository
     /**
      * Get's all rentables
      *
+     * @param \eloquentFilter\QueryFilter\ModelFilters\ModelFilters $query
+     * @return users
+     */
+    public function getAllRentables($query);
+
+    /**
+     * Get's all rentables paginated
+     *
+     * @param \eloquentFilter\QueryFilter\ModelFilters\ModelFilters $query
      * @return Illuminate\Pagination\LengthAwarePaginator
      */
-    public function getRentables();
+    public function getRentables($query);
 
     /**
      * Get's a rentable by it's ID
