@@ -3,7 +3,6 @@
 @section('content')
 
 
-<html>
 
 <head>
     <meta name="viewport" content="initial-scale=1.0, width=device-width" />
@@ -114,5 +113,5 @@
     </script>
     </body>
 
-</html>
+
 @endsection
