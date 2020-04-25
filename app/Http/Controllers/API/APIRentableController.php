@@ -23,11 +23,12 @@ class APIRentableController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param \eloquentFilter\QueryFilter\ModelFilters\ModelFilters $query
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(ModelFilters $query)
     {
-        $rentables =  $this->rentableRepo->getRentables();
+        $rentables =  $this->rentableRepo->getRentables($query);
         return response()->json($rentables);
     }
 
