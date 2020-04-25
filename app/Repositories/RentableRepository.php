@@ -11,7 +11,7 @@ class RentableRepository implements IRentableRepository
      * Get's all rentables
      *
      * @param \eloquentFilter\QueryFilter\ModelFilters\ModelFilters $query
-     * @return users
+     * @return rentables
      */
     public function getAllRentables($query)
     {
