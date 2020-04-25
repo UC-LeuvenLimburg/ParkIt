@@ -170,7 +170,7 @@ export default {
 
 .autocomplete-placeholder {
     position: absolute;
-    top: 2px;
+    top: 7px;
     left: 11px;
     pointer-events: none;
 }
@@ -233,7 +233,7 @@ export default {
 }
 
 .autocomplete-placeholder {
-    font-size: 25px;
+    font-size: 16px;
     color: #d0d0d0;
 }
 

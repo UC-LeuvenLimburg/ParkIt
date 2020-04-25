@@ -100,7 +100,7 @@ export default {
     position: absolute;
     left: 0;
     bottom: 100%;
-    z-index: 999;
+    z-index: 99;
     white-space: nowrap;
 }
 .filters .filter-pair input {
