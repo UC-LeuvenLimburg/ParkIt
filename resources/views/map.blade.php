@@ -60,7 +60,7 @@
         //dit doe je via een nieuwe snelkoppeling 
         //"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --disable-web-security --user-data-dir="C:/ChromeDevSession"
         //anchor => middelpunt anker zetten
-        var icon = new H.map.Icon('logoParkSpace.png', { anchor: { x: 20, y: 20 } });
+        var icon = new H.map.Icon('public/images/logoParkSpace.png', { anchor: { x: 20, y: 20 } });
 //___________________________________________________________________________hier zouden we ze moeten uit de database halen_____________________________________________________________________-
         var markerPosities = [
             { title: "UCLL Diepenbeek 390 free spaces", position: { lat: 50.92906, lng: 5.39559 } }];
