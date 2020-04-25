@@ -2,8 +2,6 @@
 
 @section('content')
 
-@include('map')
-
 <div class="container">
 
     <h1>Places</h1>
@@ -13,17 +11,17 @@
         <thead class="table-primary">
             <tr>
                 @if (Auth::user()->role==="admin")
-                    <th scope="col">Email</th>
-                    @endif
-                    <th scope="col">Adress</th>
-                    <th scope="col">Postal code</th>
-                    <th scope="col">Date of hire</th>
-                    <th scope="col">Start time</th>
-                    <th scope="col">End time</th>
-                    @if (Auth::user()->role==="user")
-                    <th scope="col">Price/h</th>
-                    @endif
-                    <th scope="col">Actions</th>
+                <th scope="col">Email</th>
+                @endif
+                <th scope="col">Adress</th>
+                <th scope="col">Postal code</th>
+                <th scope="col">Date of hire</th>
+                <th scope="col">Start time</th>
+                <th scope="col">End time</th>
+                @if (Auth::user()->role==="user")
+                <th scope="col">Price/h</th>
+                @endif
+                <th scope="col">Actions</th>
             </tr>
         </thead>
         <tbody>
