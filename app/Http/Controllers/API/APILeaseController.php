@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreLeaseRequest;
+use App\Http\Requests\UpdateLeaseRequest;
 use App\Models\Lease;
 use App\Models\Rentable;
 use App\Repositories\Interfaces\ILeaseRepository;
@@ -48,10 +50,10 @@ class APILeaseController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param  App\Http\Requests\StoreLeaseRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreLeaseRequest $request)
     {
         $newLease = $this->leaseRepo->addLease($request->all());
         return response()->json($newLease);
@@ -71,11 +73,11 @@ class APILeaseController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param  App\Http\Requests\UpdateLeaseRequest $request
      * @param  \App\Models\Lease $lease
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Lease $lease)
+    public function update(UpdateLeaseRequest $request, Lease $lease)
     {
         $updatedLease = $this->leaseRepo->updateLease($lease->id, $request->all());
         return response()->json($updatedLease);
@@ -91,5 +93,17 @@ class APILeaseController extends Controller
     {
         $this->leaseRepo->deleteLease($lease->id);
         return response('success', 200);
+    }
+
+    /**
+     * Display my leases
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function myleases()
+    {
+        $this->authorize('viewAny', Lease::class);
+        $leases = $this->leaseRepo->getUserLeases(Auth::id());
+        return response()->json($leases);
     }
 }

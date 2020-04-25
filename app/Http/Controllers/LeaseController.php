@@ -114,6 +114,7 @@ class LeaseController extends Controller
      */
     public function myleases()
     {
+        $this->authorize('viewAny', Lease::class);
         $leases = $this->leaseRepo->getUserLeases(Auth::id());
         return view('lease.index', compact('leases'));
     }
@@ -126,6 +127,7 @@ class LeaseController extends Controller
 
     public function createlease(int $id)
     {
+        $this->authorize('create', Lease::class);
         $user_id = Auth::id();
         $rentable = $this->rentableRepo->getRentable($id);
         return view('lease.create')->with(compact('user_id', 'rentable'));
