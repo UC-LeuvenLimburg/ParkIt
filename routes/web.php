@@ -30,3 +30,5 @@ Route::middleware('auth')->resource('web/api/users', 'API\APIUserController');
 Route::middleware('auth')->get('web/api/all/users', 'API\APIUserController@indexall');
 Route::middleware('auth')->resource('web/api/rentables', 'API\APIRentableController');
 Route::middleware('auth')->get('web/api/all/rentables', 'API\APIRentableController@indexall');
+Route::middleware('auth')->resource('web/api/leases', 'API\APILeaseController');
+Route::middleware('auth')->get('web/api/all/leases', 'API\APILeaseController@indexall');
