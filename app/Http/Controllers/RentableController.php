@@ -53,7 +53,7 @@ class RentableController extends Controller
         if (Auth::user()->role === "admin") {
             return redirect('/rentables/' . $newRentable->id);
         } else {
-            return redirect('/rentables/myplaces');
+            return redirect('/myplaces');
         }
     }
 
