@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use App\Filters\LeaseFilter;
 use eloquentFilter\QueryFilter\ModelFilters\Filterable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Lease extends Model
 {
-    use SoftDeletes, Filterable;
+    use SoftDeletes, Filterable, LeaseFilter;
 
     // Disable timestamps
     public $timestamps = false;
