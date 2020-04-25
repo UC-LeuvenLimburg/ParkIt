@@ -7,7 +7,6 @@ use App\Http\Requests\UpdateRentableRequest;
 use App\Models\Rentable;
 use App\Repositories\Interfaces\IRentableRepository;
 use eloquentFilter\QueryFilter\ModelFilters\ModelFilters;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class RentableController extends Controller
@@ -112,6 +111,7 @@ class RentableController extends Controller
      */
     public function myplaces()
     {
+        $this->authorize('viewAny', Rentable::class);
         $rentables = $this->rentableRepo->getUserRentables(Auth::id());
         return view('rentable.index', compact('rentables'));
     }

@@ -5,8 +5,9 @@ namespace App\Http\Controllers\API;
 use App\Models\User;
 use App\Repositories\Interfaces\IUserRepository;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use eloquentFilter\QueryFilter\ModelFilters\ModelFilters;
-use Illuminate\Http\Request;
 
 class APIUserController extends Controller
 {
@@ -46,10 +47,10 @@ class APIUserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Http\Requests\StoreUserRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
         $newUser = $this->userRepo->addUser($request->all());
         return response()->json($newUser);
@@ -69,11 +70,11 @@ class APIUserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Http\Requests\UpdateUserRequest  $request
      * @param  App\Models\User $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(UpdateUserRequest $request, User $user)
     {
         $updatedUser = $this->userRepo->updateUser($user->id, $request->all());
         return response()->json($updatedUser);

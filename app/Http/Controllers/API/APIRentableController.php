@@ -5,8 +5,10 @@ namespace App\Http\Controllers\API;
 use App\Models\Rentable;
 use App\Repositories\Interfaces\IRentableRepository;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreRentableRequest;
+use App\Http\Requests\UpdateRentableRequest;
 use eloquentFilter\QueryFilter\ModelFilters\ModelFilters;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class APIRentableController extends Controller
 {
@@ -46,10 +48,10 @@ class APIRentableController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param  App\Http\Requests\StoreRentableRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRentableRequest $request)
     {
         $newRentable = $this->rentableRepo->addRentable($request->all());
         return response()->json($newRentable);
@@ -69,11 +71,11 @@ class APIRentableController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param  App\Http\Requests\UpdateRentableRequest $request
      * @param  \App\Models\Rentable $rentable
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Rentable $rentable)
+    public function update(UpdateRentableRequest $request, Rentable $rentable)
     {
         $updatedRentable = $this->rentableRepo->updateRentable($rentable->id, $request->all());
         return response()->json($updatedRentable);
@@ -89,5 +91,17 @@ class APIRentableController extends Controller
     {
         $this->rentableRepo->deleteRentable($rentable->id);
         return response('success', 200);
+    }
+
+    /**
+     * Display my places
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function myplaces()
+    {
+        $this->authorize('viewAny', Rentable::class);
+        $rentables = $this->rentableRepo->getUserRentables(Auth::id());
+        return response()->json($rentables);
     }
 }

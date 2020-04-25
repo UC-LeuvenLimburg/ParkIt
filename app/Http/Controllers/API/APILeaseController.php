@@ -6,10 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreLeaseRequest;
 use App\Http\Requests\UpdateLeaseRequest;
 use App\Models\Lease;
-use App\Models\Rentable;
 use App\Repositories\Interfaces\ILeaseRepository;
 use eloquentFilter\QueryFilter\ModelFilters\ModelFilters;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class APILeaseController extends Controller
