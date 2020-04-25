@@ -254,6 +254,7 @@ export default {
     border-bottom: 1px solid lightgray;
     cursor: pointer;
     color: white;
+    font-size: 16px;
     background: #7b8a8b;
     border-radius: 10px;
 }
@@ -268,6 +269,5 @@ export default {
 
 .autocomplete-options ul li.selected {
     background: #2c3e50;
-    font-weight: 600;
 }
 </style>
