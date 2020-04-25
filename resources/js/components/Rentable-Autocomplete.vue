@@ -19,15 +19,15 @@
         <div class="filters">
             <div class="filter-pair">
                 <label for="date_of_hire_filter">Date Filter:</label>
-                <input
-                    type="date"
+                <datepicker
                     id="date_of_hire_filter"
                     name="date_of_hire_filter"
                     :value="date_of_hire_filter"
-                    class="form-control"
-                    placeholder="Date"
-                    @change="onDateFilter"
-                />
+                    @selected="onDateFilter"
+                    :bootstrap-styling="true"
+                    :typeable="true"
+                    format="yyyy-MM-dd"
+                ></datepicker>
             </div>
             <div class="filter-pair no-margin-right">
                 <label for="postal_code_filter">Postal Code Filter:</label>
@@ -47,40 +47,39 @@
 
 <script>
 import Autocomplete from "./Autocomplete";
+import Datepicker from "vuejs-datepicker";
 export default {
     data() {
         return {
             rentables: [],
             rentable_id: 0,
-            date_of_hire_filter: new Date("Y-m-d"),
+            date_of_hire_filter: null,
             postal_code_filter: ""
         };
     },
     mounted() {
         axios.get("/web/api/all/rentables").then(response => {
-            console.log(response);
             this.rentables = response.data;
         });
     },
     methods: {
         rentableSelected(output) {
-            console.log(output);
             this.rentable_id = output;
         },
         onChange(value) {},
         onDateFilter(changeEvent) {
-            console.log(changeEvent);
-            console.log(changeEvent.data);
-            this.date_of_hire_filter = changeEvent.data;
+            this.date_of_hire_filter = changeEvent;
+            let queryDateParam = this.date_of_hire_filter
+                .toISOString()
+                .substring(0, 10);
             axios
                 .get("/web/api/all/rentables", {
                     params: {
-                        date_of_hire_like: this.date_of_hire_filter,
+                        date_of_hire_like: queryDateParam,
                         postal_code_like: this.postal_code_filter
                     }
                 })
                 .then(response => {
-                    console.log(response);
                     this.rentables = response.data;
                 });
         },
@@ -94,13 +93,13 @@ export default {
                     }
                 })
                 .then(response => {
-                    console.log(response);
                     this.rentables = response.data;
                 });
         }
     },
     components: {
-        Autocomplete
+        Autocomplete,
+        Datepicker
     }
 };
 </script>
