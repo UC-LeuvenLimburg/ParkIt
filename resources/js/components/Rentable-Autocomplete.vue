@@ -18,25 +18,27 @@
         />
         <div class="filters">
             <div class="filter-pair">
-                <label for="date_of_hire">Date Filter:</label>
+                <label for="date_of_hire_filter">Date Filter:</label>
                 <input
                     type="date"
-                    id="date_of_hire"
-                    name="date_of_hire"
-                    :value="date_of_hire"
+                    id="date_of_hire_filter"
+                    name="date_of_hire_filter"
+                    :value="date_of_hire_filter"
                     class="form-control"
                     placeholder="Date"
+                    @input="onDateFilter"
                 />
             </div>
             <div class="filter-pair no-margin-right">
-                <label for="postal_code">Postal Code Filter:</label>
+                <label for="postal_code_filter">Postal Code Filter:</label>
                 <input
                     type="text"
-                    id="postal_code"
-                    name="postal_code"
-                    :value="postal_code"
+                    id="postal_code_filter"
+                    name="postal_code_filter"
+                    :value="postal_code_filter"
                     class="form-control"
                     placeholder="Postal Code"
+                    @input="onPostalCodeFilter"
                 />
             </div>
         </div>
@@ -50,8 +52,8 @@ export default {
         return {
             rentables: [],
             rentable_id: 0,
-            date_of_hire: null,
-            postal_code: ""
+            date_of_hire_filter: "",
+            postal_code_filter: ""
         };
     },
     mounted() {
@@ -65,7 +67,37 @@ export default {
             console.log(output);
             this.rentable_id = output;
         },
-        onChange(value) {}
+        onChange(value) {},
+        onDateFilter(changeEvent) {
+            console.log(changeEvent);
+            console.log(changeEvent.data);
+            this.date_of_hire_filter = changeEvent.data;
+            axios
+                .get("/web/api/all/rentables", {
+                    params: {
+                        date_of_hire_like: this.date_of_hire_filter,
+                        postal_code_like: this.postal_code_filter
+                    }
+                })
+                .then(response => {
+                    console.log(response);
+                    this.rentables = response.data;
+                });
+        },
+        onPostalCodeFilter(changeEvent) {
+            this.postal_code_filter = changeEvent.data;
+            axios
+                .get("/web/api/all/rentables", {
+                    params: {
+                        date_of_hire_like: this.date_of_hire_filter,
+                        postal_code_like: this.postal_code_filter
+                    }
+                })
+                .then(response => {
+                    console.log(response);
+                    this.rentables = response.data;
+                });
+        }
     },
     components: {
         Autocomplete
