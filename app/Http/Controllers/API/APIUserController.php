@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 
 class APIUserController extends Controller
 {
-    private $userRepo;
+    protected $userRepo;
 
     public function __construct(IUserRepository $userRepo)
     {
@@ -76,8 +76,8 @@ class APIUserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $this->userRepo->updateUser($user->id, $request->all());
-        return response()->json($user);
+        $updatedUser = $this->userRepo->updateUser($user->id, $request->all());
+        return response()->json($updatedUser);
     }
 
     /**
