@@ -7,7 +7,6 @@ use App\Repositories\Interfaces\IRentableRepository;
 use App\Http\Controllers\Controller;
 use eloquentFilter\QueryFilter\ModelFilters\ModelFilters;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class APIRentableController extends Controller
 {
