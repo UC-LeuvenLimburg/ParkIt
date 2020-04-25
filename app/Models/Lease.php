@@ -2,15 +2,25 @@
 
 namespace App\Models;
 
+use eloquentFilter\QueryFilter\ModelFilters\Filterable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Lease extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, Filterable;
 
     // Disable timestamps
     public $timestamps = false;
+
+    /**
+     * The attributes that can be filterd
+     *
+     * @var array
+     */
+    protected static $whiteListFilter = [
+        'start_time', 'end_time',
+    ];
 
     /**
      * The attributes that are mass assignable.

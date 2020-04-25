@@ -24,10 +24,7 @@ class User extends Authenticatable
      * @var array
      */
     protected static $whiteListFilter = [
-        'id',
-        'name',
-        'email',
-        'role',
+        'name', 'email', 'role',
     ];
 
     /**
