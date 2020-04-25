@@ -27,6 +27,7 @@
                     :bootstrap-styling="true"
                     :typeable="true"
                     format="yyyy-MM-dd"
+                    placeholder="Date"
                 ></datepicker>
             </div>
             <div class="filter-pair no-margin-right">
@@ -85,10 +86,17 @@ export default {
         },
         onPostalCodeFilter(changeEvent) {
             this.postal_code_filter = changeEvent.data;
+            let queryDateParam = null;
+            if (this.date_of_hire_filter != null) {
+                queryDateParam = this.date_of_hire_filter
+                    .toISOString()
+                    .substring(0, 10);
+            }
+
             axios
                 .get("/web/api/all/rentables", {
                     params: {
-                        date_of_hire_like: this.date_of_hire_filter,
+                        date_of_hire_like: queryDateParam,
                         postal_code_like: this.postal_code_filter
                     }
                 })
@@ -135,7 +143,7 @@ export default {
     white-space: nowrap;
 }
 .filters .filter-pair input {
-    height: 40px;
+    height: 37px;
     min-width: 150px;
 }
 </style>

@@ -157,7 +157,7 @@ export default {
 }
 
 .autocomplete-input {
-    height: 40px;
+    height: 37px;
     padding-left: 10px;
     padding-top: 5px;
 }
@@ -170,7 +170,7 @@ export default {
 
 .autocomplete-placeholder {
     position: absolute;
-    top: 8px;
+    top: 7px;
     left: 11px;
     pointer-events: none;
 }
@@ -179,7 +179,7 @@ export default {
     min-height: 50px;
     position: absolute;
     z-index: 999;
-    top: 46px;
+    top: 40px;
     left: 0;
     right: 0;
     text-align: center;
