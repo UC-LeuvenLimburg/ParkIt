@@ -116,6 +116,7 @@ class UserController extends Controller
     public function profile()
     {
         $user = Auth::user();
+        $this->authorize('view', $user);
         return view('user.profile')->with('user', $user);
     }
 }
