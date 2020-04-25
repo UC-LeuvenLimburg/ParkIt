@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Rentable;
 use App\Repositories\Interfaces\IRentableRepository;
+use eloquentFilter\QueryFilter\ModelFilters\ModelFilters;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,11 +22,12 @@ class RentableController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param \eloquentFilter\QueryFilter\ModelFilters\ModelFilters $query
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(ModelFilters $query)
     {
-        $rentables =  $this->rentableRepo->getRentables();
+        $rentables =  $this->rentableRepo->getRentables($query);
         return view('rentable.index', compact('rentables'));
     }
 
