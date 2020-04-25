@@ -178,6 +178,7 @@ export default {
 .autocomplete-popover {
     min-height: 50px;
     position: absolute;
+    z-index: 999;
     top: 46px;
     left: 0;
     right: 0;
