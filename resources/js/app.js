@@ -5,6 +5,7 @@
  */
 
 require("./bootstrap");
+require("./map");
 
 window.Vue = require("vue");
 

@@ -26,10 +26,12 @@ Route::middleware('auth')->get('web/api/all/leases', 'API\APILeaseController@ind
 
 // Web Routes
 Route::get('/', 'HomeController@index')->name('home');
-Route::middleware('auth')->get('/users/profile', 'UserController@profile');
-Route::middleware('auth')->get('/leases/myleases', 'LeaseController@myleases');
-Route::middleware('auth')->get('/rentables/myplaces', 'RentableController@myplaces');
+Route::middleware('auth')->get('/profile', 'UserController@profile');
+Route::middleware('auth')->get('/createlease/{id}', 'LeaseController@createlease');
+Route::middleware('auth')->get('/myleases', 'LeaseController@myleases');
+Route::middleware('auth')->get('/myplaces', 'RentableController@myplaces');
 Route::middleware('auth')->resource('users', 'UserController');
 Route::middleware('auth')->resource('leases', 'LeaseController');
 Route::middleware('auth')->resource('rentables', 'RentableController');
 Route::middleware('auth')->get('/lease', 'RentableController@create');
+Route::middleware('auth')->get('/rent', 'RentableController@index');

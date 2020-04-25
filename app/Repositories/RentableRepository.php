@@ -41,6 +41,17 @@ class RentableRepository implements IRentableRepository
     }
 
     /**
+     * Get's all rentables by someones ID
+     *
+     * @param int $user_id
+     * @return rentables
+     */
+    public function getUserRentables(int $user_id)
+    {
+        return Rentable::where('user_id', $user_id)->paginate(15);
+    }
+
+    /**
      * Add a rentable
      *
      * @param mixed $attributes

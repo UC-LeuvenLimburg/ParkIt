@@ -14,6 +14,7 @@
                 {{Form::label('date', 'Date')}}
                 {{Form::date('date', $rentable->date_of_hire, ['class' => 'form-control', 'placeholer' => 'Date', 'disabled']) }}
             </div>
+            @if (Auth::user()->role==="admin")
             <div class="form-group">
                 {{Form::label('user_id', 'User Email')}}
                 <user-autocomplete />
@@ -22,13 +23,17 @@
                 {{Form::label('rentable_id', 'Place')}}
                 <rentable-autocomplete />
             </div>
+            @else
+            {{Form::hidden('user_id', $user_id, ['hidden', 'required'])}}
+            {{Form::hidden('rentable_id', $rentable->id, ['hidden', 'required'])}}
+            @endif
             <div class="form-group">
                 {{Form::label('start_time', 'Start Time')}}
-                {{Form::time('start_time', '', ['class' => 'form-control', 'placeholer' => 'Start Time']) }}
+                {{Form::time('start_time', '', ['class' => 'form-control', 'placeholer' => 'Start Time', 'required']) }}
             </div>
             <div class="form-group">
                 {{Form::label('end_time', 'End Time')}}
-                {{Form::time('end_time', '', ['class' => 'form-control', 'placeholer' => 'End Time']) }}
+                {{Form::time('end_time', '', ['class' => 'form-control', 'placeholer' => 'End Time', 'required']) }}
             </div>
             <div class="form-group">
                 {{Form::label('price', 'Price/h')}}
@@ -42,7 +47,12 @@
                     </div>
                 </div>
             </div>
+            @if (Auth::user()->role==="admin")
             {{Form::submit('Save', [ 'class' => 'btn btn-primary'])}}
+            @else
+            {{Form::submit('Pay', [ 'class' => 'btn btn-primary'])}}
+            @endif
+            <a href="javascript:history.back()" class="btn btn-primary">Back</a>
             {!! Form::close() !!}
         </div>
     </div>
