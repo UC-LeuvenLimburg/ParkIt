@@ -7,9 +7,18 @@ interface ILeaseRepository
     /**
      * Get's all leases
      *
+     * @param \eloquentFilter\QueryFilter\ModelFilters\ModelFilters $query
+     * @return leases
+     */
+    public function getAllLeases($query);
+
+    /**
+     * Get's all leases paginated
+     *
+     * @param \eloquentFilter\QueryFilter\ModelFilters\ModelFilters $query
      * @return Illuminate\Pagination\LengthAwarePaginator
      */
-    public function getLeases();
+    public function getLeases($query);
 
     /**
      * Get's a lease by it's ID

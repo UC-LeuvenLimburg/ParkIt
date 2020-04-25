@@ -2,19 +2,30 @@
 
 namespace App\Models;
 
+use App\Filters\UserFilter;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Iatstuti\Database\Support\CascadeSoftDeletes;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use eloquentFilter\QueryFilter\ModelFilters\Filterable;
 
 class User extends Authenticatable
 {
-    use SoftDeletes, CascadeSoftDeletes;
+    use SoftDeletes, CascadeSoftDeletes, Filterable, UserFilter;
 
-    protected $cascadeDeletes = ['rentables','leases'];
+    protected $cascadeDeletes = ['rentables', 'leases'];
 
     use Notifiable;
+
+    /**
+     * The attributes that can be filterd
+     *
+     * @var array
+     */
+    protected static $whiteListFilter = [
+        'name', 'email', 'role',
+    ];
 
     /**
      * The attributes that are mass assignable.

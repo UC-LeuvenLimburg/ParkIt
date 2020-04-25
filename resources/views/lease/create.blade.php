@@ -15,10 +15,14 @@
                 {{Form::date('date', $rentable->date_of_hire, ['class' => 'form-control', 'placeholer' => 'Date', 'disabled']) }}
             </div>
             @if (Auth::user()->role==="admin")
-            {{Form::label('user_id', 'User_id')}}
-            {{Form::text('user_id', $user_id, ['required'])}}
-            {{Form::label('rentable_id', 'Rentable_id')}}
-            {{Form::text('rentable_id', $rentable->id, ['required'])}}
+            <div class="form-group">
+                {{Form::label('user_id', 'User Email')}}
+                <user-autocomplete />
+            </div>
+            <div class="form-group">
+                {{Form::label('rentable_id', 'Place')}}
+                <rentable-autocomplete />
+            </div>
             @else
             {{Form::hidden('user_id', $user_id, ['hidden', 'required'])}}
             {{Form::hidden('rentable_id', $rentable->id, ['hidden', 'required'])}}

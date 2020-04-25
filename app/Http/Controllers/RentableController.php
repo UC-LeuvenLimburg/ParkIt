@@ -6,7 +6,7 @@ use App\Http\Requests\StoreRentableRequest;
 use App\Http\Requests\UpdateRentableRequest;
 use App\Models\Rentable;
 use App\Repositories\Interfaces\IRentableRepository;
-use Illuminate\Http\Request;
+use eloquentFilter\QueryFilter\ModelFilters\ModelFilters;
 use Illuminate\Support\Facades\Auth;
 
 class RentableController extends Controller
@@ -16,18 +16,18 @@ class RentableController extends Controller
     public function __construct(IRentableRepository $rentableRepo)
     {
         $this->authorizeResource(Rentable::class, 'rentable');
-
         $this->rentableRepo = $rentableRepo;
     }
 
     /**
      * Display a listing of the resource.
      *
+     * @param \eloquentFilter\QueryFilter\ModelFilters\ModelFilters $query
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(ModelFilters $query)
     {
-        $rentables =  $this->rentableRepo->getRentables();
+        $rentables =  $this->rentableRepo->getRentables($query);
         return view('rentable.index', compact('rentables'));
     }
 
@@ -53,7 +53,7 @@ class RentableController extends Controller
         if (Auth::user()->role === "admin") {
             return redirect('/rentables/' . $newRentable->id);
         } else {
-            return redirect('/rentables/myplaces');
+            return redirect('/myplaces');
         }
     }
 
@@ -111,6 +111,7 @@ class RentableController extends Controller
      */
     public function myplaces()
     {
+        $this->authorize('viewAny', Rentable::class);
         $rentables = $this->rentableRepo->getUserRentables(Auth::id());
         return view('rentable.index', compact('rentables'));
     }

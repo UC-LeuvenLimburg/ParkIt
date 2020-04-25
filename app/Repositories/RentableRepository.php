@@ -10,11 +10,23 @@ class RentableRepository implements IRentableRepository
     /**
      * Get's all rentables
      *
+     * @param \eloquentFilter\QueryFilter\ModelFilters\ModelFilters $query
+     * @return rentables
+     */
+    public function getAllRentables($query)
+    {
+        return Rentable::filter($query)->with('user')->orderBy('id', 'asc')->get();
+    }
+
+    /**
+     * Get's all rentables paginated
+     *
+     * @param \eloquentFilter\QueryFilter\ModelFilters\ModelFilters $query
      * @return Illuminate\Pagination\LengthAwarePaginator
      */
-    public function getRentables()
+    public function getRentables($query)
     {
-        return Rentable::with('user')->orderBy('id', 'asc')->paginate(15);
+        return Rentable::filter($query)->with('user')->orderBy('id', 'asc')->paginate(15);
     }
 
     /**

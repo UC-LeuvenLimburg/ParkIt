@@ -6,7 +6,7 @@ use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use App\Repositories\Interfaces\IUserRepository;
-use Illuminate\Http\Request;
+use eloquentFilter\QueryFilter\ModelFilters\ModelFilters;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -16,18 +16,18 @@ class UserController extends Controller
     public function __construct(IUserRepository $userRepo)
     {
         $this->authorizeResource(User::class, 'user');
-
         $this->userRepo = $userRepo;
     }
 
     /**
      * Display a listing of the resource.
      *
+     * @param \eloquentFilter\QueryFilter\ModelFilters\ModelFilters $query
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(ModelFilters $query)
     {
-        $users = $this->userRepo->getUsers();
+        $users = $this->userRepo->getUsers($query);
         return view('user.index')->with('users', $users);
     }
 
@@ -116,6 +116,7 @@ class UserController extends Controller
     public function profile()
     {
         $user = Auth::user();
+        $this->authorize('view', $user);
         return view('user.profile')->with('user', $user);
     }
 }
