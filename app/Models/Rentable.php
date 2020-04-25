@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Filters\RentableFilter;
 use eloquentFilter\QueryFilter\ModelFilters\Filterable;
 use Iatstuti\Database\Support\CascadeSoftDeletes;
 use Illuminate\Database\Eloquent\Model;
@@ -9,7 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Rentable extends Model
 {
-    use SoftDeletes, CascadeSoftDeletes, Filterable;
+    use SoftDeletes, CascadeSoftDeletes, Filterable, RentableFilter;
 
     protected $cascadeDeletes = ['leases'];
 

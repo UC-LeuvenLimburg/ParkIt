@@ -11,7 +11,7 @@ trait UserFilter
 {
     /**
      * @param \Illuminate\Database\Eloquent\Builder $builder
-     * @param                                       $value
+     * @param $value
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
@@ -22,7 +22,7 @@ trait UserFilter
 
     /**
      * @param \Illuminate\Database\Eloquent\Builder $builder
-     * @param                                       $value
+     * @param $value
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
@@ -33,7 +33,7 @@ trait UserFilter
 
     /**
      * @param \Illuminate\Database\Eloquent\Builder $builder
-     * @param                                       $value
+     * @param $value
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
@@ -44,7 +44,7 @@ trait UserFilter
 
     /**
      * @param \Illuminate\Database\Eloquent\Builder $builder
-     * @param                                       $value
+     * @param $value
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
