@@ -1,13 +1,5 @@
 <template>
     <div>
-        <Autocomplete
-            :items="users"
-            filterby="email"
-            @change="onChange"
-            outputkey="id"
-            placeholder="Select User"
-            @selected="userSelected"
-        />
         <input
             type="number"
             id="user_id"
@@ -15,6 +7,14 @@
             :value="user_id"
             hidden
             required
+        />
+        <Autocomplete
+            :items="users"
+            filterby="email"
+            @change="onChange"
+            outputkey="id"
+            placeholder="Select User"
+            @selected="userSelected"
         />
     </div>
 </template>
@@ -30,13 +30,12 @@ export default {
     },
     mounted() {
         axios.get("/web/api/all/users").then(response => {
-            console.log(response);
             this.users = response.data;
         });
     },
     methods: {
         userSelected(output) {
-            console.log(output);
+            this.user_id = output;
         },
         onChange(value) {}
     },

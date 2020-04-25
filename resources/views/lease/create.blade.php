@@ -15,11 +15,13 @@
                 {{Form::date('date', $rentable->date_of_hire, ['class' => 'form-control', 'placeholer' => 'Date', 'disabled']) }}
             </div>
             <div class="form-group">
-                {{Form::label('user_email', 'User Email')}}
+                {{Form::label('user_id', 'User Email')}}
                 <user-autocomplete />
             </div>
-            {{Form::label('rentable_id', 'Rentable_id')}}
-            {{Form::text('rentable_id', $rentable->id)}}
+            <div class="form-group">
+                {{Form::label('rentable_id', 'Place')}}
+                <rentable-autocomplete />
+            </div>
             <div class="form-group">
                 {{Form::label('start_time', 'Start Time')}}
                 {{Form::time('start_time', '', ['class' => 'form-control', 'placeholer' => 'Start Time']) }}

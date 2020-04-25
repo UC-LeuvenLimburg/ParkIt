@@ -24,6 +24,11 @@ Vue.component(
     require("./components/User-Autocomplete.vue").default
 );
 
+Vue.component(
+    "rentable-autocomplete",
+    require("./components/Rentable-Autocomplete.vue").default
+);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
