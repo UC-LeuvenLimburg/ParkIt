@@ -8,8 +8,8 @@
             {!! Form::open(['route' => 'rentables.store']) !!}
             @if (Auth::user()->role==="admin")
             <div class="form-group">
-                {{Form::label('user_id', 'User_id')}}
-                {{Form::number('user_id', '', ['class' => 'form-control', 'placeholer' => 'User_id', 'required']) }}
+                {{Form::label('user_id', 'User Email')}}
+                <user-autocomplete />
             </div>
             @else
             {{Form::hidden('user_id', Auth::user()->id, ['class' => 'form-control', 'placeholer' => 'User_id', 'hidden', 'required']) }}
