@@ -52,7 +52,7 @@ export default {
         return {
             rentables: [],
             rentable_id: 0,
-            date_of_hire_filter: new Date(),
+            date_of_hire_filter: new Date("Y-m-d"),
             postal_code_filter: ""
         };
     },
