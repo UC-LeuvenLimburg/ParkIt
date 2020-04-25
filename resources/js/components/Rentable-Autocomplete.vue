@@ -26,7 +26,7 @@
                     :value="date_of_hire_filter"
                     class="form-control"
                     placeholder="Date"
-                    @input="onDateFilter"
+                    @change="onDateFilter"
                 />
             </div>
             <div class="filter-pair no-margin-right">
@@ -52,7 +52,7 @@ export default {
         return {
             rentables: [],
             rentable_id: 0,
-            date_of_hire_filter: "",
+            date_of_hire_filter: new Date(),
             postal_code_filter: ""
         };
     },
