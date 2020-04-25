@@ -170,7 +170,7 @@ export default {
 
 .autocomplete-placeholder {
     position: absolute;
-    top: 7px;
+    top: 8px;
     left: 11px;
     pointer-events: none;
 }
@@ -234,7 +234,7 @@ export default {
 
 .autocomplete-placeholder {
     font-size: 16px;
-    color: #d0d0d0;
+    color: #95a5a6;
 }
 
 .autocomplete-popover {
@@ -247,6 +247,7 @@ export default {
     font-size: 16px;
     border-radius: 4px;
     border: 1px solid lightgray;
+    color: #95a5a6;
 }
 
 .autocomplete-options ul li {
