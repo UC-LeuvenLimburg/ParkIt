@@ -11136,6 +11136,17 @@ a.text-dark:focus {
   margin-top: -37px;
 }
 
+/*
+    Styling for the map
+*/
+
+#mapContainer {
+  width: 1200px;
+  height: 500px;
+  position: relative;
+  margin: 0 10px;
+}
+
 .home-background-gray {
   background-color: #e6e6e6;
   padding: 2em;

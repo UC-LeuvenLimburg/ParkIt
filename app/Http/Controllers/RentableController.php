@@ -28,7 +28,7 @@ class RentableController extends Controller
     public function index()
     {
         $rentables =  $this->rentableRepo->getRentables();
-        return view('map');
+        return view('rentable.index', compact('rentables'));
     }
 
     /**
