@@ -1,5 +1,5 @@
 <template>
-    <div ref="map" style="width: 100%; height: 350px"></div>
+    <div ref="map" class="map"></div>
 </template>
 
 <script>
@@ -100,4 +100,10 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.map {
+    width: 102%;
+    height: 350px;
+    margin: 0 -1rem;
+}
+</style>
