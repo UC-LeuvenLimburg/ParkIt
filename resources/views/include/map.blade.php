@@ -9,5 +9,5 @@
 @endsection
 
 <div class="container">
-    <heremap />
+    <here-map />
 </div>
