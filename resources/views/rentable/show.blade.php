@@ -57,6 +57,14 @@
             <a href="{{ url('/createlease/' . $rentable->id ) }}" class="btn btn-sm btn-primary">Rent</a>
             <a href="javascript:history.back()" class="btn btn-sm btn-primary">Back</a>
             {!! Form::close() !!}
+            @if ($rentable->user_id === Auth::id() && count($rentable->leases) === 0)
+            <div class="parkit-delete-button">
+                {!! Form::open(['action' => ['RentableController@destroy', $rentable], 'method' => 'POST']) !!}
+                {{ Form::hidden('_method', 'DELETE') }}
+                {{ Form::submit('Delete', ['class' => 'btn btn-danger']) }}
+                {!! Form::close() !!}
+            </div>
+            @endif
         </div>
     </div>
 </div>
