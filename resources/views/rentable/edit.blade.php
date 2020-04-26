@@ -9,7 +9,7 @@
             {{Form::hidden('rentable_id', $rentable->id, ['hidden', 'required'])}}
             <div class="form-group">
                 {{Form::label('user', 'Owner')}}
-                {{Form::text('user', $rentable->user->name, ['class' => 'form-control', 'placeholer' => 'User', 'disabled']) }}
+                {{Form::text('user', $rentable->user->name, ['class' => 'form-control', 'placeholer' => 'User', 'readonly']) }}
             </div>
             <div class="form-group">
                 {{Form::label('adress', 'Adress')}}
