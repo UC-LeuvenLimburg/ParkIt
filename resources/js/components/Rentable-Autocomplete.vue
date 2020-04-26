@@ -70,9 +70,12 @@ export default {
         onChange(value) {},
         onDateFilter(changeEvent) {
             this.date_of_hire_filter = changeEvent;
-            let queryDateParam = this.date_of_hire_filter
-                .toISOString()
-                .substring(0, 10);
+            let queryDateParam = null;
+            if (this.date_of_hire_filter != null) {
+                queryDateParam = this.date_of_hire_filter
+                    .toISOString()
+                    .substring(0, 10);
+            }
             axios
                 .get("/web/api/all/rentables", {
                     params: {
