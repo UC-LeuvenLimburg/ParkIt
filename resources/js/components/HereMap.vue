@@ -73,10 +73,10 @@ export default {
             });
 
             // Add event listener:
-            this.marker.addEventListener("tap", function(evt) {
-                this.position = evt.target.getGeometry(); //marker zelf op deze plaats
+            this.marker.addEventListener("tap", function(event) {
+                this.position = event.target.getGeometry(); //marker zelf op deze plaats
 
-                this.mapdata = evt.target.getData();
+                this.mapdata = event.target.getData();
                 // Create an info bubble object at a specific geographic location:
                 //var bubble = new H.ui.InfoBubble(markerPosities[i].position, { content: markerPosities[i].title });
                 this.bubble = new H.ui.InfoBubble(position, {
@@ -85,11 +85,13 @@ export default {
 
                 // Add info bubble to the UI:
                 this.ui.addBubble(this.bubble);
+
+                this.map.setCenter(event.target.getPosition());
             });
 
             this.group.addObject(this.marker);
         }
-        this.map.setCenter(evt.target.getPosition());
+
         //   get geo bounding box for the group and set it to the map
         this.map.getViewModel().setLookAtData({
             bounds: this.group.getBoundingBox()
