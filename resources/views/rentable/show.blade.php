@@ -27,7 +27,6 @@
                     {{Form::label('date', 'Date')}}
                     {{Form::date('date', $rentable->date_of_hire, ['class' => 'form-control', 'placeholer' => 'Date', 'readonly']) }}
                 </div>
-
                 <div class="form-group col-md-4">
                     {{Form::label('start_time', 'Start Time')}}
                     {{Form::time('start_time', $rentable->start_time, ['class' => 'form-control', 'placeholer' => 'Start Time', 'readonly']) }}
@@ -59,7 +58,6 @@
                 {{Form::label('description', 'Description')}}
                 {{Form::textarea('description', $rentable->description, ['class' => 'form-control', 'placeholer' => 'Description', 'readonly']) }}
             </div>
-
             <a href="{{ url('/createlease/' . $rentable->id ) }}" class="btn btn-sm btn-primary">Rent</a>
             <a href="javascript:history.back()" class="btn btn-sm btn-primary">Back</a>
             {!! Form::close() !!}
