@@ -1,5 +1,5 @@
 <template>
-    <div ref="map"></div>
+    <div ref="map" style="min-width: 300px; min-height: 300px;"></div>
 </template>
 
 <script>
@@ -23,7 +23,7 @@ export default {
                     position: { lat: 50.92906, lng: 5.39559 }
                 }
             ],
-            goup: {}
+            group: {}
         };
     },
     created() {
@@ -33,21 +33,20 @@ export default {
         });
     },
     mounted() {
-        console.log("hello from map");
         // Obtain the default map types from the platform object
-        this.defaultLayers = platform.createDefaultLayers();
-        this.map = new H.Map(
-            this.$refs.map,
-            this.defaultLayers.vector.normal.map,
-            {
-                zoom: 10,
-                center: { lng: this.lng, lat: this.lat }
-            }
-        );
-        // // Add traffic
-        // this.map.addLayer(this.defaultLayers.vector.normal.traffic);
-        // // Enable the event system on the map instance:
-        // this.mapEvents = new H.mapevents.MapEvents(map);
+        this.defaultLayers = this.platform.createDefaultLayers();
+        // this.map = new H.Map(
+        //     this.$refs.map,
+        //     this.defaultLayers.vector.normal.map,
+        //     {
+        //         zoom: 10,
+        //         center: { lng: this.lng, lat: this.lat }
+        //     }
+        // );
+        // Add traffic
+        //this.map.addLayer(this.defaultLayers.vector.normal.traffic);
+        // Enable the event system on the map instance:
+        //this.mapEvents = new H.mapevents.MapEvents(this.map);
         // // Instantiate the default behavior, providing the mapEvents object:
         // this.behavior = new H.mapevents.Behavior(this.mapEvents);
         // // Create a marker icon from an image URL:
