@@ -4,7 +4,9 @@
 <div class="container">
 
     <h1>Leases</h1>
+
     @include('include.map')
+
     @if (count($leases) > 0)
     <table class="table table-dark table-hover mt-4">
         <thead class="table-primary">
