@@ -46,7 +46,6 @@ class RoutingTest extends TestCase
                 // (success) all routes returned a redirect
                 $this->assertTrue(true);
             }
-            echo  PHP_EOL;
         }
     }
 }
