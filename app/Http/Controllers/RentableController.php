@@ -101,7 +101,11 @@ class RentableController extends Controller
     public function destroy(Rentable $rentable)
     {
         $this->rentableRepo->deleteRentable($rentable->id);
-        return redirect('/rentables')->with('success', 'Place Removed');
+        if (Auth::user()->role === "admin") {
+            return redirect('/rentables')->with('success', 'Place Removed');
+        } else {
+            return redirect('/myplaces')->with('success', 'Place Removed');
+        }
     }
 
     /**
