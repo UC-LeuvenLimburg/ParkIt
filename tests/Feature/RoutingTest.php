@@ -23,31 +23,30 @@ class RoutingTest extends TestCase
      *
      * @return void
      */
-    public function testLeasesRouteTest()
+    public function testLoginRedirctTest()
     {
-        $response = $this->get('/leases');
-        $response->assertStatus(302);
-    }
+        $urls = [
+            '/leases',
+            '/web/api/leases',
+            '/web/api/all/leases',
+            '/rentables',
+            '/web/api/rentables',
+            '/web/api/all/rentables',
+            '/users',
+            '/web/api/users',
+            '/web/api/all/users',
+        ];
 
-    /**
-     * A Test for the leases route
-     *
-     * @return void
-     */
-    public function testRentablesRouteTest()
-    {
-        $response = $this->get('/rentables');
-        $response->assertStatus(302);
-    }
-
-    /**
-     * A Test for the leases route
-     *
-     * @return void
-     */
-    public function testUsersRouteTest()
-    {
-        $response = $this->get('/users');
-        $response->assertStatus(302);
+        foreach ($urls as $url) {
+            $response = $this->get($url);
+            if ((int) $response->status() !== 302) {
+                // (FAILED) did not return a 302
+                $this->assertTrue(false);
+            } else {
+                // (success) all routes returned a redirect
+                $this->assertTrue(true);
+            }
+            echo  PHP_EOL;
+        }
     }
 }
