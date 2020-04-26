@@ -5,6 +5,8 @@
 
     <h1>Places</h1>
 
+    @include('include.map')
+
     @if (count($rentables) > 0)
     <table class="table table-dark table-hover">
         <thead class="table-primary">
