@@ -8,8 +8,8 @@
             {!! Form::model($rentable) !!}
             @if (Auth::user()->role==="admin")
             <div class="form-group">
-                {{Form::label('email', 'Email')}}
-                {{Form::email('email', $rentable->user->name, ['class' => 'form-control', 'placeholer' => 'Email', 'readonly']) }}
+                {{Form::label('owner', 'Owner')}}
+                {{Form::email('owner', $rentable->user->email, ['class' => 'form-control', 'placeholer' => 'Email', 'readonly']) }}
             </div>
             @endif
             <div class="form-row">
