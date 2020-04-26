@@ -42,9 +42,6 @@
                     <span class="input-group-text">&euro;</span>
                 </div>
                 {{Form::text('price', $rentable->price, ['class' => 'form-control', 'placeholer' => 'Date', 'readonly']) }}
-                <div class="input-group-append">
-                    <span class="input-group-text">.00</span>
-                </div>
             </div>
         </div>
         @if (Auth::user()->role==="admin")
