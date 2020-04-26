@@ -2,28 +2,19 @@
 
 namespace Tests\Feature;
 
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class RoutingTest extends TestCase
 {
-    /**
-     * A Test for the home route
-     *
-     * @return void
-     */
-    public function testHomeRouteTest()
+    public function test_home_route_test()
     {
         $response = $this->get('/');
         $response->assertStatus(200);
     }
 
-    /**
-     * A Test for the leases route
-     *
-     * @return void
-     */
-    public function testLoginRedirctTest()
+    public function test_login_redirect_test()
     {
         $urls = [
             '/leases',
@@ -47,5 +38,14 @@ class RoutingTest extends TestCase
                 $this->assertTrue(true);
             }
         }
+    }
+
+    public function test_user_cannot_view_users()
+    {
+        $user = factory(User::class)->make();
+
+        $response = $this->actingAs($user)->get('/users');
+
+        $response->assertForbidden();
     }
 }
