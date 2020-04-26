@@ -1,11 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-@include('include.map')
 <div class="container">
 
     <h1>Leases</h1>
-
+    @include('include.map')
     @if (count($leases) > 0)
     <table class="table table-dark table-hover">
         <thead class="table-primary">
