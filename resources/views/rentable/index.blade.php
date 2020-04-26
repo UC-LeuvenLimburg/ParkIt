@@ -1,13 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-
 <div class="container">
 
     <h1>Places</h1>
 
+    @include('include.map')
+
     @if (count($rentables) > 0)
-    <table class="table table-dark table-hover">
+    <table class="table table-dark table-hover mt-4">
         <thead class="table-primary">
             <tr>
                 @if (Auth::user()->role==="admin")

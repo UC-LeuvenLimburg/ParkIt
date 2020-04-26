@@ -5,7 +5,6 @@
  */
 
 require("./bootstrap");
-//require("./map");
 
 window.Vue = require("vue");
 
@@ -29,6 +28,8 @@ Vue.component(
     "rentable-autocomplete",
     require("./components/Rentable-Autocomplete.vue").default
 );
+
+Vue.component("heremap", require("./components/HereMap.vue").default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
