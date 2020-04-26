@@ -12,25 +12,30 @@
                 {{Form::email('email', $rentable->user->name, ['class' => 'form-control', 'placeholer' => 'Email', 'disabled']) }}
             </div>
             @endif
-            <div class="form-group">
-                {{Form::label('adress', 'Adress')}}
-                {{Form::text('adress', $rentable->adress, ['class' => 'form-control', 'placeholer' => 'Adress', 'disabled']) }}
+            <div class="form-row">
+                <div class="form-group col-md-8">
+                    {{Form::label('adress', 'Adress')}}
+                    {{Form::text('adress', $rentable->adress, ['class' => 'form-control', 'placeholer' => 'Adress', 'disabled']) }}
+                </div>
+                <div class="form-group col-md-4">
+                    {{Form::label('postal_code', 'Postal code')}}
+                    {{Form::text('postal_code', $rentable->postal_code, ['class' => 'form-control', 'placeholer' => 'PostalCode', 'disabled']) }}
+                </div>
             </div>
-            <div class="form-group">
-                {{Form::label('postal_code', 'Postal code')}}
-                {{Form::text('postal_code', $rentable->postal_code, ['class' => 'form-control', 'placeholer' => 'PostalCode', 'disabled']) }}
-            </div>
-            <div class="form-group">
-                {{Form::label('date', 'Date')}}
-                {{Form::date('date', $rentable->date_of_hire, ['class' => 'form-control', 'placeholer' => 'Date', 'disabled']) }}
-            </div>
-            <div class="form-group">
-                {{Form::label('start_time', 'Start Time')}}
-                {{Form::time('start_time', $rentable->start_time, ['class' => 'form-control', 'placeholer' => 'Start Time', 'disabled']) }}
-            </div>
-            <div class="form-group">
-                {{Form::label('end_time', 'End Time')}}
-                {{Form::time('end_time', $rentable->end_time, ['class' => 'form-control', 'placeholer' => 'End Time', 'disabled']) }}
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    {{Form::label('date', 'Date')}}
+                    {{Form::date('date', $rentable->date_of_hire, ['class' => 'form-control', 'placeholer' => 'Date', 'disabled']) }}
+                </div>
+
+                <div class="form-group col-md-4">
+                    {{Form::label('start_time', 'Start Time')}}
+                    {{Form::time('start_time', $rentable->start_time, ['class' => 'form-control', 'placeholer' => 'Start Time', 'disabled']) }}
+                </div>
+                <div class="form-group col-md-4">
+                    {{Form::label('end_time', 'End Time')}}
+                    {{Form::time('end_time', $rentable->end_time, ['class' => 'form-control', 'placeholer' => 'End Time', 'disabled']) }}
+                </div>
             </div>
             <div class="form-group">
                 {{Form::label('price', 'Price/h')}}
@@ -43,17 +48,18 @@
                         <span class="input-group-text">.00</span>
                     </div>
                 </div>
-                @if (Auth::user()->role==="admin")
-                <div class="form-group">
-                    {{Form::label('bancaccount_nr', 'Bankaccount Number')}}
-                    {{Form::text('bancaccount_nr', $rentable->bankaccount_nr, ['class' => 'form-control', 'placeholer' => 'Bankaccount number', 'disabled']) }}
-                </div>
-                @endif
-                <div class="form-group">
-                    {{Form::label('description', 'Description')}}
-                    {{Form::text('description', $rentable->description, ['class' => 'form-control', 'placeholer' => 'Description', 'disabled']) }}
-                </div>
             </div>
+            @if (Auth::user()->role==="admin")
+            <div class="form-group">
+                {{Form::label('bancaccount_nr', 'Bankaccount Number')}}
+                {{Form::text('bancaccount_nr', $rentable->bankaccount_nr, ['class' => 'form-control', 'placeholer' => 'Bankaccount number', 'disabled']) }}
+            </div>
+            @endif
+            <div class="form-group">
+                {{Form::label('description', 'Description')}}
+                {{Form::textarea('description', $rentable->description, ['class' => 'form-control', 'placeholer' => 'Description', 'disabled']) }}
+            </div>
+
             <a href="{{ url('/createlease/' . $rentable->id ) }}" class="btn btn-sm btn-primary">Rent</a>
             <a href="javascript:history.back()" class="btn btn-sm btn-primary">Back</a>
             {!! Form::close() !!}
