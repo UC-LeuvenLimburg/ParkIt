@@ -6,7 +6,7 @@
     <h1>Leases</h1>
 
     @if (count($leases) > 0)
-    <table class="table table-dark table-hover mt-4">
+    <table class="table table-dark table-hover">
         <thead class="table-primary">
             <tr>
                 <th scope="col">Lease</th>
