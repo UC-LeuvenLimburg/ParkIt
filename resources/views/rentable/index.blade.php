@@ -1,9 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-
+@include('include.map')
 <div class="container">
-
     <h1>Places</h1>
 
     @if (count($rentables) > 0)
