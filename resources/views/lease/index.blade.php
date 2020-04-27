@@ -13,6 +13,8 @@
                 <th scope="col">Date</th>
                 <th scope="col">Start time</th>
                 <th scope="col">End time</th>
+                <th scope="col">Phone Number</th>
+                <th scope="col">License Plate</th>
                 <th scope="col">Actions</th>
             </tr>
         </thead>
@@ -23,6 +25,8 @@
                 <td>{{$lease->rentable->date_of_hire}}</td>
                 <td>{{$lease->start_time}}</td>
                 <td>{{$lease->end_time}}</td>
+                <td>{{$lease->phone_nr}}</td>
+                <td>{{$lease->license_plate}}</td>
                 <td>
                     <a class="btn btn-info btn-sm" href='/leases/{{ $lease->id }}'>Show</a>
                     @if (Auth::user()->role==="admin")
