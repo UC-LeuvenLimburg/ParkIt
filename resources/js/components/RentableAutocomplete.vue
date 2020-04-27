@@ -35,7 +35,7 @@
                     type="text"
                     id="postal_code_filter"
                     name="postal_code_filter"
-                    :value="postal_code_filter"
+                    v-model="postal_code_filter"
                     class="form-control"
                     placeholder="Postal Code"
                     @input="onPostalCodeFilter"
@@ -88,7 +88,6 @@ export default {
                 });
         },
         onPostalCodeFilter(changeEvent) {
-            this.postal_code_filter = changeEvent.data;
             let queryDateParam = null;
             if (this.date_of_hire_filter != null) {
                 queryDateParam = this.date_of_hire_filter
