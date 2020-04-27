@@ -26,6 +26,7 @@
                 @keydown.down="down"
                 @keydown.enter="selectItem"
                 @input="emitQuery"
+                @blur="toggleVisible"
                 placeholder="Start Typing..."
             />
             <div class="autocomplete-options" ref="optionsList">
