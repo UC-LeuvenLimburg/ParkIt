@@ -6,6 +6,7 @@
         <div class="col-xl">
             <h1>Create Lease</h1>
             {!! Form::open(['route' => 'leases.store']) !!}
+            @if ($rentable !== null)
             <div class="form-group">
                 {{Form::label('adress', 'Adress')}}
                 {{Form::text('adress', $rentable->adress, ['class' => 'form-control', 'placeholer' => 'Adress', 'disabled']) }}
@@ -14,6 +15,7 @@
                 {{Form::label('date', 'Date')}}
                 {{Form::date('date', $rentable->date_of_hire, ['class' => 'form-control', 'placeholer' => 'Date', 'disabled']) }}
             </div>
+            @endif
             @if (Auth::user()->role==="admin")
             <div class="form-group">
                 {{Form::label('user_id', 'User Email')}}
@@ -35,6 +37,7 @@
                 {{Form::label('end_time', 'End Time')}}
                 {{Form::time('end_time', '', ['class' => 'form-control', 'placeholer' => 'End Time', 'required']) }}
             </div>
+            @if ($rentable !== null)
             <div class="form-group">
                 {{Form::label('price', 'Price/h')}}
                 <div class="input-group mb-3">
@@ -44,6 +47,7 @@
                     {{Form::text('price', $rentable->price, ['class' => 'form-control', 'placeholer' => 'Date', 'disabled']) }}
                 </div>
             </div>
+            @endif
             <div class="form-group">
                 {{Form::label('phone_nr', 'Phone number')}}
                 {{Form::text('phone_nr', '', ['class' => 'form-control', 'placeholer' => 'phone_nr', 'required']) }}
