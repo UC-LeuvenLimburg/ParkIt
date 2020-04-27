@@ -12,13 +12,13 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
+                <li class="nav-item {{ Request::is('/') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ url('/') }}">Home <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item {{ Request::is('rent') ? 'active' : '' }}">
                     <a class="nav-link" href="/rent">Rent</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item {{ Request::is('lease') ? 'active' : '' }}">
                     <a class="nav-link" href="/lease">Lease</a>
                 </li>
             </ul>
@@ -48,9 +48,9 @@
                         </a>
                         {{-- These are ADMIN only --}}
                         @if (Auth::user()->role==="admin")
-                        <a class="dropdown-item" href="/leases">Leases</a>
-                        <a class="dropdown-item" href="/rentables">Places</a>
-                        <a class="dropdown-item" href="/users">Users</a>
+                        <a class="dropdown-item {{ Request::is('leases') ? 'active' : '' }}" href="/leases">Leases</a>
+                        <a class="dropdown-item {{ Request::is('rentables') ? 'active' : '' }}" href="/rentables">Places</a>
+                        <a class="dropdown-item {{ Request::is('users') ? 'active' : '' }}" href="/users">Users</a>
                         @endif
                         {{--  --}}
 
