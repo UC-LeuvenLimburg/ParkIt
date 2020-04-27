@@ -54,7 +54,9 @@
             {{Form::label('description', 'Description')}}
             {{Form::textarea('description', $rentable->description, ['class' => 'form-control', 'placeholer' => 'Description', 'readonly']) }}
         </div>
+        @if ($rentable->user_id !== Auth::id() || Auth::user()->role==="admin")
         <a href="{{ url('/createlease/' . $rentable->id ) }}" class="btn btn-sm btn-primary">Rent</a>
+        @endif
         <a href="javascript:history.back()" class="btn btn-sm btn-primary">Back</a>
         {!! Form::close() !!}
         @if ($rentable->user_id === Auth::id() && count($rentable->leases) === 0)
@@ -66,7 +68,6 @@
         </div>
         @endif
     </div>
-
     @if (count($rentable->leases) > 0)
     <div class="col-xl mt-4">
         <h3>Current Leases</h3>
