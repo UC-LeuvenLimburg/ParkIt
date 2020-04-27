@@ -110,9 +110,10 @@ class LeaseController extends Controller
     /**
      * Display my leases
      *
+     * @param \eloquentFilter\QueryFilter\ModelFilters\ModelFilters $query
      * @return \Illuminate\Http\Response
      */
-    public function myleases()
+    public function myleases(ModelFilters $query)
     {
         $this->authorize('viewAny', Lease::class);
         $leases = $this->leaseRepo->getUserLeases(Auth::id());

@@ -44,9 +44,10 @@ class LeaseRepository implements ILeaseRepository
      * Get's all leases by someones ID
      *
      * @param int $user_id
+     * @param \eloquentFilter\QueryFilter\ModelFilters\ModelFilters $query
      * @return Illuminate\Pagination\LengthAwarePaginator
      */
-    public function getUserLeases(int $user_id)
+    public function getUserLeases(int $user_id, $query)
     {
         return lease::where('user_id', $user_id)->paginate(15);
     }
