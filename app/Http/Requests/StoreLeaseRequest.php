@@ -27,7 +27,7 @@ class StoreLeaseRequest extends FormRequest
             'start_time' => 'required',
             'end_time' => 'required',
             'phone_nr' => 'required|string|min:8|max:12',
-            'license_plate' => 'required'
+            'license_plate' => 'required|string|min:1|max:9'
         ];
     }
 
