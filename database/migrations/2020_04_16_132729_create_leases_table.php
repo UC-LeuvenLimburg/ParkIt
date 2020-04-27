@@ -19,6 +19,8 @@ class CreateLeasesTable extends Migration
             $table->integer('rentable_id');
             $table->time('start_time', 0);
             $table->time('end_time', 0);
+            $table->string('phone_nr');
+            $table->string('license_plate');
             $table->softDeletes();
         });
     }

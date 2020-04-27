@@ -42,10 +42,15 @@
                         <span class="input-group-text">&euro;</span>
                     </div>
                     {{Form::text('price', $rentable->price, ['class' => 'form-control', 'placeholer' => 'Date', 'disabled']) }}
-                    <div class="input-group-append">
-                        <span class="input-group-text">.00</span>
-                    </div>
                 </div>
+            </div>
+            <div class="form-group">
+                {{Form::label('phone_nr', 'Phone number')}}
+                {{Form::text('phone_nr', '', ['class' => 'form-control', 'placeholer' => 'phone_nr', 'required']) }}
+            </div>
+            <div class="form-group">
+                {{Form::label('license_plate', 'License plate')}}
+                {{Form::text('license_plate', '', ['class' => 'form-control', 'placeholer' => 'license_plate', 'required']) }}
             </div>
             @if (Auth::user()->role==="admin")
             {{Form::submit('Save', [ 'class' => 'btn btn-primary'])}}
