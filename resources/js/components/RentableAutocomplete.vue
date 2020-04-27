@@ -4,7 +4,7 @@
             type="number"
             id="rentable_id"
             name="rentable_id"
-            :value="rentable_id"
+            :value="rentableId"
             hidden
             required
         />
@@ -12,7 +12,6 @@
             :items="rentables"
             filterby="adress"
             @change="onChange"
-            outputkey="id"
             placeholder="Select Place"
             @selected="rentableSelected"
         />
@@ -36,7 +35,7 @@
                     type="text"
                     id="postal_code_filter"
                     name="postal_code_filter"
-                    :value="postal_code_filter"
+                    v-model="postal_code_filter"
                     class="form-control"
                     placeholder="Postal Code"
                     @input="onPostalCodeFilter"
@@ -53,7 +52,7 @@ export default {
     data() {
         return {
             rentables: [],
-            rentable_id: 0,
+            rentable: {},
             date_of_hire_filter: null,
             postal_code_filter: ""
         };
@@ -65,7 +64,8 @@ export default {
     },
     methods: {
         rentableSelected(output) {
-            this.rentable_id = output;
+            this.rentable = output;
+            this.$emit("selected", this.rentable);
         },
         onChange(value) {},
         onDateFilter(changeEvent) {
@@ -88,7 +88,6 @@ export default {
                 });
         },
         onPostalCodeFilter(changeEvent) {
-            this.postal_code_filter = changeEvent.data;
             let queryDateParam = null;
             if (this.date_of_hire_filter != null) {
                 queryDateParam = this.date_of_hire_filter
@@ -106,6 +105,11 @@ export default {
                 .then(response => {
                     this.rentables = response.data;
                 });
+        }
+    },
+    computed: {
+        rentableId() {
+            return this.rentable != null ? this.rentable.id : null;
         }
     },
     components: {
