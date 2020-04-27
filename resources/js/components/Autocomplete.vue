@@ -24,7 +24,7 @@
                 v-model="query"
                 @keydown.up="up"
                 @keydown.down="down"
-                @keydown.enter="selectItem"
+                @keydown.enter.prevent="selectItem"
                 @input="emitQuery"
                 @blur="toggleVisible"
                 placeholder="Start Typing..."
