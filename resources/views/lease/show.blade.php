@@ -29,10 +29,15 @@
                         <span class="input-group-text">&euro;</span>
                     </div>
                     {{Form::text('price', $lease->rentable->price, ['class' => 'form-control', 'placeholer' => 'Date', 'disabled']) }}
-                    <div class="input-group-append">
-                        <span class="input-group-text">.00</span>
-                    </div>
                 </div>
+            </div>
+            <div class="form-group">
+                {{Form::label('phone_nr', 'Phone number')}}
+                {{Form::text('phone_nr', $lease->phone_nr, ['class' => 'form-control', 'placeholer' => 'phone_nr', 'disabled']) }}
+            </div>
+            <div class="form-group">
+                {{Form::label('license_plate', 'License plate')}}
+                {{Form::text('license_plate', $lease->license_plate, ['class' => 'form-control', 'placeholer' => 'license_plate', 'disabled']) }}
             </div>
             {!! Form::close() !!}
         </div>

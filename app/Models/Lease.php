@@ -20,7 +20,7 @@ class Lease extends Model
      * @var array
      */
     protected static $whiteListFilter = [
-        'start_time', 'end_time',
+        'start_time', 'end_time', 'phone_nr', 'license_plate'
     ];
 
     /**
@@ -29,7 +29,7 @@ class Lease extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id', 'rentable_id', 'start_time', 'end_time',
+        'user_id', 'rentable_id', 'start_time', 'end_time', 'phone_nr', 'license_plate'
     ];
 
     /**
