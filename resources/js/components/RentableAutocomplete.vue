@@ -4,7 +4,8 @@
             type="number"
             id="rentable_id"
             name="rentable_id"
-            :value="rentable_id"
+            v-if="rentable"
+            :value="rentable.id"
             hidden
             required
         />
@@ -12,7 +13,6 @@
             :items="rentables"
             filterby="adress"
             @change="onChange"
-            outputkey="id"
             placeholder="Select Place"
             @selected="rentableSelected"
         />
@@ -50,10 +50,14 @@
 import Autocomplete from "./Autocomplete";
 import Datepicker from "vuejs-datepicker";
 export default {
+    props: {
+        rentable: {
+            default: {}
+        }
+    },
     data() {
         return {
             rentables: [],
-            rentable_id: 0,
             date_of_hire_filter: null,
             postal_code_filter: ""
         };
@@ -65,7 +69,8 @@ export default {
     },
     methods: {
         rentableSelected(output) {
-            this.rentable_id = output;
+            this.rentable = output;
+            this.$emit("selected", this.rentable);
         },
         onChange(value) {},
         onDateFilter(changeEvent) {

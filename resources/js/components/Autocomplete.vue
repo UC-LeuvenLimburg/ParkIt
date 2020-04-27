@@ -12,7 +12,7 @@
         ></div>
         <button
             class="autocomplete-close"
-            @click="selectedItem = null"
+            @click="selectionCanceled"
             v-if="selectedItem"
         >
             x
@@ -130,6 +130,10 @@ export default {
         },
         emitQuery() {
             this.$emit("change", this.query);
+        },
+        selectionCanceled() {
+            selectedItem = null;
+            this.$emit("selected", null);
         }
     },
     computed: {

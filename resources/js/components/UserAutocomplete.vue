@@ -25,7 +25,7 @@ export default {
     data() {
         return {
             users: [],
-            user_id: 0
+            user_id: null
         };
     },
     mounted() {
