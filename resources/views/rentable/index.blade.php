@@ -5,7 +5,9 @@
 
     <h1>Places</h1>
 
+    @if(Request::path() === "rent")
     @include('include.map')
+    @endif
 
     @if (count($rentables) > 0)
     <table class="table table-dark table-hover mt-4">
