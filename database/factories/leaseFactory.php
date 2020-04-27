@@ -13,6 +13,6 @@ $factory->define(Lease::class, function (Faker $faker) {
         'start_time' => $faker->time,
         'end_time' => $faker->time,
         'phone_nr' => $faker->phoneNumber,
-        'license_plate' => Str::random(7),
+        'license_plate' => Str::random(9),
     ];
 });

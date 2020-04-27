@@ -27,6 +27,8 @@ class UpdateLeaseRequest extends FormRequest
             'rentable_id' => 'required|integer|min:1|exists:App\Models\Rentable,id',
             'start_time' => 'required',
             'end_time' => 'required',
+            'phone_nr' => 'required|string|min:8|max:12',
+            'license_plate' => 'required|string|min:1|max:9'
         ];
     }
 
