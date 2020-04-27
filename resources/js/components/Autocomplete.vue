@@ -132,7 +132,7 @@ export default {
             this.$emit("change", this.query);
         },
         selectionCanceled() {
-            selectedItem = null;
+            this.selectedItem = null;
             this.$emit("selected", null);
         }
     },

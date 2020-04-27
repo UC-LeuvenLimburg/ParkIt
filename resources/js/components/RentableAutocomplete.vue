@@ -4,8 +4,7 @@
             type="number"
             id="rentable_id"
             name="rentable_id"
-            v-if="rentable"
-            :value="rentable.id"
+            :value="rentableId"
             hidden
             required
         />
@@ -50,14 +49,10 @@
 import Autocomplete from "./Autocomplete";
 import Datepicker from "vuejs-datepicker";
 export default {
-    props: {
-        rentable: {
-            default: {}
-        }
-    },
     data() {
         return {
             rentables: [],
+            rentable: {},
             date_of_hire_filter: null,
             postal_code_filter: ""
         };
@@ -111,6 +106,11 @@ export default {
                 .then(response => {
                     this.rentables = response.data;
                 });
+        }
+    },
+    computed: {
+        rentableId() {
+            return this.rentable != null ? this.rentable.id : null;
         }
     },
     components: {
