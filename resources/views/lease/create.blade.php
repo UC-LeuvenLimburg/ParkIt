@@ -23,7 +23,7 @@
             </div>
             <div class="form-group">
                 {{Form::label('rentable_id', 'Place')}}
-                <rentable-autocomplete />
+                <rentable-form />
             </div>
             @else
             {{Form::hidden('user_id', $user_id, ['hidden', 'required'])}}
