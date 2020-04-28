@@ -49,7 +49,7 @@ class LeaseRepository implements ILeaseRepository
      */
     public function getUserLeases(int $user_id, $query)
     {
-        return lease::where('user_id', $user_id)->paginate(15);
+        return lease::filter($query)->where('user_id', $user_id)->paginate(15);
     }
 
     /**

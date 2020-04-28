@@ -116,7 +116,7 @@ class LeaseController extends Controller
     public function myleases(ModelFilters $query)
     {
         $this->authorize('viewAny', Lease::class);
-        $leases = $this->leaseRepo->getUserLeases(Auth::id());
+        $leases = $this->leaseRepo->getUserLeases(Auth::id(), $query);
         return view('lease.index', compact('leases'));
     }
 

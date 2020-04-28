@@ -32,9 +32,10 @@ interface ILeaseRepository
      * Get's all leases by someones ID
      *
      * @param int $user_id
+     * @param \eloquentFilter\QueryFilter\ModelFilters\ModelFilters $query
      * @return Illuminate\Pagination\LengthAwarePaginator
      */
-    public function getUserLeases(int $user_id);
+    public function getUserLeases(int $user_id, $query);
 
     /**
      * Add a lease
