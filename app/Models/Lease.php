@@ -26,7 +26,7 @@ class Lease extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id', 'rentable_id', 'start_time', 'end_time', 'phone_nr', 'license_plate'
+        'user_id', 'rentable_id', 'start_time', 'end_time', 'phone_nr', 'license_plate', 'payed_at'
     ];
 
     /**

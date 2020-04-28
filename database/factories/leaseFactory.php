@@ -14,5 +14,6 @@ $factory->define(Lease::class, function (Faker $faker) {
         'end_time' => $faker->time,
         'phone_nr' => $faker->phoneNumber,
         'license_plate' => Str::random(9),
+        'payed_at' => now(),
     ];
 });

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PaymentRequest;
 use App\Http\Requests\StoreLeaseRequest;
 use App\Http\Requests\UpdateLeaseRequest;
 use App\Models\Lease;
@@ -142,11 +143,23 @@ class LeaseController extends Controller
      */
     public function pay(int $id)
     {
+        $totalTax = 0.15;
         $lease = $this->leaseRepo->getLease($id);
         $this->authorize('update', $lease);
         $totalTimeInHours = $lease->rentTimeInMinutes() / 60;
-        $totalPrice = $totalTimeInHours * $lease->rentable->price;
-
+        $totalPrice = ($totalTimeInHours * $lease->rentable->price) + $totalTax;
         return view('payment.form')->with(compact('lease', 'totalPrice'));
+    }
+
+    /**
+     * process the payment.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function processpayment(PaymentRequest $request)
+    {
+        $id = $request->validated()['lease_id'];
+        $this->leaseRepo->updateLease($id, ['payed_at' => now()]);
+        return redirect('/myleases');
     }
 }
