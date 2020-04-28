@@ -11,9 +11,6 @@ class Lease extends Model
 {
     use SoftDeletes, Filterable, LeaseFilter;
 
-    // Disable timestamps
-    public $timestamps = false;
-
     /**
      * The attributes that can be filterd
      *
@@ -29,7 +26,7 @@ class Lease extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id', 'rentable_id', 'start_time', 'end_time', 'phone_nr', 'license_plate'
+        'user_id', 'rentable_id', 'start_time', 'end_time', 'phone_nr', 'license_plate', 'payed_at'
     ];
 
     /**
@@ -46,5 +43,19 @@ class Lease extends Model
     public function rentable()
     {
         return $this->belongsTo('App\Models\Rentable', 'rentable_id');
+    }
+
+    /**
+     * Calculate the total rent time in minutes
+     */
+    public function rentTimeInMinutes()
+    {
+        //change the format to timestamps
+        $start_time = strtotime($this->start_time);
+        $end_time = strtotime($this->end_time);
+        // perform subtraction to get the difference (in seconds) between times
+        $rentTime = ($end_time - $start_time) / 60;
+        // return the difference
+        return $rentTime;
     }
 }

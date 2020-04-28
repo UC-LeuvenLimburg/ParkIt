@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PaymentRequest;
 use App\Http\Requests\StoreLeaseRequest;
 use App\Http\Requests\UpdateLeaseRequest;
 use App\Models\Lease;
@@ -47,7 +48,6 @@ class LeaseController extends Controller
         return view('lease.create')->with(compact('user_id', 'rentable'));
     }
 
-
     /**
      * Store a newly created resource in storage.
      *
@@ -57,7 +57,11 @@ class LeaseController extends Controller
     public function store(StoreLeaseRequest $request)
     {
         $newLease = $this->leaseRepo->addLease($request->validated());
-        return redirect('/leases/' . $newLease->id);
+        if (Auth::user()->role === "admin") {
+            return redirect('/leases/' . $newLease->id);
+        } else {
+            return redirect('/pay/' . $newLease->id);
+        }
     }
 
     /**
@@ -125,12 +129,38 @@ class LeaseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
     public function createlease(int $id)
     {
         $this->authorize('create', Lease::class);
         $user_id = Auth::id();
         $rentable = $this->rentableRepo->getRentable($id);
         return view('lease.create')->with(compact('user_id', 'rentable'));
+    }
+
+    /**
+     * Show the payform.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function pay(int $id)
+    {
+        $totalTax = 0.15;
+        $lease = $this->leaseRepo->getLease($id);
+        $this->authorize('update', $lease);
+        $totalTimeInHours = $lease->rentTimeInMinutes() / 60;
+        $totalPrice = ($totalTimeInHours * $lease->rentable->price) + $totalTax;
+        return view('payment.form')->with(compact('lease', 'totalPrice'));
+    }
+
+    /**
+     * process the payment.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function processpayment(PaymentRequest $request)
+    {
+        $id = $request->validated()['lease_id'];
+        $this->leaseRepo->updateLease($id, ['payed_at' => now()]);
+        return redirect('/myleases');
     }
 }
