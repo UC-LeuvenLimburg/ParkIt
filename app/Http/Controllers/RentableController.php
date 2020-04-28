@@ -111,12 +111,13 @@ class RentableController extends Controller
     /**
      * Display my places
      *
+     * @param \eloquentFilter\QueryFilter\ModelFilters\ModelFilters $query
      * @return \Illuminate\Http\Response
      */
-    public function myplaces()
+    public function myplaces(ModelFilters $query)
     {
         $this->authorize('viewAny', Rentable::class);
-        $rentables = $this->rentableRepo->getUserRentables(Auth::id());
+        $rentables = $this->rentableRepo->getUserRentables(Auth::id(), $query);
         return view('rentable.index', compact('rentables'));
     }
 }
