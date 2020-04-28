@@ -63,6 +63,15 @@
             @endif
             <a href="javascript:history.back()" class="btn btn-primary">Back</a>
             {!! Form::close() !!}
+            @if ($rentable !== null)
+            @php($leases = $rentable->leases)
+            @if (count($leases) > 0)
+            <div class="col-xl mt-4">
+                <h3>Current Leases</h3>
+                @include('lease.table', $leases)
+            </div>
+            @endif
+            @endif
         </div>
     </div>
 </div>

@@ -68,36 +68,11 @@
         </div>
         @endif
     </div>
-    @if (count($rentable->leases) > 0)
+    @php($leases = $rentable->leases)
+    @if (count($leases) > 0)
     <div class="col-xl mt-4">
         <h3>Current Leases</h3>
-        <table class="table table-dark table-hover">
-            <thead class="table-primary">
-                <tr>
-                    <th scope="col">Lease</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Start time</th>
-                    <th scope="col">End time</th>
-                    <th scope="col">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($rentable->leases as $lease)
-                <tr>
-                    <td>{{$lease->rentable->adress}}</td>
-                    <td>{{$lease->rentable->date_of_hire}}</td>
-                    <td>{{$lease->start_time}}</td>
-                    <td>{{$lease->end_time}}</td>
-                    <td>
-                        <a class="btn btn-info btn-sm" href='/leases/{{ $lease->id }}'>Show</a>
-                        @if (Auth::user()->role==="admin")
-                        <a class="btn btn-info btn-sm btn-warning" href='/leases/{{ $lease->id }}/edit'>Edit</a>
-                        @endif
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+        @include('lease.table', $leases)
     </div>
     @endif
 </div>
