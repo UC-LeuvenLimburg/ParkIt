@@ -12,7 +12,7 @@
         ></div>
         <button
             class="autocomplete-close"
-            @click="selectedItem = null"
+            @click="selectionCanceled"
             v-if="selectedItem"
         >
             x
@@ -24,8 +24,9 @@
                 v-model="query"
                 @keydown.up="up"
                 @keydown.down="down"
-                @keydown.enter="selectItem"
+                @keydown.enter.prevent="selectItem"
                 @input="emitQuery"
+                @blur="toggleVisible"
                 placeholder="Start Typing..."
             />
             <div class="autocomplete-options" ref="optionsList">
@@ -130,6 +131,10 @@ export default {
         },
         emitQuery() {
             this.$emit("change", this.query);
+        },
+        selectionCanceled() {
+            this.selectedItem = null;
+            this.$emit("selected", null);
         }
     },
     computed: {
