@@ -32,9 +32,10 @@ interface IRentableRepository
      * Get's all rentables by someones ID
      *
      * @param int $user_id
+     * @param \eloquentFilter\QueryFilter\ModelFilters\ModelFilters $query
      * @return rentables
      */
-    public function getUserRentables(int $user_id);
+    public function getUserRentables(int $user_id, $query);
 
     /**
      * Add a rentable

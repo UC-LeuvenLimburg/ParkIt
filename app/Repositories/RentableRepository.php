@@ -44,11 +44,12 @@ class RentableRepository implements IRentableRepository
      * Get's all rentables by someones ID
      *
      * @param int $user_id
+     * @param \eloquentFilter\QueryFilter\ModelFilters\ModelFilters $query
      * @return rentables
      */
-    public function getUserRentables(int $user_id)
+    public function getUserRentables(int $user_id, $query)
     {
-        return Rentable::where('user_id', $user_id)->paginate(15);
+        return Rentable::filter($query)->where('user_id', $user_id)->paginate(15);
     }
 
     /**
