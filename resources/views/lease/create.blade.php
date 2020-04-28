@@ -22,12 +22,12 @@
             @if ($rentable !== null)
             <div class="form-group">
                 {{Form::label('adress', 'Adress')}}
-                {{Form::text('adress', $rentable->adress, ['class' => 'form-control', 'placeholer' => 'Adress', 'disabled']) }}
+                {{Form::text('adress', $rentable->adress, ['class' => 'form-control', 'placeholer' => 'Adress', 'readonly']) }}
             </div>
             <div class="form-row">
                 <div class="form-group col-md-4">
                     {{Form::label('date', 'Date')}}
-                    {{Form::date('date', $rentable->date_of_hire, ['class' => 'form-control', 'placeholer' => 'Date', 'disabled']) }}
+                    {{Form::date('date', $rentable->date_of_hire, ['class' => 'form-control', 'placeholer' => 'Date', 'readonly']) }}
                 </div>
                 @else
                 <div class="form-row">
@@ -49,7 +49,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">&euro;</span>
                             </div>
-                            {{Form::text('price', $rentable->price, ['class' => 'form-control', 'placeholer' => 'Date', 'disabled']) }}
+                            {{Form::text('price', $rentable->price, ['class' => 'form-control', 'placeholer' => 'Date', 'readonly']) }}
                         </div>
                     </div>
 
