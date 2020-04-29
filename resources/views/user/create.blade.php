@@ -14,17 +14,19 @@
                 {{Form::label('email', 'Email')}}
                 {{Form::email('email', '', ['class' => 'form-control', 'placeholer' => 'email@example.com', 'required']) }}
             </div>
-            <div class="form-group">
-                {{Form::label('role', 'Role')}}
-                {{Form::text('role', '', ['class' => 'form-control', 'placeholer' => 'Role', 'required']) }}
-            </div>
-            <div class="form-group">
-                {{Form::label('password', 'Password')}}
-                {{Form::password('password', ['class' => 'form-control', 'placeholer' => 'Password', 'required']) }}
-            </div>
-            <div class="form-group">
-                {{Form::label('confirm_password', 'Confirm Password')}}
-                {{Form::password('confirm_password', ['class' => 'form-control', 'placeholer' => 'Password', 'required']) }}
+            <div class="form-row ">
+                <div class="form-group col-md-4">
+                    {{Form::label('role', 'Role')}}
+                    {{Form::text('role', '', ['class' => 'form-control', 'placeholer' => 'Role', 'required']) }}
+                </div>
+                <div class="form-group col-md-4">
+                    {{Form::label('password', 'Password')}}
+                    {{Form::password('password', ['class' => 'form-control', 'placeholer' => 'Password', 'required']) }}
+                </div>
+                <div class="form-group col-md-4">
+                    {{Form::label('confirm_password', 'Confirm Password')}}
+                    {{Form::password('confirm_password', ['class' => 'form-control', 'placeholer' => 'Password', 'required']) }}
+                </div>
             </div>
             {{Form::submit('Save', [ 'class' => 'btn btn-primary'])}}
             {!! Form::close() !!}
