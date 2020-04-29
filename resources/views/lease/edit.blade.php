@@ -10,20 +10,22 @@
                 {{Form::label('adress', 'Adress')}}
                 {{Form::text('adress', $lease->rentable->adress, ['class' => 'form-control', 'placeholer' => 'Adress', 'readonly']) }}
             </div>
-            <div class="form-group">
-                {{Form::label('date', 'Date')}}
-                {{Form::date('date', $lease->rentable->date_of_hire, ['class' => 'form-control', 'placeholer' => 'Date', 'readonly']) }}
-            </div>
-            {{Form::hidden('lease_id', $lease->id, ['hidden', 'required'])}}
-            {{Form::hidden('user_id', $lease->user_id, ['hidden', 'required'])}}
-            {{Form::hidden('rentable_id', $lease->rentable->id, ['hidden', 'required'])}}
-            <div class="form-group">
-                {{Form::label('start_time', 'Start Time')}}
-                {{Form::time('start_time', $lease->start_time, ['class' => 'form-control', 'placeholer' => 'Start Time', 'required']) }}
-            </div>
-            <div class="form-group">
-                {{Form::label('end_time', 'End Time')}}
-                {{Form::time('end_time', $lease->end_time, ['class' => 'form-control', 'placeholer' => 'End Time', 'required']) }}
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    {{Form::label('date', 'Date')}}
+                    {{Form::date('date', $lease->rentable->date_of_hire, ['class' => 'form-control', 'placeholer' => 'Date', 'readonly']) }}
+                </div>
+                {{Form::hidden('lease_id', $lease->id, ['hidden', 'required'])}}
+                {{Form::hidden('user_id', $lease->user_id, ['hidden', 'required'])}}
+                {{Form::hidden('rentable_id', $lease->rentable->id, ['hidden', 'required'])}}
+                <div class="form-group col-md-4">
+                    {{Form::label('start_time', 'Start Time')}}
+                    {{Form::time('start_time', $lease->start_time, ['class' => 'form-control', 'placeholer' => 'Start Time', 'required']) }}
+                </div>
+                <div class="form-group col-md-4">
+                    {{Form::label('end_time', 'End Time')}}
+                    {{Form::time('end_time', $lease->end_time, ['class' => 'form-control', 'placeholer' => 'End Time', 'required']) }}
+                </div>
             </div>
             <div class="form-group">
                 {{Form::label('price', 'Price/h')}}
