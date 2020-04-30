@@ -42,8 +42,8 @@
                     {{Form::label('license_plate', 'License plate')}}
                     {{Form::text('license_plate', $lease->license_plate, ['class' => 'form-control', 'placeholer' => 'license_plate', 'readonly']) }}
                 </div>
-                {!! Form::close() !!}
             </div>
+            {!! Form::close() !!}
         </div>
     </div>
 </div>
