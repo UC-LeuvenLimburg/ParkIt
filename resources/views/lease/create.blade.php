@@ -6,36 +6,42 @@
         <div class="col-xl">
             <h1>Create Lease</h1>
             {!! Form::open(['route' => 'leases.store']) !!}
-            @if ($rentable !== null)
-            <div class="form-group">
-                {{Form::label('adress', 'Adress')}}
-                {{Form::text('adress', $rentable->adress, ['class' => 'form-control', 'placeholer' => 'Adress', 'disabled']) }}
-            </div>
-            <div class="form-group">
-                {{Form::label('date', 'Date')}}
-                {{Form::date('date', $rentable->date_of_hire, ['class' => 'form-control', 'placeholer' => 'Date', 'disabled']) }}
-            </div>
-            @endif
             @if (Auth::user()->role==="admin" && $rentable === null)
-            <div class="form-group">
-                {{Form::label('user_id', 'User Email')}}
-                <user-autocomplete />
-            </div>
-            <div class="form-group">
-                {{Form::label('rentable_id', 'Place')}}
-                <rentable-form />
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    {{Form::label('user_id', 'User Email')}}
+                    <user-autocomplete />
+                </div>
+                <div class="form-group col-md-6">
+                    {{Form::label('rentable_id', 'Place')}}
+                    <rentable-form />
+                </div>
             </div>
             @else
             {{Form::hidden('user_id', $user_id, ['hidden', 'required'])}}
             {{Form::hidden('rentable_id', $rentable->id, ['hidden', 'required'])}}
             @endif
+            @if ($rentable !== null)
             <div class="form-group">
-                {{Form::label('start_time', 'Start Time')}}
-                {{Form::time('start_time', '', ['class' => 'form-control', 'placeholer' => 'Start Time', 'required']) }}
+                {{Form::label('adress', 'Adress')}}
+                {{Form::text('adress', $rentable->adress, ['class' => 'form-control', 'placeholer' => 'Adress', 'readonly']) }}
             </div>
-            <div class="form-group">
-                {{Form::label('end_time', 'End Time')}}
-                {{Form::time('end_time', '', ['class' => 'form-control', 'placeholer' => 'End Time', 'required']) }}
+            @endif
+            <div class="form-row">
+                @if ($rentable !== null)
+                <div class="form-group col-md-4">
+                    {{Form::label('date', 'Date')}}
+                    {{Form::date('date', $rentable->date_of_hire, ['class' => 'form-control', 'placeholer' => 'Date', 'readonly']) }}
+                </div>
+                @endif
+                <div class="form-group col-md-6">
+                    {{Form::label('start_time', 'Start Time')}}
+                    {{Form::time('start_time', '', ['class' => 'form-control', 'placeholer' => 'Start Time', 'required']) }}
+                </div>
+                <div class="form-group col-md-6">
+                    {{Form::label('end_time', 'End Time')}}
+                    {{Form::time('end_time', '', ['class' => 'form-control', 'placeholer' => 'End Time', 'required']) }}
+                </div>
             </div>
             @if ($rentable !== null)
             <div class="form-group">
@@ -44,17 +50,19 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text">&euro;</span>
                     </div>
-                    {{Form::text('price', $rentable->price, ['class' => 'form-control', 'placeholer' => 'Date', 'disabled']) }}
+                    {{Form::text('price', $rentable->price, ['class' => 'form-control', 'placeholer' => 'Date', 'readonly']) }}
                 </div>
             </div>
             @endif
-            <div class="form-group">
-                {{Form::label('phone_nr', 'Phone number')}}
-                {{Form::text('phone_nr', '', ['class' => 'form-control', 'placeholer' => 'phone_nr', 'required']) }}
-            </div>
-            <div class="form-group">
-                {{Form::label('license_plate', 'License plate')}}
-                {{Form::text('license_plate', '', ['class' => 'form-control', 'placeholer' => 'license_plate', 'required']) }}
+            <div class="form-row ">
+                <div class="form-group col-md-6">
+                    {{Form::label('phone_nr', 'Phone number')}}
+                    {{Form::text('phone_nr', '', ['class' => 'form-control', 'placeholer' => 'phone_nr', 'required']) }}
+                </div>
+                <div class="form-group col-md-6">
+                    {{Form::label('license_plate', 'License plate')}}
+                    {{Form::text('license_plate', '', ['class' => 'form-control', 'placeholer' => 'license_plate', 'required']) }}
+                </div>
             </div>
             @if (Auth::user()->role==="admin")
             {{Form::submit('Save', [ 'class' => 'btn btn-primary'])}}
