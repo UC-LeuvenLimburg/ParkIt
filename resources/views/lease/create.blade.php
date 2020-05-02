@@ -32,11 +32,11 @@
                     {{Form::date('date', $rentable->date_of_hire, ['class' => 'form-control', 'placeholer' => 'Date', 'readonly']) }}
                 </div>
                 @endif
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-4">
                     {{Form::label('start_time', 'Start Time')}}
                     {{Form::time('start_time', '', ['class' => 'form-control', 'placeholer' => 'Start Time', 'required']) }}
                 </div>
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-4">
                     {{Form::label('end_time', 'End Time')}}
                     {{Form::time('end_time', '', ['class' => 'form-control', 'placeholer' => 'End Time', 'required']) }}
                 </div>
