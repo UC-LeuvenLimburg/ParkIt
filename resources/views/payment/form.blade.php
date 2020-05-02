@@ -56,7 +56,7 @@
                     <input type="checkbox" class="custom-control-input" name="user_agreement" id="user_agreement"
                         required>
                     <label class="custom-control-label" for="user_agreement">
-                        Do you agree with our terms of service agreement?
+                        Do you agree with our terms of service?
                     </label>
                 </div>
             </div>
