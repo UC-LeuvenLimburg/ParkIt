@@ -7,15 +7,13 @@
             <h1>Create Lease</h1>
             {!! Form::open(['route' => 'leases.store']) !!}
             @if (Auth::user()->role==="admin" && $rentable === null)
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    {{Form::label('user_id', 'User Email')}}
-                    <user-autocomplete />
-                </div>
-                <div class="form-group col-md-6">
-                    {{Form::label('rentable_id', 'Place')}}
-                    <rentable-form />
-                </div>
+            <div class="form-group">
+                {{Form::label('user_id', 'User Email')}}
+                <user-autocomplete />
+            </div>
+            <div class="form-group">
+                {{Form::label('rentable_id', 'Place')}}
+                <rentable-form />
             </div>
             @else
             {{Form::hidden('user_id', $user_id, ['hidden', 'required'])}}
