@@ -25,7 +25,6 @@ class UpdateRentableRequest extends FormRequest
 
         return [
             'rentable_id' => 'required|integer|min:1|exists:App\Models\Rentable,id',
-            'user_id' => 'required|integer|min:1|exists:App\Models\User,id',
             'adress' => 'required|string|min:3|max:150',
             'postal_code' => 'required|numeric|digits:4|min:1|max:9999',
             'date_of_hire' => 'required|date_format:Y-m-d|after_or_equal:' . $todayDate,
