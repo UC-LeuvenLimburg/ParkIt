@@ -7,6 +7,7 @@
             <h1>Edit Place</h1>
             {!! Form::model($rentable, ['route' => ['rentables.update', $rentable], 'method' => 'PUT']) !!}
             {{Form::hidden('rentable_id', $rentable->id, ['hidden', 'required'])}}
+            {{Form::hidden('user_id',$rentable->user->id, ['hidden', 'required'])}}
             <div class="form-group">
                 {{Form::label('owner', 'Owner')}}
                 {{Form::email('owner', $rentable->user->email, ['class' => 'form-control', 'placeholer' => 'User', 'readonly']) }}
