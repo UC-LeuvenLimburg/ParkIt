@@ -43,7 +43,7 @@
                 @endif
                 <td>
                     <a class="btn btn-info btn-sm" href='/rentables/{{ $rentable->id }}'>Show</a>
-                    @if (Auth::user()->role==="admin")
+                    @if (Auth::user()->role==="admin" || $rentable->user_id === Auth::id())
                     <a class="btn btn-info btn-sm btn-warning" href='/rentables/{{ $rentable->id }}/edit'>Edit</a>
                     @endif
                 </td>
