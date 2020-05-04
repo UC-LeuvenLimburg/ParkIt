@@ -54,6 +54,12 @@ function initialState() {
 }
 
 export default {
+    mounted() {
+        let urlParams = new URLSearchParams(window.location.search);
+        this.$data.name_like = urlParams.get("name_like");
+        this.$data.email_like = urlParams.get("email_like");
+        this.$data.role_like = urlParams.get("role_like");
+    },
     data() {
         return initialState();
     },
