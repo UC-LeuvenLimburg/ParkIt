@@ -34,11 +34,13 @@
                     placeholer="Role"
                 />
             </div>
-            <div @click="search" class="search-btn ml-1 btn btn-primary">
-                Search
-            </div>
-            <div @click="clear" class="search-btn ml-2 btn btn-warning">
-                Clear
+            <div>
+                <div @click="search" class="search-btn ml-1 btn btn-primary">
+                    Search
+                </div>
+                <div @click="clear" class="search-btn ml-2 btn btn-warning">
+                    Clear
+                </div>
             </div>
         </div>
     </div>
