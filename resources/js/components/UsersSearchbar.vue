@@ -7,6 +7,7 @@
                     type="text"
                     name="name_filter"
                     id="name_filter"
+                    v-model="name_filter"
                     class="form-control"
                     placeholer="Name"
                 />
@@ -17,6 +18,7 @@
                     type="email"
                     name="email_filter"
                     id="email_filter"
+                    v-model="email_filter"
                     class="form-control"
                     placeholer="Email"
                 />
@@ -27,18 +29,41 @@
                     type="text"
                     name="role_filter"
                     id="role_filter"
+                    v-model="role_filter"
                     class="form-control"
                     placeholer="Role"
                 />
             </div>
-            <div class="search-btn ml-1 btn btn-primary">Search</div>
-            <div class="search-btn ml-2 btn btn-warning">Clear</div>
+            <div @click="search" class="search-btn ml-1 btn btn-primary">
+                Search
+            </div>
+            <div @click="clear" class="search-btn ml-2 btn btn-warning">
+                Clear
+            </div>
         </div>
     </div>
 </template>
 
 <script>
-export default {};
+function initialState() {
+    return {
+        name_filter: "",
+        email_filter: "",
+        role_filter: ""
+    };
+}
+
+export default {
+    data() {
+        return initialState();
+    },
+    methods: {
+        search() {},
+        clear() {
+            Object.assign(this.$data, initialState());
+        }
+    }
+};
 </script>
 
 <style scoped>
