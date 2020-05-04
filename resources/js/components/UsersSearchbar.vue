@@ -84,6 +84,7 @@ export default {
         },
         clear() {
             Object.assign(this.$data, initialState());
+            this.search();
         }
     }
 };
