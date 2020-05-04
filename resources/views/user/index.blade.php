@@ -5,7 +5,7 @@
 
     <h1>Users</h1>
 
-    <a href="{{ route('users.create') }}" class="btn btn-sm btn-info">Add New</a>
+    <a href="{{ route('users.create') }}" class="btn btn-sm btn-primary">Add New</a>
 
     <users-searchbar class="mt-4 mb-4"></users-searchbar>
 
