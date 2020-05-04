@@ -14,9 +14,9 @@
         @foreach ($leases as $lease)
         <tr>
             <td>{{$lease->rentable->adress}}</td>
-            <td>{{$lease->rentable->date_of_hire}}</td>
-            <td>{{$lease->start_time}}</td>
-            <td>{{$lease->end_time}}</td>
+            <td>{{date("d-m-Y", strtotime($lease->rentable->date_of_hire))}}</td>
+            <td>{{date("H:i", strtotime($lease->start_time))}}</td>
+            <td>{{date("H:i", strtotime($lease->end_time))}}</td>
             <td>{{$lease->phone_nr}}</td>
             <td>{{$lease->license_plate}}</td>
             <td>

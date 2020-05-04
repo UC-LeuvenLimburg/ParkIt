@@ -35,11 +35,11 @@
                 @if (Auth::user()->role==="admin")
                 <td>{{ $rentable->user->email}}</td>
                 @endif
-                <td>{{ $rentable->adress}}</td>
-                <td>{{ $rentable->postal_code}}</td>
-                <td>{{ $rentable->date_of_hire}}</td>
-                <td>{{ $rentable->start_time}}</td>
-                <td>{{ $rentable->end_time}}</td>
+                <td>{{$rentable->adress}}</td>
+                <td>{{$rentable->postal_code}}</td>
+                <td>{{date("d-m-Y", strtotime($rentable->date_of_hire))}}</td>
+                <td>{{date("H:i", strtotime($rentable->start_time))}}</td>
+                <td>{{date("H:i", strtotime($rentable->end_time))}}</td>
                 @if (Auth::user()->role==="user")
                 <td>{{ $rentable->price}}</td>
                 @endif
