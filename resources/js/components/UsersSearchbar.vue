@@ -7,7 +7,7 @@
                     type="text"
                     name="name_filter"
                     id="name_filter"
-                    v-model="name_filter"
+                    v-model="name_like"
                     class="form-control"
                     placeholer="Name"
                 />
@@ -15,10 +15,10 @@
             <div class="form-group col-md-4">
                 <label for="email_filter">Email Filter</label>
                 <input
-                    type="email"
+                    type="text"
                     name="email_filter"
                     id="email_filter"
-                    v-model="email_filter"
+                    v-model="email_like"
                     class="form-control"
                     placeholer="Email"
                 />
@@ -29,7 +29,7 @@
                     type="text"
                     name="role_filter"
                     id="role_filter"
-                    v-model="role_filter"
+                    v-model="role_like"
                     class="form-control"
                     placeholer="Role"
                 />
@@ -47,9 +47,9 @@
 <script>
 function initialState() {
     return {
-        name_filter: "",
-        email_filter: "",
-        role_filter: ""
+        name_like: "",
+        email_like: "",
+        role_like: ""
     };
 }
 
@@ -58,7 +58,22 @@ export default {
         return initialState();
     },
     methods: {
-        search() {},
+        search() {
+            let newUrl = window.location.origin + window.location.pathname;
+            let queryString = "";
+            for (let key in this.$data) {
+                if (this.$data[key] == "") continue;
+                if (queryString != "") {
+                    queryString += "&";
+                }
+                queryString += key + "=" + encodeURIComponent(this.$data[key]);
+            }
+            if (queryString != "") {
+                queryString = "?" + queryString;
+            }
+
+            window.location.href = newUrl + queryString;
+        },
         clear() {
             Object.assign(this.$data, initialState());
         }
