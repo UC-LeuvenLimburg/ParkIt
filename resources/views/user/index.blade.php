@@ -5,6 +5,8 @@
 
     <h1>Users</h1>
 
+    <users-searchbar class="mt-4 mb-4"></users-searchbar>
+
     @if (count($users) > 0)
     <table class="table table-dark table-hover">
         <thead class="table-primary">
