@@ -21,7 +21,7 @@
             <td>{{$lease->license_plate}}</td>
             <td>
                 <a class="btn btn-info btn-sm" href='/leases/{{ $lease->id }}'>Show</a>
-                @if (Auth::user()->role==="admin")
+                @if (Auth::user()->role==="admin" || $lease->user_id == Auth::id())
                 <a class="btn btn-info btn-sm btn-warning" href='/leases/{{ $lease->id }}/edit'>Edit</a>
                 @endif
             </td>
