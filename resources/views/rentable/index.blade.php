@@ -9,6 +9,7 @@
     @include('include.map')
     @endif
 
+    <a href="{{ route('rentables.create') }}" class="btn btn-sm btn-info">Add New</a>
     @if (count($rentables) > 0)
     <table class="table table-dark table-hover mt-4">
         <thead class="table-primary">
@@ -43,7 +44,7 @@
                 @endif
                 <td>
                     <a class="btn btn-info btn-sm" href='/rentables/{{ $rentable->id }}'>Show</a>
-                    @if (Auth::user()->role==="admin")
+                    @if (Auth::user()->role==="admin" || $rentable->user_id === Auth::id())
                     <a class="btn btn-info btn-sm btn-warning" href='/rentables/{{ $rentable->id }}/edit'>Edit</a>
                     @endif
                 </td>
@@ -54,11 +55,9 @@
     <div class="parkit-paginator">
         {{ $rentables->links() }}
         <div class="filler"></div>
-        <a href="{{ route('rentables.create') }}" class="btn btn-sm btn-primary">Add New</a>
     </div>
     @else
     <p>No places found.</p>
-    <a href="{{ route('rentables.create') }}" class="btn btn-sm btn-primary">Add New</a>
     @endif
 </div>
 @endsection
