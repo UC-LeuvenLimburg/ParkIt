@@ -14,25 +14,45 @@
             <div class="form-row">
                 <div class="form-group col-md-8">
                     {{Form::label('adress', 'Adress')}}
+                    @if (Auth::user()->role==="admin")
                     {{Form::text('adress', $rentable->adress, ['class' => 'form-control', 'placeholer' => 'Adress', 'required']) }}
+                    @else
+                    {{Form::text('adress', $rentable->adress, ['class' => 'form-control', 'placeholer' => 'Adress', 'required','readonly']) }}
+                    @endif
                 </div>
                 <div class="form-group col-md-4">
                     {{Form::label('postal_code', 'Postal code')}}
+                    @if (Auth::user()->role==="admin")
                     {{Form::text('postal_code', $rentable->postal_code, ['class' => 'form-control', 'placeholer' => 'PostalCode', 'required']) }}
+                    @else
+                    {{Form::text('postal_code', $rentable->postal_code, ['class' => 'form-control', 'placeholer' => 'PostalCode', 'required','readonly']) }}
+                    @endif
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-4">
                     {{Form::label('date_of_hire', 'Date')}}
+                    @if (Auth::user()->role==="admin")
                     {{Form::date('date_of_hire', $rentable->date_of_hire, ['class' => 'form-control', 'placeholer' => 'Date', 'required']) }}
+                    @else
+                    {{Form::date('date_of_hire', $rentable->date_of_hire, ['class' => 'form-control', 'placeholer' => 'Date', 'required','readonly']) }}
+                    @endif
                 </div>
                 <div class="form-group col-md-4">
                     {{Form::label('start_time', 'Start Time')}}
+                    @if (Auth::user()->role==="admin")
                     {{Form::time('start_time', $rentable->start_time, ['class' => 'form-control', 'placeholer' => 'Start Time', 'required']) }}
+                    @else
+                    {{Form::time('start_time', $rentable->start_time, ['class' => 'form-control', 'placeholer' => 'Start Time', 'required','readonly']) }}
+                    @endif
                 </div>
                 <div class="form-group col-md-4">
                     {{Form::label('end_time', 'End Time')}}
+                    @if (Auth::user()->role==="admin")
                     {{Form::time('end_time', $rentable->end_time, ['class' => 'form-control', 'placeholer' => 'End Time', 'required']) }}
+                    @else
+                    {{Form::time('end_time', $rentable->end_time, ['class' => 'form-control', 'placeholer' => 'End Time', 'required','readonly']) }}
+                    @endif
                 </div>
             </div>
             <div class="form-group">
@@ -41,9 +61,14 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text">&euro;</span>
                     </div>
+                    @if (Auth::user()->role==="admin")
                     {{Form::number('price', $rentable->price, ['class' => 'form-control', 'placeholer' => 'Price', 'step' => '.01', 'required']) }}
+                    @else
+                    {{Form::number('price', $rentable->price, ['class' => 'form-control', 'placeholer' => 'Price', 'step' => '.01', 'required','readonly']) }}
+                    @endif
                 </div>
             </div>
+
             <div class="form-group">
                 {{Form::label('bankaccount_nr', 'Bankaccount Number')}}
                 {{Form::text('bankaccount_nr', $rentable->bankaccount_nr, ['class' => 'form-control', 'placeholer' => 'Bankaccount number', 'required']) }}

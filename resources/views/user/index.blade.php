@@ -5,6 +5,8 @@
 
     <h1>Users</h1>
 
+    <a href="{{ route('users.create') }}" class="btn btn-sm btn-info">Add New</a>
+
     <users-searchbar class="mt-4 mb-4"></users-searchbar>
 
     @if (count($users) > 0)
@@ -34,11 +36,9 @@
     <div class="parkit-paginator">
         {{ $users->links() }}
         <div class="filler"></div>
-        <a href="{{ route('users.create') }}" class="btn btn-sm btn-primary">Add New</a>
     </div>
     @else
     <p>No users found.</p>
-    <a href="{{ route('users.create') }}" class="btn btn-sm btn-primary">Add New</a>
     @endif
 </div>
 @endsection
