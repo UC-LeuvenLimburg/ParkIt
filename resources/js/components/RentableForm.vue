@@ -7,7 +7,7 @@
             <div class="form-group col-md-4">
                 <label for="date">Available Date</label>
                 <input
-                    type="date"
+                    type="text"
                     :value="rentable.date_of_hire | formatDate"
                     class="form-control"
                     placeholder="Date"
@@ -19,7 +19,7 @@
                 <input
                     type="time"
                     id="start_time"
-                    :value="rentable.start_time"
+                    :value="rentable.start_time | formatTime"
                     class="form-control"
                     placeholder="Start Time"
                     readonly
@@ -30,7 +30,7 @@
                 <input
                     type="time"
                     id="end_time"
-                    :value="rentable.end_time"
+                    :value="rentable.end_time | formatTime"
                     class="form-control"
                     placeholder="Start Time"
                     readonly
@@ -46,14 +46,14 @@ import moment from "moment";
 
 Vue.filter("formatDate", function(value) {
     if (value) {
-        console.log(value);
-        return moment(String(value)).format("DD/MM/YYYY");
+        return moment(String(value)).format("DD-MM-YYYY");
     }
 });
 
 Vue.filter("formatTime", function(value) {
     if (value) {
-        return moment(String(value)).format("HH:mm");
+        value = new Date("01/01/1970 " + value);
+        return moment(value).format("HH:mm");
     }
 });
 
