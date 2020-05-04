@@ -67,7 +67,7 @@ export default {
     },
     methods: {
         search() {
-            let newUrl = window.location.origin + window.location.pathname;
+            let currentUrl = window.location.origin + window.location.pathname;
             let queryString = "";
             for (let key in this.$data) {
                 if (this.$data[key] == "") continue;
@@ -80,7 +80,7 @@ export default {
                 queryString = "?" + queryString;
             }
 
-            window.location.href = newUrl + queryString;
+            window.location.href = currentUrl + queryString;
         },
         clear() {
             Object.assign(this.$data, initialState());
