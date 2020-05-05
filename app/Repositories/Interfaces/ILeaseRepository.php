@@ -60,4 +60,9 @@ interface ILeaseRepository
      * @param int $lease_id
      */
     public function deleteLease(int $lease_id);
+
+    /**
+     * Remove a lease if it is unpayed for longer than 15 min
+     */
+    public function deleteUnpayedLease();
 }

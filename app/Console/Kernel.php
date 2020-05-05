@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Console\Commands\DeleteUnpayedLeases;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -24,7 +25,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('unpayedLeases:delete')->everyMinute()->thenPing("https://cronhub.io/ping/cfaebfb0-8e61-11ea-b978-3bfb1d9cdf52");
+        $schedule->call(new DeleteUnpayedLeases())->everyMinute()->thenPing("https://cronhub.io/ping/cfaebfb0-8e61-11ea-b978-3bfb1d9cdf52");
     }
 
     /**
