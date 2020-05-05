@@ -5,8 +5,14 @@
     <div class="row justify-content-center">
         <div class="col-xl">
             <h1>Create Lease</h1>
+
+            @if (Auth::user()->role === "admin" && $rentable === null)
             {!! Form::open(['route' => 'leases.store']) !!}
-            @if (Auth::user()->role==="admin" && $rentable === null)
+            @else
+            {!! Form::open(['url' => '/createlease', 'method' => 'POST'])!!}
+            @endif
+
+            @if (Auth::user()->role === "admin" && $rentable === null)
             <div class="form-group">
                 {{Form::label('user_id', 'User Email')}}
                 <user-autocomplete />
@@ -19,6 +25,7 @@
             {{Form::hidden('user_id', $user_id, ['hidden', 'required'])}}
             {{Form::hidden('rentable_id', $rentable->id, ['hidden', 'required'])}}
             @endif
+
             @if ($rentable !== null)
             <div class="form-group">
                 {{Form::label('adress', 'Adress')}}
@@ -62,7 +69,7 @@
                     {{Form::text('license_plate', '', ['class' => 'form-control', 'placeholer' => 'license_plate', 'required']) }}
                 </div>
             </div>
-            @if (Auth::user()->role==="admin")
+            @if (Auth::user()->role === "admin" && $rentable === null)
             {{Form::submit('Save', [ 'class' => 'btn btn-primary'])}}
             @else
             {{Form::submit('Pay', [ 'class' => 'btn btn-primary'])}}
