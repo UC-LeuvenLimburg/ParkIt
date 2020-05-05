@@ -17,6 +17,18 @@
         />
         <div class="filters">
             <div class="filter-pair">
+                <label for="postal_code_filter">Postal Code Filter:</label>
+                <input
+                    type="text"
+                    id="postal_code_filter"
+                    name="postal_code_filter"
+                    v-model="postal_code_filter"
+                    class="form-control"
+                    placeholder="Postal Code"
+                    @input="onPostalCodeFilter"
+                />
+            </div>
+            <div class="filter-pair no-margin-right">
                 <label for="date_of_hire_filter">Date Filter:</label>
                 <datepicker
                     id="date_of_hire_filter"
@@ -28,18 +40,6 @@
                     format="yyyy-MM-dd"
                     placeholder="Date"
                 ></datepicker>
-            </div>
-            <div class="filter-pair no-margin-right">
-                <label for="postal_code_filter">Postal Code Filter:</label>
-                <input
-                    type="text"
-                    id="postal_code_filter"
-                    name="postal_code_filter"
-                    v-model="postal_code_filter"
-                    class="form-control"
-                    placeholder="Postal Code"
-                    @input="onPostalCodeFilter"
-                />
             </div>
         </div>
     </div>

@@ -27,6 +27,7 @@
     },
     "dependencies": {
         "bootswatch": "^4.4.1",
+        "moment": "^2.25.3",
         "vuejs-datepicker": "^1.6.2"
     }
 }
