@@ -57,9 +57,7 @@ class LeaseController extends Controller
     public function store(StoreLeaseRequest $request)
     {
         $newLease = $this->leaseRepo->addLease($request->validated());
-        if (Auth::user()->role === "admin") {
-            return redirect('/leases/' . $newLease->id);
-        }
+        return redirect('/leases/' . $newLease->id);
     }
 
     /**
