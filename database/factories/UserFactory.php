@@ -18,6 +18,7 @@ use Illuminate\Support\Str;
 */
 
 $factory->define(User::class, function (Faker $faker) {
+    $faker = \Faker\Factory::create('nl_BE');
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,

@@ -6,6 +6,7 @@ use App\Models\Rentable;
 use Faker\Generator as Faker;
 
 $factory->define(Rentable::class, function (Faker $faker) {
+    $faker = \Faker\Factory::create('nl_BE');
     return [
         'user_id' => $faker->numberBetween(1, 50),
         'adress' => $faker->streetAddress(),
