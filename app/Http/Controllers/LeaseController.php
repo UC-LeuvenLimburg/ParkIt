@@ -57,11 +57,7 @@ class LeaseController extends Controller
     public function store(StoreLeaseRequest $request)
     {
         $newLease = $this->leaseRepo->addLease($request->validated());
-        if (Auth::user()->role === "admin") {
-            return redirect('/leases/' . $newLease->id);
-        } else {
-            return redirect('/pay/' . $newLease->id);
-        }
+        return redirect('/leases/' . $newLease->id);
     }
 
     /**
@@ -131,10 +127,21 @@ class LeaseController extends Controller
      */
     public function createlease(int $id)
     {
-        $this->authorize('create', Lease::class);
         $user_id = Auth::id();
         $rentable = $this->rentableRepo->getRentable($id);
         return view('lease.create')->with(compact('user_id', 'rentable'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  App\Http\Requests\StoreLeaseRequest $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storelease(StoreLeaseRequest $request)
+    {
+        $newLease = $this->leaseRepo->addLease($request->validated());
+        return redirect('/pay/' . $newLease->id);
     }
 
     /**
@@ -161,6 +168,6 @@ class LeaseController extends Controller
     {
         $id = $request->validated()['lease_id'];
         $this->leaseRepo->updateLease($id, ['payed_at' => now()]);
-        return redirect('/myleases');
+        return view('payment.redirect');
     }
 }

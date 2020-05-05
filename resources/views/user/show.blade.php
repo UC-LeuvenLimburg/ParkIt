@@ -21,7 +21,12 @@
                 </div>
                 <div class="form-group col-md-4">
                     {{Form::label('email_verified_at', 'Email verified at')}}
+                    @if ($user->email_verified_at == null)
+                    {{Form::text('email_verified_at', 'Email has not been verified', ['class' => 'form-control', 'placeholer' => 'Email verified at', 'disabled']) }}
+                    @else
                     {{Form::date('email_verified_at', $user->email_verified_at, ['class' => 'form-control', 'placeholer' => 'Email verified at', 'disabled']) }}
+                    @endif
+
                 </div>
                 <div class="form-group col-md-4">
                     {{Form::label('created_at', 'Created at')}}

@@ -27,8 +27,8 @@ class UpdateLeaseRequest extends FormRequest
             'rentable_id' => 'required|integer|min:1|exists:App\Models\Rentable,id',
             'start_time' => 'required',
             'end_time' => 'required',
-            'phone_nr' => 'required|string|min:8|max:12',
-            'license_plate' => 'required|string|min:1|max:9'
+            'phone_nr' => 'required|string|min:8|max:12|regex:/^(\+\d{1,2}\s?)?1?\-?\.?\s?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/',
+            'license_plate' => 'required|string|min:1|max:9|regex:/^[a-zA-Z0-9_.-]*$/'
         ];
     }
 

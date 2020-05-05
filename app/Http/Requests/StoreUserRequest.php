@@ -7,6 +7,16 @@ use Illuminate\Foundation\Http\FormRequest;
 class StoreUserRequest extends FormRequest
 {
     /**
+     * Sanitize before rules()
+     */
+    protected function sanitizeInput()
+    {
+        $input = $this->all();
+        $input['name'] = preg_replace("~[\p{M}]~uis", "", $this->input('name'));
+        $this->replace($input);
+    }
+
+    /**
      * Get the validation rules that apply to the request.
      *
      * @return array
@@ -17,7 +27,7 @@ class StoreUserRequest extends FormRequest
             'name' => 'required|string|min:1|max:150',
             'email' => 'required|email:rfc,dns',
             'password' => 'required|string|min:8|max:128',
-            'role' => 'required|string|min:1|max:150',
+            'role' => 'required|string|min:1|max:150|regex:/^[a-zA-Z]+$/', // Regex for ASCII letters
         ];
     }
 
@@ -28,6 +38,8 @@ class StoreUserRequest extends FormRequest
      */
     protected function getValidatorInstance()
     {
+        $this->sanitizeInput();
+
         return parent::getValidatorInstance()->after(function () {
             // Check if password and confirm password match
             if ($this->input('password') != $this->input('confirm_password')) {

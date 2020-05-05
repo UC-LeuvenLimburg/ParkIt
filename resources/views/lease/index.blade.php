@@ -6,8 +6,8 @@
     <h1>Leases</h1>
 
     @if (Auth::user()->role==="admin")
-    <a href="{{ route('leases.create') }}" class="btn btn-sm btn-info">Add New</a>
-    <div class="filler"><br></div>
+    <a href="{{ route('leases.create') }}" class="btn btn-sm btn-primary">Add New</a>
+    <div><br></div>
     @endif
 
     @if (count($leases) > 0)
