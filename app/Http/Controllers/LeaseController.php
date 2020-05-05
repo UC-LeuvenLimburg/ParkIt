@@ -161,6 +161,6 @@ class LeaseController extends Controller
     {
         $id = $request->validated()['lease_id'];
         $this->leaseRepo->updateLease($id, ['payed_at' => now()]);
-        return redirect('/myleases');
+        return view('payment.redirect');
     }
 }
