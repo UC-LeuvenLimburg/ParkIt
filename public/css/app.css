@@ -11110,6 +11110,10 @@ a.text-dark:focus {
     Styling for shared parkit elements
 */
 
+.parkit-logo {
+  pointer-events: none;
+}
+
 .parkit-paginator {
   display: flex;
   flex-direction: row;
@@ -11130,6 +11134,17 @@ a.text-dark:focus {
   flex-direction: row;
   justify-content: flex-end;
   margin-top: -37px;
+}
+
+/*
+    Styling for the map
+*/
+
+#mapContainer {
+  width: 1200px;
+  height: 500px;
+  position: relative;
+  margin: 0 10px;
 }
 
 .home-background-gray {

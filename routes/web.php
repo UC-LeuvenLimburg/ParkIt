@@ -16,8 +16,24 @@ use Illuminate\Support\Facades\Auth;
 
 Auth::routes();
 
-Route::get('/', 'HomeController@index')->name('home');
+// API Routes using the web auth middelware
+Route::middleware('auth')->resource('web/api/users', 'API\APIUserController');
+Route::middleware('auth')->get('web/api/all/users', 'API\APIUserController@indexall');
+Route::middleware('auth')->resource('web/api/rentables', 'API\APIRentableController');
+Route::middleware('auth')->get('web/api/all/rentables', 'API\APIRentableController@indexall');
+Route::middleware('auth')->resource('web/api/leases', 'API\APILeaseController');
+Route::middleware('auth')->get('web/api/all/leases', 'API\APILeaseController@indexall');
 
+// Web Routes
+Route::get('/', 'HomeController@index')->name('home');
+Route::middleware('auth')->get('/profile', 'UserController@profile');
+Route::middleware('auth')->get('/createlease/{id}', 'LeaseController@createlease');
+Route::middleware('auth')->get('/pay/{id}', 'LeaseController@pay');
+Route::middleware('auth')->post('/pay', 'LeaseController@processpayment');
+Route::middleware('auth')->get('/myleases', 'LeaseController@myleases');
+Route::middleware('auth')->get('/myplaces', 'RentableController@myplaces');
 Route::middleware('auth')->resource('users', 'UserController');
 Route::middleware('auth')->resource('leases', 'LeaseController');
 Route::middleware('auth')->resource('rentables', 'RentableController');
+Route::middleware('auth')->get('/lease', 'RentableController@create');
+Route::middleware('auth')->get('/rent', 'RentableController@index');

@@ -43,7 +43,7 @@ class RentablePolicy
      */
     public function view(User $user, Rentable $rentable)
     {
-        return $user->id === $rentable->user_id;
+        return true;
     }
 
     /**

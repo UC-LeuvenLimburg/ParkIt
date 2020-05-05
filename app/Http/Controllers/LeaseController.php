@@ -2,30 +2,37 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PaymentRequest;
+use App\Http\Requests\StoreLeaseRequest;
+use App\Http\Requests\UpdateLeaseRequest;
 use App\Models\Lease;
 use App\Models\Rentable;
 use App\Repositories\Interfaces\ILeaseRepository;
-use Illuminate\Http\Request;
+use eloquentFilter\QueryFilter\ModelFilters\ModelFilters;
+use App\Repositories\Interfaces\IRentableRepository;
 use Illuminate\Support\Facades\Auth;
 
 class LeaseController extends Controller
 {
     private $leaseRepo;
+    private $rentableRepo;
 
-    public function __construct(ILeaseRepository $leaseRepo)
+    public function __construct(ILeaseRepository $leaseRepo, IRentableRepository $rentableRepo)
     {
         $this->authorizeResource(Lease::class, 'lease');
         $this->leaseRepo = $leaseRepo;
+        $this->rentableRepo = $rentableRepo;
     }
 
     /**
      * Display a listing of the resource.
      *
+     * @param \eloquentFilter\QueryFilter\ModelFilters\ModelFilters $query
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(ModelFilters $query)
     {
-        $leases =  $this->leaseRepo->getLeases();
+        $leases =  $this->leaseRepo->getLeases($query);
         return view('lease.index', compact('leases'));
     }
 
@@ -36,21 +43,25 @@ class LeaseController extends Controller
      */
     public function create()
     {
-        $user = Auth::user();
-        $rentable = Rentable::find(1);
-        return view('lease.create')->with(compact('user', 'rentable'));
+        $user_id = Auth::id();
+        $rentable = null;
+        return view('lease.create')->with(compact('user_id', 'rentable'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param  App\Http\Requests\StoreLeaseRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreLeaseRequest $request)
     {
-        $newLease = $this->leaseRepo->addLease($request->all());
-        return redirect('/leases/' . $newLease->id);
+        $newLease = $this->leaseRepo->addLease($request->validated());
+        if (Auth::user()->role === "admin") {
+            return redirect('/leases/' . $newLease->id);
+        } else {
+            return redirect('/pay/' . $newLease->id);
+        }
     }
 
     /**
@@ -78,13 +89,13 @@ class LeaseController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param  App\Http\Requests\UpdateLeaseRequest $request
      * @param  \App\Models\Lease $lease
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Lease $lease)
+    public function update(UpdateLeaseRequest $request, Lease $lease)
     {
-        $this->leaseRepo->updateLease($lease->id, $request->all());
+        $this->leaseRepo->updateLease($lease->id, $request->validated());
         return redirect('/leases/' . $lease->id);
     }
 
@@ -98,5 +109,58 @@ class LeaseController extends Controller
     {
         $this->leaseRepo->deleteLease($lease->id);
         return redirect('/leases')->with('success', 'Lease Removed');
+    }
+
+    /**
+     * Display my leases
+     *
+     * @param \eloquentFilter\QueryFilter\ModelFilters\ModelFilters $query
+     * @return \Illuminate\Http\Response
+     */
+    public function myleases(ModelFilters $query)
+    {
+        $this->authorize('viewAny', Lease::class);
+        $leases = $this->leaseRepo->getUserLeases(Auth::id(), $query);
+        return view('lease.index', compact('leases'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function createlease(int $id)
+    {
+        $this->authorize('create', Lease::class);
+        $user_id = Auth::id();
+        $rentable = $this->rentableRepo->getRentable($id);
+        return view('lease.create')->with(compact('user_id', 'rentable'));
+    }
+
+    /**
+     * Show the payform.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function pay(int $id)
+    {
+        $totalTax = 0.15;
+        $lease = $this->leaseRepo->getLease($id);
+        $this->authorize('update', $lease);
+        $totalTimeInHours = $lease->rentTimeInMinutes() / 60;
+        $totalPrice = ($totalTimeInHours * $lease->rentable->price) + $totalTax;
+        return view('payment.form')->with(compact('lease', 'totalPrice'));
+    }
+
+    /**
+     * process the payment.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function processpayment(PaymentRequest $request)
+    {
+        $id = $request->validated()['lease_id'];
+        $this->leaseRepo->updateLease($id, ['payed_at' => now()]);
+        return redirect('/myleases');
     }
 }

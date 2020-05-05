@@ -10,11 +10,23 @@ class LeaseRepository implements ILeaseRepository
     /**
      * Get's all leases
      *
+     * @param \eloquentFilter\QueryFilter\ModelFilters\ModelFilters $query
+     * @return leases
+     */
+    public function getAllLeases($query)
+    {
+        return Lease::filter($query)->with('rentable')->orderBy('id', 'asc')->get();
+    }
+
+    /**
+     * Get's all leases
+     *
+     * @param \eloquentFilter\QueryFilter\ModelFilters\ModelFilters $query
      * @return Illuminate\Pagination\LengthAwarePaginator
      */
-    public function getLeases()
+    public function getLeases($query)
     {
-        return Lease::with('rentable')->orderBy('id', 'asc')->paginate(15);
+        return Lease::filter($query)->with('rentable')->orderBy('id', 'asc')->paginate(15);
     }
 
     /**
@@ -26,6 +38,18 @@ class LeaseRepository implements ILeaseRepository
     public function getLease(int $lease_id)
     {
         return Lease::find($lease_id);
+    }
+
+    /**
+     * Get's all leases by someones ID
+     *
+     * @param int $user_id
+     * @param \eloquentFilter\QueryFilter\ModelFilters\ModelFilters $query
+     * @return Illuminate\Pagination\LengthAwarePaginator
+     */
+    public function getUserLeases(int $user_id, $query)
+    {
+        return lease::filter($query)->where('user_id', $user_id)->paginate(15);
     }
 
     /**
