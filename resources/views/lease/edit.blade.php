@@ -25,7 +25,7 @@
                 </div>
                 <div class="form-group col-md-4">
                     {{Form::label('end_time', 'End Time')}}
-                    {{Form::time('end_time', $lease->end_time, ['class' => 'form-control', 'placeholer' => 'End Time', 'required']) }}
+                    {{Form::time('end_time', date("H:i", strtotime($lease->end_time)), ['class' => 'form-control', 'placeholer' => 'End Time', 'required']) }}
                 </div>
                 @else
                 <div class="form-group col-md-4">
