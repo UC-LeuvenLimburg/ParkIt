@@ -17,12 +17,6 @@ export default {
             mapEvents: {},
             behaviour: {},
             icon: {},
-            markerPositions: [
-                {
-                    title: "UCLL Diepenbeek 390 free spaces",
-                    position: { lat: 50.92906, lng: 5.39559 }
-                }
-            ],
             group: {},
             ui: {},
             marker: {},
@@ -35,7 +29,7 @@ export default {
     created() {
         axios.get("/web/api/all/rentables").then(response => {
             this.rentables = response.data;
-            console.log(this.rentables);
+            this.addRentablesToMap();
         });
         // Initialize the platform object:
         this.platform = new H.service.Platform({
@@ -49,7 +43,7 @@ export default {
             this.$refs.map,
             this.defaultLayers.vector.normal.map,
             {
-                zoom: 10,
+                zoom: 13,
                 center: { lng: this.lng, lat: this.lat }
             }
         );
@@ -68,44 +62,43 @@ export default {
         // Create group and add markers
         this.group = new H.map.Group();
         this.map.addObject(this.group);
-
-
-
-
-        for (let i = 0; i < this.markerPositions.length; i++) {
-            // Create a marker using the previously instantiated icon:
-            this.marker = new H.map.Marker(this.markerPositions[i].position, {
-                icon: this.icon,
-                data: this.markerPositions[i].title
-            });
-
-            // Add event listener:
-            this.marker.addEventListener("tap", function(event) {
-                this.position = event.target.getGeometry(); //marker zelf op deze plaats
-
-                this.mapdata = event.target.getData();
-                // Create an info bubble object at a specific geographic location:
-                //var bubble = new H.ui.InfoBubble(markerPosities[i].position, { content: markerPosities[i].title });
-                this.bubble = new H.ui.InfoBubble(position, {
-                    content: this.mapdata
-                });
-
-                // Add info bubble to the UI:
-                this.ui.addBubble(this.bubble);
-
-                this.map.setCenter(event.target.getPosition());
-            });
-
-            this.group.addObject(this.marker);
-        }
-
-        //   get geo bounding box for the group and set it to the map
-        this.map.getViewModel().setLookAtData({
-            bounds: this.group.getBoundingBox()
-        });
     },
     methods: {
+        addRentablesToMap() {
+            for (let i = 0; i < this.rentables.length; i++) {
+                // Create a marker using the previously instantiated icon:
+                this.marker = new H.map.Marker(
+                    { lat: this.rentables[i].lat, lng: this.rentables[i].long },
+                    {
+                        icon: this.icon,
+                        data: this.rentables[i].adress
+                    }
+                );
 
+                // Add event listener:
+                this.marker.addEventListener("tap", event => {
+                    let position = event.target.getGeometry(); //marker zelf op deze plaats
+
+                    let mapdata = event.target.getData();
+                    // Create an info bubble object at a specific geographic location:
+                    //var bubble = new H.ui.InfoBubble(markerPosities[i].position, { content: markerPosities[i].title });
+                    let bubble = new H.ui.InfoBubble(position, {
+                        content: mapdata
+                    });
+
+                    // Add info bubble to the UI:
+                    this.ui.addBubble(bubble);
+                });
+
+                this.group.addObject(this.marker);
+
+                //   get geo bounding box for the group and set it to the map
+                this.map.getViewModel().setLookAtData({
+                    bounds: this.group.getBoundingBox()
+                });
+            }
+        },
+        handleMarkerTapEvent() {}
     }
 };
 </script>
