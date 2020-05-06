@@ -1,3 +1,4 @@
+<h3>Current Leases</h3>
 <table class="table table-dark table-hover">
     <thead class="table-primary">
         <tr>

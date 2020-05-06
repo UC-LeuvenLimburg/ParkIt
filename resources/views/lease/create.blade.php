@@ -80,8 +80,7 @@
             @php($leases = $rentable->leases)
             @if (count($leases) > 0)
             <div class="col-xl mt-4">
-                <h3>Current Leases</h3>
-                @include('lease.table', $leases)
+                @include('lease.currentleases', $leases)
             </div>
             @endif
             @endif
