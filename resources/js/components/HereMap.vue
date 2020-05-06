@@ -71,7 +71,11 @@ export default {
                     { lat: this.rentables[i].lat, lng: this.rentables[i].long },
                     {
                         icon: this.icon,
-                        data: this.rentables[i].adress
+                        data:
+                            this.rentables[i].adress +
+                            "<br>" +
+                            "price:" +
+                            this.rentables[i].price
                     }
                 );
 
