@@ -12,8 +12,6 @@ export default {
             map: {},
             platform: {},
             defaultLayers: {},
-            lat: 50.92906,
-            lng: 5.39559,
             mapEvents: {},
             behaviour: {},
             icon: {},
@@ -43,8 +41,7 @@ export default {
             this.$refs.map,
             this.defaultLayers.vector.normal.map,
             {
-                zoom: 13,
-                center: { lng: this.lng, lat: this.lat }
+                zoom: 13
             }
         );
         // Add traffic
