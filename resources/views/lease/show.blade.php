@@ -2,8 +2,8 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-xl">
+    <div class="row">
+        <div class="col-lg-6">
             <h1>Lease details</h1>
             {!! Form::model($lease) !!}
             <div class="form-group">
