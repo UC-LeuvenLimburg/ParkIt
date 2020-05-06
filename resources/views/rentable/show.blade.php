@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-lg-8">
+        <div class="col-lg-6">
             <h1>Place details</h1>
             {!! Form::model($rentable) !!}
             @if (Auth::user()->role==="admin")
@@ -68,14 +68,14 @@
                 {!! Form::close() !!}
             </div>
             @endif
+            <br>
+        </div>
+        <div class="col-sm-2">
         </div>
         <div class="col-sm-4">
-            @php($leases = $rentable->leases)
-            @if (count($leases) > 0)
             <div class="col-xl mt-4">
-                @include('lease.currentleases', $leases)
+                @include('lease.currentleases',$rentable)
             </div>
-            @endif
         </div>
     </div>
 </div>
