@@ -14,7 +14,7 @@ class rentableSeeder extends Seeder
     public function run()
     {
         DB::table('rentables')->insert([
-            'user_id' => 0,
+            'user_id' => 2,
             'adress' => 'Koning Boudewijnlaan 2',
             'postal_code' => '3500',
             'date_of_hire' => date("Y-m-d", strtotime("2020-06-28")),
@@ -25,7 +25,7 @@ class rentableSeeder extends Seeder
             'description' => 'parking achter het hek',
         ]);
         DB::table('rentables')->insert([
-            'user_id' => 1,
+            'user_id' => 3,
             'adress' => 'Kolonel Dusartplein 4569',
             'postal_code' => '3500',
             'date_of_hire' => date("Y-m-d", strtotime("2020-06-28")),
@@ -36,7 +36,7 @@ class rentableSeeder extends Seeder
             'description' => 'parking achter de frituur',
         ]);
         DB::table('rentables')->insert([
-            'user_id' => 1,
+            'user_id' => 4,
             'adress' => 'Kolonel Dusartplein 42',
             'postal_code' => '3500',
             'date_of_hire' => date("Y-m-d", strtotime("2020-06-28")),
@@ -47,7 +47,7 @@ class rentableSeeder extends Seeder
             'description' => 'je moet naar de ondergrondse parking gaan',
         ]);
         DB::table('rentables')->insert([
-            'user_id' => 3,
+            'user_id' => 5,
             'adress' => 'Martelarenlaan 17',
             'postal_code' => '3500',
             'date_of_hire' => date("Y-m-d", strtotime("2020-06-28")),
