@@ -4,7 +4,7 @@
             <div class="form-group col-md-4">
                 <label for="start_time_filter">Start Time Filter</label>
                 <input
-                    type="time"
+                    type="text"
                     name="start_time_filter"
                     id="start_time_filter"
                     v-model="start_time_like"
@@ -14,7 +14,7 @@
             <div class="form-group col-md-4">
                 <label for="start_time_filter">End Time Filter</label>
                 <input
-                    type="time"
+                    type="text"
                     name="end_time_filter"
                     id="start_time_filter"
                     v-model="end_time_like"
