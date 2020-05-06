@@ -2,8 +2,8 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-xl">
+    <div class="row">
+        <div class="col-lg-6">
             <h1>Edit Place</h1>
             {!! Form::model($rentable, ['route' => ['rentables.update', $rentable], 'method' => 'PUT']) !!}
             {{Form::hidden('rentable_id', $rentable->id, ['hidden', 'required'])}}

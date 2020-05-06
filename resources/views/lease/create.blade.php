@@ -2,10 +2,9 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-xl">
+    <div class="row">
+        <div class="col-lg-6">
             <h1>Create Lease</h1>
-
             @if (Auth::user()->role === "admin" && $rentable === null)
             {!! Form::open(['route' => 'leases.store']) !!}
             @else
@@ -76,15 +75,16 @@
             @endif
             <a href="javascript:history.back()" class="btn btn-primary">Back</a>
             {!! Form::close() !!}
+        </div>
+        <div class="col-sm-2">
+        </div>
+        <div class="col-sm-4">
             @if ($rentable !== null)
-            @php($leases = $rentable->leases)
-            @if (count($leases) > 0)
             <div class="col-xl mt-4">
-                <h3>Current Leases</h3>
-                @include('lease.table', $leases)
+                @include('lease.currentleases', $rentable)
             </div>
             @endif
-            @endif
+
         </div>
     </div>
 </div>
