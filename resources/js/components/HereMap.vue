@@ -3,6 +3,7 @@
 </template>
 
 <script>
+import moment from "moment";
 export default {
     name: "heremap",
     props: {},
@@ -63,6 +64,15 @@ export default {
     methods: {
         addRentablesToMap() {
             for (let i = 0; i < this.rentables.length; i++) {
+                let startTime = new Date(
+                    "01/01/1970 " + this.rentables[i].start_time
+                );
+                let startTimeString = moment(startTime).format("HH:mm");
+
+                let endTime = new Date(
+                    "01/01/1970 " + this.rentables[i].end_time
+                );
+                let endTimeString = moment(endTime).format("HH:mm");
                 // Create a marker using the previously instantiated icon:
                 this.marker = new H.map.Marker(
                     { lat: this.rentables[i].lat, lng: this.rentables[i].long },
@@ -74,10 +84,11 @@ export default {
                             "</div>" +
                             "price: " +
                             this.rentables[i].price +
+                            " &euro;/h" +
                             "<br>" +
-                            this.rentables[i].start_time +
+                            startTimeString +
                             " until " +
-                            this.rentables[i].end_time
+                            endTimeString
                     }
                 );
 
