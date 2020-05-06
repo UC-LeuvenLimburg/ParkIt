@@ -75,7 +75,11 @@ export default {
                             this.rentables[i].adress +
                             "<br>" +
                             "price:" +
-                            this.rentables[i].price
+                            this.rentables[i].price +
+                            "<br>" +
+                            this.rentables[i].start_time +
+                            " until " +
+                            this.rentables[i].end_time
                     }
                 );
 
