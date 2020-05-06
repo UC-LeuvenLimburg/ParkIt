@@ -89,7 +89,10 @@ export default {
                             "&#x1F554; " +
                             startTimeString +
                             " until " +
-                            endTimeString
+                            endTimeString +
+                            "<a href='/rentables/" +
+                            this.rentables[i].id +
+                            "' class='btn btn-info btn-sm'>Show</a>"
                     }
                 );
 
