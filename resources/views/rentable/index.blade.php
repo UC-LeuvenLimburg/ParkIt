@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+@if(Auth::user()->role!=="admin" && Request::path() === "rentables")
+<head>
+    <meta http-equiv="refresh" content="0; URL=/rent" />
+</head>
+@endif
 <div class="container">
 
     <h1>Places</h1>
