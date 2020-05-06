@@ -1,3 +1,5 @@
+<div><br></div>
+<div><br></div>
 <div class="list-group">
     <li class="list-group-item list-group-item-action active">Current Leases</li>
     @foreach ($leases as $lease)
