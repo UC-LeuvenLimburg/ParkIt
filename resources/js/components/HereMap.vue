@@ -3,6 +3,7 @@
 </template>
 
 <script>
+import moment from "moment";
 export default {
     name: "heremap",
     props: {},
@@ -12,8 +13,6 @@ export default {
             map: {},
             platform: {},
             defaultLayers: {},
-            lat: 50.92906,
-            lng: 5.39559,
             mapEvents: {},
             behaviour: {},
             icon: {},
@@ -43,8 +42,7 @@ export default {
             this.$refs.map,
             this.defaultLayers.vector.normal.map,
             {
-                zoom: 13,
-                center: { lng: this.lng, lat: this.lat }
+                zoom: 13
             }
         );
         // Add traffic
@@ -66,12 +64,35 @@ export default {
     methods: {
         addRentablesToMap() {
             for (let i = 0; i < this.rentables.length; i++) {
+                let startTime = new Date(
+                    "01/01/1970 " + this.rentables[i].start_time
+                );
+                let startTimeString = moment(startTime).format("HH:mm");
+
+                let endTime = new Date(
+                    "01/01/1970 " + this.rentables[i].end_time
+                );
+                let endTimeString = moment(endTime).format("HH:mm");
                 // Create a marker using the previously instantiated icon:
                 this.marker = new H.map.Marker(
                     { lat: this.rentables[i].lat, lng: this.rentables[i].long },
                     {
                         icon: this.icon,
-                        data: this.rentables[i].adress
+                        data:
+                            "<div style='width: 170px; font-size: 1.3em; font-weight: 600'>" +
+                            this.rentables[i].adress +
+                            "</div>" +
+                            "Price: " +
+                            this.rentables[i].price +
+                            " &euro;/h" +
+                            "<br>" +
+                            "&#x1F554; " +
+                            startTimeString +
+                            " until " +
+                            endTimeString +
+                            "<a href='/rentables/" +
+                            this.rentables[i].id +
+                            "' class='btn btn-info btn-sm'>Show</a>"
                     }
                 );
 
