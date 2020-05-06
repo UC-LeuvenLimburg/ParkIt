@@ -82,10 +82,11 @@ export default {
                             "<div style='width: 170px; font-size: 1.3em; font-weight: 600'>" +
                             this.rentables[i].adress +
                             "</div>" +
-                            "price: " +
+                            "Price: " +
                             this.rentables[i].price +
                             " &euro;/h" +
                             "<br>" +
+                            "&#x1F554; " +
                             startTimeString +
                             " until " +
                             endTimeString
