@@ -28,7 +28,7 @@
 <body>
     <div id="app">
         @include('include.nav')
-        <main class="py-4">
+        <main>
             @include('include.messages')
             @yield('content')
         </main>

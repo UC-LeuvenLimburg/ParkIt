@@ -1,4 +1,4 @@
-<div class="list-group col-md-3">
+<div class="list-group">
     <li class="list-group-item list-group-item-action active">Current Leases</li>
     @foreach ($leases as $lease)
     <li class="list-group-item d-flex justify-content-between align-items-center">
