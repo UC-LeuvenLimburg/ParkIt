@@ -43,7 +43,7 @@
                     @if (Auth::user()->role==="admin")
                     {{Form::time('start_time', date("H:i", strtotime($rentable->start_time)), ['class' => 'form-control', 'placeholer' => 'Start Time', 'required']) }}
                     @else
-                    {{Form::time('start_time', $rentable->start_time, ['class' => 'form-control', 'placeholer' => 'Start Time', 'required','readonly']) }}
+                    {{Form::time('start_time', date("H:i", strtotime($rentable->end_time)), ['class' => 'form-control', 'placeholer' => 'Start Time', 'required','readonly']) }}
                     @endif
                 </div>
                 <div class="form-group col-md-4">
