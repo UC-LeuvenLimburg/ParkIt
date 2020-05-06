@@ -10,7 +10,9 @@
     @endif
 
     <div><br></div>
+    @if(Request::path() === "rentables")
     <a href="{{ route('rentables.create') }}" class="btn btn-sm btn-primary">Add New</a>
+    @endif
     @if (count($rentables) > 0)
     <table class="table table-dark table-hover mt-4">
         <thead class="table-primary">
