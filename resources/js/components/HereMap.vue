@@ -69,9 +69,10 @@ export default {
                     {
                         icon: this.icon,
                         data:
+                            "<div style='width: 170px; font-size: 1.3em; font-weight: 600'>" +
                             this.rentables[i].adress +
-                            "<br>" +
-                            "price:" +
+                            "</div>" +
+                            "price: " +
                             this.rentables[i].price +
                             "<br>" +
                             this.rentables[i].start_time +
