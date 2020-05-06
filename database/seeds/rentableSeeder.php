@@ -1,6 +1,5 @@
 <?php
 
-use Faker\Calculator\Iban;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
