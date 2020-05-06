@@ -21,20 +21,20 @@
                 @if (Auth::user()->role==="admin")
                 <div class="form-group col-md-4">
                     {{Form::label('start_time', 'Start Time')}}
-                    {{Form::time('start_time', $lease->start_time, ['class' => 'form-control', 'placeholer' => 'Start Time', 'required']) }}
+                    {{Form::time('start_time', date("H:i", strtotime($lease->start_time)), ['class' => 'form-control', 'placeholer' => 'Start Time', 'required']) }}
                 </div>
                 <div class="form-group col-md-4">
                     {{Form::label('end_time', 'End Time')}}
-                    {{Form::time('end_time', $lease->end_time, ['class' => 'form-control', 'placeholer' => 'End Time', 'required']) }}
+                    {{Form::time('end_time', date("H:i", strtotime($lease->end_time)), ['class' => 'form-control', 'placeholer' => 'End Time', 'required']) }}
                 </div>
                 @else
                 <div class="form-group col-md-4">
                     {{Form::label('start_time', 'Start Time')}}
-                    {{Form::time('start_time', $lease->start_time, ['class' => 'form-control', 'placeholer' => 'Start Time', 'required','readonly']) }}
+                    {{Form::time('start_time', date("H:i", strtotime($lease->start_time)), ['class' => 'form-control', 'placeholer' => 'Start Time', 'required','readonly']) }}
                 </div>
                 <div class="form-group col-md-4">
                     {{Form::label('end_time', 'End Time')}}
-                    {{Form::time('end_time', $lease->end_time, ['class' => 'form-control', 'placeholer' => 'End Time', 'required', 'readonly']) }}
+                    {{Form::time('end_time', date("H:i", strtotime($lease->end_time)), ['class' => 'form-control', 'placeholer' => 'End Time', 'required', 'readonly']) }}
                 </div>
                 @endif
             </div>

@@ -41,17 +41,17 @@
                 <div class="form-group col-md-4">
                     {{Form::label('start_time', 'Start Time')}}
                     @if (Auth::user()->role==="admin")
-                    {{Form::time('start_time', $rentable->start_time, ['class' => 'form-control', 'placeholer' => 'Start Time', 'required']) }}
+                    {{Form::time('start_time', date("H:i", strtotime($rentable->start_time)), ['class' => 'form-control', 'placeholer' => 'Start Time', 'required']) }}
                     @else
-                    {{Form::time('start_time', $rentable->start_time, ['class' => 'form-control', 'placeholer' => 'Start Time', 'required','readonly']) }}
+                    {{Form::time('start_time', date("H:i", strtotime($rentable->start_time)), ['class' => 'form-control', 'placeholer' => 'Start Time', 'required','readonly']) }}
                     @endif
                 </div>
                 <div class="form-group col-md-4">
                     {{Form::label('end_time', 'End Time')}}
                     @if (Auth::user()->role==="admin")
-                    {{Form::time('end_time', $rentable->end_time, ['class' => 'form-control', 'placeholer' => 'End Time', 'required']) }}
+                    {{Form::time('end_time', date("H:i", strtotime($rentable->end_time)), ['class' => 'form-control', 'placeholer' => 'End Time', 'required']) }}
                     @else
-                    {{Form::time('end_time', $rentable->end_time, ['class' => 'form-control', 'placeholer' => 'End Time', 'required','readonly']) }}
+                    {{Form::time('end_time', date("H:i", strtotime($rentable->end_time)), ['class' => 'form-control', 'placeholer' => 'End Time', 'required','readonly']) }}
                     @endif
                 </div>
             </div>

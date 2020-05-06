@@ -29,11 +29,11 @@
                 </div>
                 <div class="form-group col-md-4">
                     {{Form::label('start_time', 'Start Time')}}
-                    {{Form::time('start_time', $rentable->start_time, ['class' => 'form-control', 'placeholer' => 'Start Time', 'readonly']) }}
+                    {{Form::time('start_time', date("H:i", strtotime($rentable->start_time)), ['class' => 'form-control', 'placeholer' => 'Start Time', 'readonly']) }}
                 </div>
                 <div class="form-group col-md-4">
                     {{Form::label('end_time', 'End Time')}}
-                    {{Form::time('end_time', $rentable->end_time, ['class' => 'form-control', 'placeholer' => 'End Time', 'readonly']) }}
+                    {{Form::time('end_time', date("H:i", strtotime($rentable->end_time)), ['class' => 'form-control', 'placeholer' => 'End Time', 'readonly']) }}
                 </div>
             </div>
             <div class="form-group">
