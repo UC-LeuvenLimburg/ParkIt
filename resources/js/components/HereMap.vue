@@ -28,10 +28,15 @@ export default {
             marker: {},
             position: {},
             mapdata: {},
-            bubble: {}
+            bubble: {},
+            rentables: {}
         };
     },
     created() {
+        axios.get("/web/api/all/rentables").then(response => {
+            this.rentables = response.data;
+            console.log(this.rentables);
+        });
         // Initialize the platform object:
         this.platform = new H.service.Platform({
             apikey: this.apikey
@@ -55,15 +60,17 @@ export default {
         // Instantiate the default behavior, providing the mapEvents object:
         this.behavior = new H.mapevents.Behavior(this.mapEvents);
         // Create a marker icon from an image URL:
-        this.icon = new H.map.Icon("/images/logoParkSpace.png", {
+        this.icon = new H.map.Icon("/images/parkitMapIcon.png", {
             anchor: { x: 20, y: 20 }
         });
+        // Create the default UI:
+        this.ui = H.ui.UI.createDefault(this.map, this.defaultLayers);
         // Create group and add markers
         this.group = new H.map.Group();
         this.map.addObject(this.group);
 
-        // Create the default UI:
-        this.ui = H.ui.UI.createDefault(this.map, this.defaultLayers);
+
+
 
         for (let i = 0; i < this.markerPositions.length; i++) {
             // Create a marker using the previously instantiated icon:
@@ -96,6 +103,9 @@ export default {
         this.map.getViewModel().setLookAtData({
             bounds: this.group.getBoundingBox()
         });
+    },
+    methods: {
+
     }
 };
 </script>
