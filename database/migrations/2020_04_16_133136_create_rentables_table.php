@@ -18,6 +18,8 @@ class CreateRentablesTable extends Migration
             $table->integer('user_id'); //owner
             $table->string('adress');
             $table->string('postal_code');
+            $table->double('lat')->nullable();
+            $table->double('long')->nullable();
             $table->date('date_of_hire');
             $table->time('start_time');
             $table->time('end_time');
