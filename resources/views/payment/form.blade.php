@@ -43,11 +43,11 @@
             <p>Select a payment method</p>
 
             <div class="form-group cc-selector">
-                <input type="radio" id="visa" name="payment_method" value="visa" required>
-                <label class="drinkcard-cc visa" for="visa"></label>
-
                 <input type="radio" id="mastercard" name="payment_method" value="mastercard" required>
                 <label class="drinkcard-cc mastercard" for="mastercard"></label>
+
+                <input type="radio" id="visa" name="payment_method" value="visa" required>
+                <label class="drinkcard-cc visa" for="visa"></label>
 
                 <input type="radio" id="paypal" name="payment_method" value="paypal" required>
                 <label class="drinkcard-cc paypal" for="paypal"></label>
