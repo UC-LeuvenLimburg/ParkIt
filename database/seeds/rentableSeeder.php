@@ -47,7 +47,7 @@ class rentableSeeder extends Seeder
             'date_of_hire' => date("Y-m-d", strtotime("2020-06-28")),
             'start_time' => date("H:i", strtotime('6:15')),
             'end_time' => date("H:i", strtotime('17:00')),
-            'price' => 7,
+            'price' => 2.7,
             'bankaccount_nr' => 'BE75499707181587',
             'description' => 'je moet naar de ondergrondse parking gaan',
         ]);
