@@ -1,15 +1,3 @@
-.cc-selector input {
-    margin: 0;
-    padding: 0;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-}
-
-.visa {
-    background-image: url(https://image.flaticon.com/icons/svg/217/217425.svg);
-}
-
 .mastercard {
     background-image: url(https://image.flaticon.com/icons/svg/217/217423.svg);
 }
@@ -23,6 +11,18 @@
 
 .cc-selector input:active + .drinkcard-cc {
     opacity: 0.9;
+}
+
+.cc-selector input {
+    margin: 0;
+    padding: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.visa {
+    background-image: url(https://image.flaticon.com/icons/svg/217/217425.svg);
 }
 
 .cc-selector input:checked + .drinkcard-cc {
