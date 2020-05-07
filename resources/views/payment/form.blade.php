@@ -43,7 +43,7 @@
             <p>Select a payment method</p>
 
             <div class="form-group cc-selector">
-                <input type="radio" id="paypal" name="payment_method" value="paypal" required checked>
+                <input type="radio" id="paypal" name="payment_method" value="paypal" required>
                 <label class="drinkcard-cc paypal" for="paypal"></label>
 
                 <input type="radio" id="maestro" name="payment_method" value="maestro" required>
