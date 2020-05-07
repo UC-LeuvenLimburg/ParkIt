@@ -16,7 +16,7 @@ $factory->define(Rentable::class, function (Faker $faker) {
         'date_of_hire' => $faker->dateTimeBetween('+30 days', '+2 years'),
         'start_time' => date('H:i', rand(3900, 42000)),
         'end_time' => date('H:i', rand(46800, 86100)),
-        'price' => $faker->randomDigitNotNull(),
+        'price' => $faker->randomFloat($nbMaxDecimals = 2, $min = 0, $max = 0.40) * 10,
         'bankaccount_nr' => $faker->bankAccountNumber(),
         'description' => $faker->sentence(),
     ];
