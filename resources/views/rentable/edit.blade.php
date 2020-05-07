@@ -62,9 +62,9 @@
                         <span class="input-group-text">&euro;</span>
                     </div>
                     @if (Auth::user()->role==="admin")
-                    {{Form::number('price', $rentable->price, ['class' => 'form-control', 'placeholer' => 'Price', 'step' => '.01', 'required']) }}
+                    {{Form::number('price', number_format($rentable->price, 2, '.', ''), ['class' => 'form-control', 'placeholer' => 'Price', 'step' => '.01', 'required']) }}
                     @else
-                    {{Form::number('price', $rentable->price, ['class' => 'form-control', 'placeholer' => 'Price', 'step' => '.01', 'required','readonly']) }}
+                    {{Form::number('price', number_format($rentable->price, 2, '.', ''), ['class' => 'form-control', 'placeholer' => 'Price', 'step' => '.01', 'required','readonly']) }}
                     @endif
                 </div>
             </div>
