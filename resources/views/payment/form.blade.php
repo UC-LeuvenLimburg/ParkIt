@@ -40,16 +40,24 @@
                 {{Form::label('price', 'Total Price (Tax included)')}}
                 {{Form::text('price', number_format($totalPrice, 2, '.', ''), ['class' => 'form-control', 'placeholer' => 'Price', 'readonly']) }}
             </div>
-            <div class="form-group">
-                <p>Payment methods</p>
-                <div class="custom-control custom-radio">
-                    <input type="radio" id="paypal" name="payment_method" class="custom-control-input" required>
-                    <label class="custom-control-label" for="paypal">Paypal</label>
-                </div>
-                <div class="custom-control custom-radio">
-                    <input type="radio" id="bancontact" name="payment_method" class="custom-control-input" required>
-                    <label class="custom-control-label" for="bancontact">bancontact</label>
-                </div>
+            <p>Select a payment method</p>
+
+            <div class="form-group cc-selector">
+                <input type="radio" id="mastercard" name="payment_method" value="mastercard" required>
+                <label class="drinkcard-cc mastercard" for="mastercard"></label>
+
+                <input type="radio" id="visa" name="payment_method" value="visa" required>
+                <label class="drinkcard-cc visa" for="visa"></label>
+
+                <input type="radio" id="paypal" name="payment_method" value="paypal" required>
+                <label class="drinkcard-cc paypal" for="paypal"></label>
+
+                <input type="radio" id="americanexpress" name="payment_method" value="americanexpress" required>
+                <label class="drinkcard-cc americanexpress" for="americanexpress"></label>
+
+                <input type="radio" id="maestro" name="payment_method" value="maestro" required>
+                <label class="drinkcard-cc maestro" for="maestro"></label>
+
             </div>
             <div class="form-group">
                 <div class="custom-control custom-checkbox">
