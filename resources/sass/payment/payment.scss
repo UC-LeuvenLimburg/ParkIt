@@ -59,3 +59,10 @@
 #No-font-size {
     font-size: 0;
 }
+
+@media screen and (max-width: 1199px) {
+    #Change-width-991 {
+        width: 570 !important;
+        height: 606 !important;
+    }
+}

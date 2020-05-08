@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-lg-6">
+        <div class="col-xl-6" id="Change-width-991">
             <h1>Payment</h1>
             {!! Form::open(['url' => '/pay', 'method' => 'POST'])!!}
             {{Form::hidden('lease_id', $lease->id, ['hidden'])}}
