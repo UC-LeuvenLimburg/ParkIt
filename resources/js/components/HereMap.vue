@@ -1,8 +1,12 @@
 <template>
-    <div ref="map" class="map"></div>
+    <div class="map-holder">
+        <HereMapSearchbar class="searchbar"></HereMapSearchbar>
+        <div ref="map" class="map"></div>
+    </div>
 </template>
 
 <script>
+import HereMapSearchbar from "./HereMapSearchbar";
 import moment from "moment";
 export default {
     name: "heremap",
@@ -120,11 +124,17 @@ export default {
             }
         },
         handleMarkerTapEvent() {}
+    },
+    components: {
+        HereMapSearchbar
     }
 };
 </script>
 
 <style scoped>
+.map-holder {
+    position: relative;
+}
 .map {
     width: 102%;
     height: 350px;

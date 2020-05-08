@@ -12,7 +12,7 @@
                     placeholer="Adress"
                 />
             </div>
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-2">
                 <label for="postal_code_filter">Postal code Filter</label>
                 <input
                     type="text"
@@ -22,6 +22,18 @@
                     class="form-control"
                     placeholer="Postal code"
                 />
+            </div>
+            <div class="form-group col-md-2">
+                <label for="date_of_hire_filter">Date Filter:</label>
+                <datepicker
+                    id="date_of_hire_filter"
+                    name="date_of_hire_filter"
+                    :value="date_of_hire_filter"
+                    @selected="onDateFilter"
+                    :bootstrap-styling="true"
+                    :typeable="true"
+                    format="yyyy-MM-dd"
+                ></datepicker>
             </div>
             <div>
                 <div @click="search" class="search-btn ml-1 btn btn-primary">
@@ -36,7 +48,33 @@
 </template>
 
 <script>
-export default {};
+import Datepicker from "vuejs-datepicker";
+
+export default {
+    data() {
+        return {
+            adress_filter: "",
+            postal_code_filter: "",
+            date_of_hire_filter: null
+        };
+    },
+    methods: {
+        search() {},
+        clear() {},
+        onDateFilter() {}
+    },
+    components: {
+        Datepicker
+    }
+};
 </script>
 
-<style></style>
+<style scoped>
+.searchbar {
+    width: 100%;
+}
+.search-btn {
+    height: 2.3rem;
+    margin-top: 1.85rem;
+}
+</style>
