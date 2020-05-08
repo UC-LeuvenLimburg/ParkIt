@@ -38,8 +38,14 @@
             </div>
             <div class="form-group">
                 {{Form::label('price', 'Total Price (Tax included)')}}
-                {{Form::text('price', number_format($totalPrice, 2, '.', ''), ['class' => 'form-control', 'placeholer' => 'Price', 'readonly']) }}
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">&euro;</span>
+                    </div>
+                    {{Form::text('price', number_format($totalPrice, 2, '.', ''), ['class' => 'form-control', 'placeholer' => 'Price', 'readonly']) }}
+                </div>
             </div>
+
             <p>Select a payment method</p>
 
             <div class="form-group pay-selector">
