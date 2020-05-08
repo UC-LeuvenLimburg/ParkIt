@@ -32,7 +32,7 @@ class StoreRentableRequest extends FormRequest
             'date_of_hire' => 'required|date_format:Y-m-d|after_or_equal:' . $todayDate,
             'start_time' => 'required',
             'end_time' => 'required',
-            'price' => 'required|numeric|min:0.01|max:1000|regex:/^[0-9]+(\.[0-9]{1,2})?$/', //Regex for Decimal with 2 decimal places
+            'price' => 'required|numeric|min:0.01|max:10|regex:/^[0-9]+(\.[0-9]{1,2})?$/', //Regex for Decimal with 2 decimal places
             'bankaccount_nr' => 'required|string|regex:/^[A-Z]{2}(?:[ ]?[0-9]){14,20}$/', // Regex for IBAN numbers
             'description' => 'required|string|max:150',
         ];
