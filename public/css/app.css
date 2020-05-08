@@ -11165,7 +11165,84 @@ a.text-dark:focus {
     Styling for Rentable views
 */
 
+.Only-show-on-small-screen {
+  display: none !important;
+}
+
+@media screen and (max-width: 991px) {
+  .col-sm-4 {
+    display: none !important;
+  }
+
+  .col-sm-2 {
+    display: none !important;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .Only-show-on-small-screen {
+    display: contents !important;
+  }
+}
+
 /*
     Styling for User views
 */
+
+.mastercard {
+  background-image: url(https://image.flaticon.com/icons/svg/217/217423.svg);
+}
+
+.maestro {
+  background-image: url(https://image.flaticon.com/icons/svg/217/217445.svg);
+}
+
+.paypal {
+  background-image: url(https://image.flaticon.com/icons/svg/217/217422.svg);
+}
+
+.cc-selector input:active + .drinkcard-cc {
+  opacity: 0.9;
+}
+
+.cc-selector input {
+  margin: 0;
+  padding: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.visa {
+  background-image: url(https://image.flaticon.com/icons/svg/217/217425.svg);
+}
+
+.americanexpress {
+  background-image: url(https://image.flaticon.com/icons/svg/217/217424.svg);
+}
+
+.cc-selector input:checked + .drinkcard-cc {
+  -webkit-filter: none;
+  -moz-filter: none;
+  filter: none;
+}
+
+.drinkcard-cc {
+  cursor: pointer;
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: inline-block;
+  width: 100px;
+  height: 70px;
+  transition: all 100ms ease-in;
+  -webkit-filter: brightness(1.8) grayscale(1) opacity(0.7);
+  -moz-filter: brightness(1.8) grayscale(1) opacity(0.7);
+  filter: brightness(1.4) grayscale(1) opacity(0.7);
+}
+
+.drinkcard-cc:hover {
+  -webkit-filter: brightness(1.2) grayscale(0.5) opacity(0.9);
+  -moz-filter: brightness(1.2) grayscale(0.5) opacity(0.9);
+  filter: brightness(1.2) grayscale(0.5) opacity(0.9);
+}
 
