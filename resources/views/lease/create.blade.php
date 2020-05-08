@@ -5,6 +5,11 @@
     <div class="row">
         <div class="col-lg-6">
             <h1>Create Lease</h1>
+            <div class="Only-show-on-small-screen">
+                @if ($rentable !== null)
+                @include('lease.currentleases',$rentable)
+                @endif
+            </div>
             @if (Auth::user()->role === "admin" && $rentable === null)
             {!! Form::open(['route' => 'leases.store']) !!}
             @else
@@ -76,9 +81,9 @@
             <a href="javascript:history.back()" class="btn btn-primary">Back</a>
             {!! Form::close() !!}
         </div>
-        <div class="col-sm-2">
+        <div class="col-sm-2" id="Hide-width-991">
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-4" id="Hide-width-991">
             @if ($rentable !== null)
             <div class="col-xl mt-4">
                 @include('lease.currentleases', $rentable)

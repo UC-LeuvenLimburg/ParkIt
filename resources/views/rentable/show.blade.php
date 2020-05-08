@@ -73,9 +73,9 @@
             @endif
             <br>
         </div>
-        <div class="col-sm-2">
+        <div class="col-sm-2" id="Hide-width-991">
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-4" id="Hide-width-991">
             <div class="col-xl mt-4">
                 @include('lease.currentleases',$rentable)
             </div>

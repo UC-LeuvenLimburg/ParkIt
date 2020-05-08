@@ -11170,11 +11170,7 @@ a.text-dark:focus {
 }
 
 @media screen and (max-width: 991px) {
-  .col-sm-4 {
-    display: none !important;
-  }
-
-  .col-sm-2 {
+  #Hide-width-991 {
     display: none !important;
   }
 }
