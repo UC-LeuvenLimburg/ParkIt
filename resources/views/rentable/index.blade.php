@@ -2,6 +2,7 @@
 
 @section('content')
 @if(Auth::user()->role!=="admin" && Request::path() === "rentables")
+
 <head>
     <meta http-equiv="refresh" content="0; URL=/rent" />
 </head>
@@ -19,6 +20,7 @@
     <a href="{{ route('rentables.create') }}" class="btn btn-sm btn-primary">Add New</a>
     @endif
     @if (count($rentables) > 0)
+    <h3>Current Places</h3>
     <table class="table table-dark table-hover mt-4">
         <thead class="table-primary">
             <tr>
