@@ -42,21 +42,21 @@
             </div>
             <p>Select a payment method</p>
 
-            <div class="form-group cc-selector">
+            <div class="form-group pay-selector">
                 <input type="radio" id="mastercard" name="payment_method" value="mastercard" required>
-                <label class="drinkcard-cc mastercard" for="mastercard"></label>
+                <label class="pay-orb pay-mastercard" for="mastercard"></label>
 
                 <input type="radio" id="visa" name="payment_method" value="visa" required>
-                <label class="drinkcard-cc visa" for="visa"></label>
+                <label class="pay-orb pay-visa" for="visa"></label>
 
                 <input type="radio" id="paypal" name="payment_method" value="paypal" required>
-                <label class="drinkcard-cc paypal" for="paypal"></label>
+                <label class="pay-orb pay-paypal" for="paypal"></label>
 
                 <input type="radio" id="americanexpress" name="payment_method" value="americanexpress" required>
-                <label class="drinkcard-cc americanexpress" for="americanexpress"></label>
+                <label class="pay-orb pay-americanexpress" for="americanexpress"></label>
 
                 <input type="radio" id="maestro" name="payment_method" value="maestro" required>
-                <label class="drinkcard-cc maestro" for="maestro"></label>
+                <label class="pay-orb pay-maestro" for="maestro"></label>
 
             </div>
             <div class="form-group">
