@@ -1,26 +1,16 @@
 <template>
     <div class="searchbar">
         <div class="form-row">
-            <div class="form-group col-md-4">
-                <label for="adress_filter">Adress Filter</label>
+            <div class="form-group col-md-6">
+                <label for="adress_filter">Find Place</label>
                 <input
                     type="text"
-                    name="adress_filter"
-                    id="adress_filter"
-                    v-model="adress_filter"
+                    name="place_filter"
+                    id="place_filter"
+                    v-model="place_filter"
+                    @keydown.enter.prevent="search"
                     class="form-control"
-                    placeholer="Adress"
-                />
-            </div>
-            <div class="form-group col-md-2">
-                <label for="postal_code_filter">Postal code Filter</label>
-                <input
-                    type="text"
-                    name="postal_code_filter"
-                    id="postal_code_filter"
-                    v-model="postal_code_filter"
-                    class="form-control"
-                    placeholer="Postal code"
+                    placeholer="Place"
                 />
             </div>
             <div class="form-group col-md-2">
@@ -50,18 +40,77 @@
 <script>
 import Datepicker from "vuejs-datepicker";
 
+function initialState() {
+    return {
+        platform: {},
+        place_filter: "",
+        date_of_hire_filter: null,
+        lat: null,
+        lng: null
+    };
+}
+
 export default {
+    props: {
+        apikey: {
+            type: String,
+            default: ""
+        }
+    },
     data() {
-        return {
-            adress_filter: "",
-            postal_code_filter: "",
-            date_of_hire_filter: null
-        };
+        return initialState();
+    },
+    created() {
+        // Initialize the platform object:
+        this.platform = new H.service.Platform({
+            apikey: this.apikey
+        });
     },
     methods: {
-        search() {},
-        clear() {},
-        onDateFilter() {}
+        search() {
+            if (this.place_filter == "") {
+                return;
+            }
+            this.geocode(this.place_filter);
+        },
+        clear() {
+            Object.assign(this.$data, initialState());
+            this.search();
+        },
+        onDateFilter(changeEvent) {
+            this.date_of_hire_filter = changeEvent;
+            this.search();
+        },
+        /**
+         * Calculates and displays the address details based on a free-form text
+         *
+         * A full list of available request parameters can be found in the Geocoder API documentation.
+         * see: http://developer.here.com/rest-apis/documentation/geocoder/topics/resource-geocode.html
+         *
+         * @param {H.service.Platform} platform    A stub class to access HERE services
+         */
+        geocode(query) {
+            let geocoder = this.platform.getGeocodingService(),
+                geocodingParameters = {
+                    searchText: query,
+                    jsonattributes: 1
+                };
+
+            geocoder.geocode(
+                geocodingParameters,
+                result => {
+                    let locations = result.response.view[0].result;
+                    this.lat = locations[0].location.displayPosition.latitude;
+                    this.lng = locations[0].location.displayPosition.longitude;
+                    this.$emit("search", {
+                        lat: this.lat,
+                        lng: this.lng,
+                        date_of_hire: this.date_of_hire_filter
+                    });
+                },
+                error => {}
+            );
+        }
     },
     components: {
         Datepicker

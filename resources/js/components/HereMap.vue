@@ -1,6 +1,11 @@
 <template>
     <div class="map-holder">
-        <HereMapSearchbar class="searchbar"></HereMapSearchbar>
+        <HereMapSearchbar
+            :apikey="apikey"
+            class="searchbar"
+            @search="handleSearch"
+        >
+        </HereMapSearchbar>
         <div ref="map" class="map"></div>
     </div>
 </template>
@@ -26,13 +31,15 @@ export default {
             position: {},
             mapdata: {},
             bubble: {},
-            rentables: {}
+            rentables: {},
+            search_filter: {},
+            filteredRentables: {}
         };
     },
     created() {
         axios.get("/web/api/all/rentables").then(response => {
             this.rentables = response.data;
-            this.addRentablesToMap();
+            this.addRentablesToMap(this.rentables);
         });
         // Initialize the platform object:
         this.platform = new H.service.Platform({
@@ -63,31 +70,32 @@ export default {
         this.ui = H.ui.UI.createDefault(this.map, this.defaultLayers);
         // Create group and add markers
         this.group = new H.map.Group();
-        this.map.addObject(this.group);
     },
     methods: {
-        addRentablesToMap() {
-            for (let i = 0; i < this.rentables.length; i++) {
+        clearMap() {
+            this.map.removeObjects(this.map.getObjects());
+        },
+        addRentablesToMap(rentables) {
+            this.clearMap();
+            for (let i = 0; i < rentables.length; i++) {
                 let startTime = new Date(
-                    "01/01/1970 " + this.rentables[i].start_time
+                    "01/01/1970 " + rentables[i].start_time
                 );
                 let startTimeString = moment(startTime).format("HH:mm");
 
-                let endTime = new Date(
-                    "01/01/1970 " + this.rentables[i].end_time
-                );
+                let endTime = new Date("01/01/1970 " + rentables[i].end_time);
                 let endTimeString = moment(endTime).format("HH:mm");
                 // Create a marker using the previously instantiated icon:
                 this.marker = new H.map.Marker(
-                    { lat: this.rentables[i].lat, lng: this.rentables[i].lng },
+                    { lat: rentables[i].lat, lng: rentables[i].lng },
                     {
                         icon: this.icon,
                         data:
                             "<div style='width: 170px; font-size: 1.3em; font-weight: 600'>" +
-                            this.rentables[i].adress +
+                            rentables[i].adress +
                             "</div>" +
                             "Price: " +
-                            this.rentables[i].price +
+                            rentables[i].price +
                             " &euro;/h" +
                             "<br>" +
                             "&#x1F554; " +
@@ -95,7 +103,7 @@ export default {
                             " until " +
                             endTimeString +
                             "<a href='/rentables/" +
-                            this.rentables[i].id +
+                            rentables[i].id +
                             "' class='btn btn-info btn-sm'>Show</a>"
                     }
                 );
@@ -122,8 +130,48 @@ export default {
                     bounds: this.group.getBoundingBox()
                 });
             }
+            this.map.addObject(this.group);
         },
-        handleMarkerTapEvent() {}
+        handleSearch(event) {
+            this.search_filter = event;
+            this.searchForMatchingRentables();
+        },
+        searchForMatchingRentables() {
+            console.log(this.search_filter);
+            console.log(this.rentables[0].date_of_hire);
+            console.log(moment(String(this.rentables[0].date_of_hire))._d);
+            if (this.search_filter.date_of_hire == null) {
+                this.filteredRentables = this.rentables
+                    .filter(
+                        rentable =>
+                            rentable.lat <= this.search_filter.lat + 0.2 &&
+                            rentable.lat >= this.search_filter.lat - 0.2
+                    )
+                    .filter(
+                        rentable =>
+                            rentable.lng <= this.search_filter.lng + 0.2 &&
+                            rentable.lng >= this.search_filter.lng - 0.2
+                    );
+            } else {
+                this.filteredRentables = this.rentables
+                    .filter(
+                        rentable =>
+                            moment(String(rentable.date_of_hire))._d ==
+                            this.search_filter.date_of_hire
+                    )
+                    .filter(
+                        rentable =>
+                            rentable.lat <= this.search_filter.lat + 0.5 &&
+                            rentable.lat >= this.search_filter.lat - 0.5
+                    )
+                    .filter(
+                        rentable =>
+                            rentable.lng <= this.search_filter.lng + 0.5 &&
+                            rentable.lng >= this.search_filter.lng - 0.5
+                    );
+            }
+            this.addRentablesToMap(this.filteredRentables);
+        }
     },
     components: {
         HereMapSearchbar
