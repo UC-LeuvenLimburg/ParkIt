@@ -39,5 +39,7 @@ class UpdateUserRequest extends FormRequest
     protected function getValidatorInstance()
     {
         $this->sanitizeInput();
+
+        return parent::getValidatorInstance();
     }
 }
