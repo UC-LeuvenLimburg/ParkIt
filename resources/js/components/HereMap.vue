@@ -75,7 +75,7 @@ export default {
                 let endTimeString = moment(endTime).format("HH:mm");
                 // Create a marker using the previously instantiated icon:
                 this.marker = new H.map.Marker(
-                    { lat: this.rentables[i].lat, lng: this.rentables[i].long },
+                    { lat: this.rentables[i].lat, lng: this.rentables[i].lng },
                     {
                         icon: this.icon,
                         data:
