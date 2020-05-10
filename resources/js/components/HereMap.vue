@@ -16,7 +16,6 @@ import HereMapSearchbar from "./HereMapSearchbar";
 import moment from "moment";
 export default {
     name: "heremap",
-    props: {},
     data() {
         return {
             apikey: "wIrLYhE1R2UaGWbY369VpRZHSKDrPLD_SXOsnOpK-1A",
