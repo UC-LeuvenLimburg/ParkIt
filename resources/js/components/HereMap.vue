@@ -68,7 +68,7 @@ export default {
         });
         // Create the default UI:
         this.ui = H.ui.UI.createDefault(this.map, this.defaultLayers);
-        // Create group and add markers
+        // Create group  to hold markers
         this.group = new H.map.Group();
     },
     methods: {
@@ -154,10 +154,12 @@ export default {
             });
         },
         centerMapByGroupOfMarkers() {
-            //   get geo bounding box for the group and set it to the map
-            this.map.getViewModel().setLookAtData({
-                bounds: this.group.getBoundingBox()
-            });
+            if (this.group.getObjects().length > 0) {
+                //   get geo bounding box for the group and set it to the map
+                this.map.getViewModel().setLookAtData({
+                    bounds: this.group.getBoundingBox()
+                });
+            }
         },
         centerMapBySearchLocation() {
             //   Center map around the search request
@@ -187,7 +189,13 @@ export default {
                 this.filterRentablesByDate();
             }
             this.addRentablesToMap(this.filteredRentables);
-            this.centerMapBySearchLocation();
+
+            if (
+                this.search_filter.lat != null &&
+                this.search_filter.lng != null
+            ) {
+                this.centerMapBySearchLocation();
+            }
         },
         filterRentablesByDate() {
             this.filteredRentables = this.filteredRentables.filter(rentable =>
