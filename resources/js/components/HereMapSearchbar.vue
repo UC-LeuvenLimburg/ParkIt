@@ -42,13 +42,20 @@ import Datepicker from "vuejs-datepicker";
 
 function initialState() {
     return {
-        platform: {},
         place_filter: "",
         date_of_hire_filter: null,
         lat: null,
         lng: null,
         range: 0.1
     };
+}
+
+var platform;
+
+function setPlatform(apikey) {
+    platform = new H.service.Platform({
+        apikey: apikey
+    });
 }
 
 export default {
@@ -58,14 +65,11 @@ export default {
             default: ""
         }
     },
+    created() {
+        setPlatform(this.apikey);
+    },
     data() {
         return initialState();
-    },
-    created() {
-        // Initialize the platform object:
-        this.platform = new H.service.Platform({
-            apikey: this.apikey
-        });
     },
     methods: {
         search() {
@@ -92,7 +96,7 @@ export default {
          * @param {H.service.Platform} platform    A stub class to access HERE services
          */
         geocode(query) {
-            let geocoder = this.platform.getGeocodingService(),
+            let geocoder = platform.getGeocodingService(),
                 geocodingParameters = {
                     searchText: query,
                     jsonattributes: 1

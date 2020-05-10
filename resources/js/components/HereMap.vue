@@ -70,6 +70,8 @@ export default {
         this.ui = H.ui.UI.createDefault(this.map, this.defaultLayers);
         // Create group  to hold markers
         this.group = new H.map.Group();
+        // Set max zoom level
+        this.defaultLayers.vector.normal.map.setMax(17);
     },
     methods: {
         getUserCoordinates() {
@@ -206,7 +208,6 @@ export default {
             );
         },
         filterRentablesByPosition() {
-            console.log("filterRentablesByPosition");
             this.filteredRentables = this.filteredRentables
                 .filter(
                     rentable =>
