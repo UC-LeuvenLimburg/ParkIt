@@ -46,7 +46,8 @@ function initialState() {
         place_filter: "",
         date_of_hire_filter: null,
         lat: null,
-        lng: null
+        lng: null,
+        range: 0.1
     };
 }
 
@@ -69,13 +70,14 @@ export default {
     methods: {
         search() {
             if (this.place_filter == "") {
+                this.returnDefaultSearch();
                 return;
             }
             this.geocode(this.place_filter);
         },
         clear() {
             Object.assign(this.$data, initialState());
-            this.search();
+            this.$emit("clear");
         },
         onDateFilter(changeEvent) {
             this.date_of_hire_filter = changeEvent;
@@ -95,7 +97,6 @@ export default {
                     searchText: query,
                     jsonattributes: 1
                 };
-
             geocoder.geocode(
                 geocodingParameters,
                 result => {
@@ -105,11 +106,20 @@ export default {
                     this.$emit("search", {
                         lat: this.lat,
                         lng: this.lng,
+                        range: this.range,
                         date_of_hire: this.date_of_hire_filter
                     });
                 },
                 error => {}
             );
+        },
+        returnDefaultSearch() {
+            this.$emit("search", {
+                lat: null,
+                lng: null,
+                range: this.range,
+                date_of_hire: this.date_of_hire_filter
+            });
         }
     },
     components: {

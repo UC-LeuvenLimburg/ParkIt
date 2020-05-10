@@ -4,6 +4,7 @@
             :apikey="apikey"
             class="searchbar"
             @search="handleSearch"
+            @clear="handleClear"
         >
         </HereMapSearchbar>
         <div ref="map" class="map"></div>
@@ -72,105 +73,158 @@ export default {
         this.group = new H.map.Group();
     },
     methods: {
+        getUserCoordinates() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(position => {
+                    this.lat = position.coords.latitude;
+                    this.lng = position.coords.longitude;
+                });
+            } else {
+                console.warn(
+                    "geolocation is disabled or not supported on this browser"
+                );
+            }
+        },
         clearMap() {
             this.map.removeObjects(this.map.getObjects());
+            this.group.removeObjects(this.group.getObjects());
         },
         addRentablesToMap(rentables) {
             this.clearMap();
             for (let i = 0; i < rentables.length; i++) {
-                let startTime = new Date(
-                    "01/01/1970 " + rentables[i].start_time
-                );
-                let startTimeString = moment(startTime).format("HH:mm");
-
-                let endTime = new Date("01/01/1970 " + rentables[i].end_time);
-                let endTimeString = moment(endTime).format("HH:mm");
-                // Create a marker using the previously instantiated icon:
-                this.marker = new H.map.Marker(
-                    { lat: rentables[i].lat, lng: rentables[i].lng },
-                    {
-                        icon: this.icon,
-                        data:
-                            "<div style='width: 170px; font-size: 1.3em; font-weight: 600'>" +
-                            rentables[i].adress +
-                            "</div>" +
-                            "Price: " +
-                            rentables[i].price +
-                            " &euro;/h" +
-                            "<br>" +
-                            "&#x1F554; " +
-                            startTimeString +
-                            " until " +
-                            endTimeString +
-                            "<a href='/rentables/" +
-                            rentables[i].id +
-                            "' class='btn btn-info btn-sm'>Show</a>"
-                    }
-                );
-
-                // Add event listener:
-                this.marker.addEventListener("tap", event => {
-                    let position = event.target.getGeometry(); //marker zelf op deze plaats
-
-                    let mapdata = event.target.getData();
-                    // Create an info bubble object at a specific geographic location:
-                    //var bubble = new H.ui.InfoBubble(markerPosities[i].position, { content: markerPosities[i].title });
-                    let bubble = new H.ui.InfoBubble(position, {
-                        content: mapdata
-                    });
-
-                    // Add info bubble to the UI:
-                    this.ui.addBubble(bubble);
-                });
-
-                this.group.addObject(this.marker);
-
-                //   get geo bounding box for the group and set it to the map
-                this.map.getViewModel().setLookAtData({
-                    bounds: this.group.getBoundingBox()
-                });
+                this.addRentableMarkerToMap(rentables[i]);
             }
+            this.CenterMapByGroup();
             this.map.addObject(this.group);
+        },
+        convertRenatbleTimeToMomentJS(time) {
+            let newTime = new Date("01/01/1970 " + time);
+            return moment(newTime).format("HH:mm");
+        },
+        addRentableMarkerToMap(rentable) {
+            let marker = this.createMarkerFromRentable(rentable);
+            this.addMarkerEventListeners(marker);
+            this.group.addObject(marker);
+        },
+        createMarkerFromRentable(rentable) {
+            // Conver Time formats
+            let startTimeString = this.convertRenatbleTimeToMomentJS(
+                rentable.start_time
+            );
+            let endTimeString = this.convertRenatbleTimeToMomentJS(
+                rentable.end_time
+            );
+
+            // Create a marker using the previously instantiated icon:
+            return new H.map.Marker(
+                { lat: rentable.lat, lng: rentable.lng },
+                {
+                    icon: this.icon,
+                    data:
+                        "<div style='width: 170px; font-size: 1.3em; font-weight: 600'>" +
+                        rentable.adress +
+                        "</div>" +
+                        "Price: " +
+                        rentable.price +
+                        " &euro;/h" +
+                        "<br>" +
+                        "&#x1F554; " +
+                        startTimeString +
+                        " until " +
+                        endTimeString +
+                        "<a href='/rentables/" +
+                        rentable.id +
+                        "' class='btn btn-info btn-sm'>Show</a>"
+                }
+            );
+        },
+        addMarkerEventListeners(marker) {
+            // Add event listener:
+            marker.addEventListener("tap", event => {
+                let position = event.target.getGeometry(); //marker zelf op deze plaats
+
+                let mapdata = event.target.getData();
+                // Create an info bubble object at a specific geographic location:
+                //var bubble = new H.ui.InfoBubble(markerPosities[i].position, { content: markerPosities[i].title });
+                let bubble = new H.ui.InfoBubble(position, {
+                    content: mapdata
+                });
+
+                // Add info bubble to the UI:
+                this.ui.addBubble(bubble);
+            });
+        },
+        CenterMapByGroup() {
+            //   get geo bounding box for the group and set it to the map
+            this.map.getViewModel().setLookAtData({
+                bounds: this.group.getBoundingBox()
+            });
+        },
+        CenterMapBySearch() {
+            //   Center map around the search request
+            this.map.setCenter({
+                lat: this.search_filter.lat,
+                lng: this.search_filter.lng
+            });
+            this.map.setZoom(12);
         },
         handleSearch(event) {
             this.search_filter = event;
             this.searchForMatchingRentables();
         },
+        handleClear() {
+            this.addRentablesToMap(this.rentables);
+        },
         searchForMatchingRentables() {
-            console.log(this.search_filter);
-            console.log(this.rentables[0].date_of_hire);
-            console.log(moment(String(this.rentables[0].date_of_hire))._d);
             if (this.search_filter.date_of_hire == null) {
                 this.filteredRentables = this.rentables
                     .filter(
                         rentable =>
-                            rentable.lat <= this.search_filter.lat + 0.2 &&
-                            rentable.lat >= this.search_filter.lat - 0.2
+                            rentable.lat <=
+                                this.search_filter.lat +
+                                    this.search_filter.range &&
+                            rentable.lat >=
+                                this.search_filter.lat -
+                                    this.search_filter.range
                     )
                     .filter(
                         rentable =>
-                            rentable.lng <= this.search_filter.lng + 0.2 &&
-                            rentable.lng >= this.search_filter.lng - 0.2
+                            rentable.lng <=
+                                this.search_filter.lng +
+                                    this.search_filter.range &&
+                            rentable.lng >=
+                                this.search_filter.lng -
+                                    this.search_filter.range
                     );
             } else {
                 this.filteredRentables = this.rentables
-                    .filter(
-                        rentable =>
-                            moment(String(rentable.date_of_hire))._d ==
-                            this.search_filter.date_of_hire
+                    .filter(rentable =>
+                        moment(String(rentable.date_of_hire)).isSame(
+                            this.search_filter.date_of_hire,
+                            "day"
+                        )
                     )
                     .filter(
                         rentable =>
-                            rentable.lat <= this.search_filter.lat + 0.5 &&
-                            rentable.lat >= this.search_filter.lat - 0.5
+                            rentable.lat <=
+                                this.search_filter.lat +
+                                    this.search_filter.range &&
+                            rentable.lat >=
+                                this.search_filter.lat -
+                                    this.search_filter.range
                     )
                     .filter(
                         rentable =>
-                            rentable.lng <= this.search_filter.lng + 0.5 &&
-                            rentable.lng >= this.search_filter.lng - 0.5
+                            rentable.lng <=
+                                this.search_filter.lng +
+                                    this.search_filter.range &&
+                            rentable.lng >=
+                                this.search_filter.lng -
+                                    this.search_filter.range
                     );
             }
             this.addRentablesToMap(this.filteredRentables);
+            this.CenterMapBySearch();
         }
     },
     components: {
