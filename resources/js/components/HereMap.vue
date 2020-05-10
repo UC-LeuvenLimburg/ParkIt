@@ -1,5 +1,5 @@
 <template>
-    <div class="map-holder">
+    <div>
         <HereMapSearchbar
             :apikey="apikey"
             class="searchbar"
@@ -231,9 +231,6 @@ export default {
 </script>
 
 <style scoped>
-.map-holder {
-    position: relative;
-}
 .map {
     width: 102%;
     height: 350px;
