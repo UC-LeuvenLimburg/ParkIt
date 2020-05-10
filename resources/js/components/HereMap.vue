@@ -28,7 +28,6 @@ export default {
             icon: {},
             group: {},
             ui: {},
-            marker: {},
             position: {},
             mapdata: {},
             bubble: {},
@@ -94,7 +93,7 @@ export default {
             for (let i = 0; i < rentables.length; i++) {
                 this.addRentableMarkerToMap(rentables[i]);
             }
-            this.CenterMapByGroup();
+            this.centerMapByGroupOfMarkers();
             this.map.addObject(this.group);
         },
         convertRenatbleTimeToMomentJS(time) {
@@ -154,13 +153,13 @@ export default {
                 this.ui.addBubble(bubble);
             });
         },
-        CenterMapByGroup() {
+        centerMapByGroupOfMarkers() {
             //   get geo bounding box for the group and set it to the map
             this.map.getViewModel().setLookAtData({
                 bounds: this.group.getBoundingBox()
             });
         },
-        CenterMapBySearch() {
+        centerMapBySearchLocation() {
             //   Center map around the search request
             this.map.setCenter({
                 lat: this.search_filter.lat,
@@ -170,61 +169,51 @@ export default {
         },
         handleSearch(event) {
             this.search_filter = event;
-            this.searchForMatchingRentables();
+            this.filteredRentables = this.rentables;
+            this.filterRentables();
         },
         handleClear() {
             this.addRentablesToMap(this.rentables);
         },
-        searchForMatchingRentables() {
-            if (this.search_filter.date_of_hire == null) {
-                this.filteredRentables = this.rentables
-                    .filter(
-                        rentable =>
-                            rentable.lat <=
-                                this.search_filter.lat +
-                                    this.search_filter.range &&
-                            rentable.lat >=
-                                this.search_filter.lat -
-                                    this.search_filter.range
-                    )
-                    .filter(
-                        rentable =>
-                            rentable.lng <=
-                                this.search_filter.lng +
-                                    this.search_filter.range &&
-                            rentable.lng >=
-                                this.search_filter.lng -
-                                    this.search_filter.range
-                    );
-            } else {
-                this.filteredRentables = this.rentables
-                    .filter(rentable =>
-                        moment(String(rentable.date_of_hire)).isSame(
-                            this.search_filter.date_of_hire,
-                            "day"
-                        )
-                    )
-                    .filter(
-                        rentable =>
-                            rentable.lat <=
-                                this.search_filter.lat +
-                                    this.search_filter.range &&
-                            rentable.lat >=
-                                this.search_filter.lat -
-                                    this.search_filter.range
-                    )
-                    .filter(
-                        rentable =>
-                            rentable.lng <=
-                                this.search_filter.lng +
-                                    this.search_filter.range &&
-                            rentable.lng >=
-                                this.search_filter.lng -
-                                    this.search_filter.range
-                    );
+        filterRentables() {
+            if (
+                this.search_filter.lat != null &&
+                this.search_filter.lng != null
+            ) {
+                this.filterRentablesByPosition();
+            }
+
+            if (this.search_filter.date_of_hire != null) {
+                this.filterRentablesByDate();
             }
             this.addRentablesToMap(this.filteredRentables);
-            this.CenterMapBySearch();
+            this.centerMapBySearchLocation();
+        },
+        filterRentablesByDate() {
+            this.filteredRentables = this.filteredRentables.filter(rentable =>
+                moment(String(rentable.date_of_hire)).isSame(
+                    this.search_filter.date_of_hire,
+                    "day"
+                )
+            );
+        },
+        filterRentablesByPosition() {
+            console.log("filterRentablesByPosition");
+            this.filteredRentables = this.filteredRentables
+                .filter(
+                    rentable =>
+                        rentable.lat <=
+                            this.search_filter.lat + this.search_filter.range &&
+                        rentable.lat >=
+                            this.search_filter.lat - this.search_filter.range
+                )
+                .filter(
+                    rentable =>
+                        rentable.lng <=
+                            this.search_filter.lng + this.search_filter.range &&
+                        rentable.lng >=
+                            this.search_filter.lng - this.search_filter.range
+                );
         }
     },
     components: {
