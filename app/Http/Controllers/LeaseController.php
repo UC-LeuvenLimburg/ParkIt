@@ -57,7 +57,7 @@ class LeaseController extends Controller
     public function store(StoreLeaseRequest $request)
     {
         $newLease = $this->leaseRepo->addLease($request->validated());
-        return redirect('/leases/' . $newLease->id);
+        return redirect('/leases/');
     }
 
     /**
