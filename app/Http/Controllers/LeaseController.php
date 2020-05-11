@@ -68,7 +68,13 @@ class LeaseController extends Controller
      */
     public function show(Lease $lease)
     {
-        return view('lease.show', compact('lease'));
+        $totalTax = 0.15;
+        $startTime = strtotime($lease->start_time);
+        $endTime = strtotime($lease->end_time);
+        $timeInMinutes = ($endTime - $startTime) / 60;
+        $timeInHours = $timeInMinutes / 60;
+        $totalPrice = ($timeInHours * $lease->rentable->price) + $totalTax;
+        return view('lease.show', compact('lease', 'totalPrice'));
     }
 
     /**
