@@ -56,6 +56,7 @@
                 {{Form::text('license_plate', $lease->license_plate, ['class' => 'form-control', 'placeholer' => 'license_plate', 'required']) }}
             </div>
             {{Form::submit('Save', [ 'class' => 'btn btn-primary'])}}
+            <a href="javascript:history.back()" class="btn  btn-sm btn-primary">Back</a>
             {!! Form::close() !!}
             <div class="parkit-delete-button">
                 {!! Form::open(['action' => ['LeaseController@destroy', $lease], 'method' => 'POST']) !!}
