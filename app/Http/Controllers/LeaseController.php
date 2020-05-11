@@ -68,12 +68,7 @@ class LeaseController extends Controller
      */
     public function show(Lease $lease)
     {
-        $totalTax = 0.15;
-        $startTime = strtotime($lease->start_time);
-        $endTime = strtotime($lease->end_time);
-        $timeInMinutes = ($endTime - $startTime) / 60;
-        $timeInHours = $timeInMinutes / 60;
-        $totalPrice = ($timeInHours * $lease->rentable->price) + $totalTax;
+        $totalPrice = $lease->totalPrice();
         return view('lease.show', compact('lease', 'totalPrice'));
     }
 
@@ -157,11 +152,9 @@ class LeaseController extends Controller
      */
     public function pay(int $id)
     {
-        $totalTax = 0.15;
         $lease = $this->leaseRepo->getLease($id);
         $this->authorize('update', $lease);
-        $totalTimeInHours = $lease->rentTimeInMinutes() / 60;
-        $totalPrice = ($totalTimeInHours * $lease->rentable->price) + $totalTax;
+        $totalPrice = $lease->totalPrice();
         return view('payment.form')->with(compact('lease', 'totalPrice'));
     }
 
