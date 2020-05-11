@@ -58,4 +58,24 @@ class Lease extends Model
         // return the difference
         return $rentTime;
     }
+
+    /**
+     * Calculate the total price
+     */
+    public function totalPrice()
+    {
+        //change the format to timestamps
+        $start_time = strtotime($this->start_time);
+        $end_time = strtotime($this->end_time);
+        // perform subtraction to get the difference (in seconds) between times
+        $rentTime = ($end_time - $start_time) / 60;
+        // administrative fee
+        $totalTax = 0.50;
+        //get the time in hours
+        $totalTimeInHours = $rentTime / 60;
+        //calculate the price
+        $totalPrice = ($totalTimeInHours * $this->rentable->price) + $totalTax;
+        //return the price
+        return $totalPrice;
+    }
 }

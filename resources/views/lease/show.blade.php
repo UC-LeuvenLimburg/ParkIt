@@ -30,7 +30,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text">&euro;</span>
                     </div>
-                    {{Form::text('price', number_format($lease->rentable->price, 2, '.', ''), ['class' => 'form-control', 'placeholer' => 'Date', 'readonly']) }}
+                    {{Form::text('price', number_format($totalPrice, 2, '.', ''), ['class' => 'form-control', 'placeholer' => 'Date', 'readonly']) }}
                 </div>
             </div>
             <div class="form-row ">
