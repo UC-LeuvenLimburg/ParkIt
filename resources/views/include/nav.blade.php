@@ -48,9 +48,9 @@
                         </a>
                         <a class="dropdown-item" href="{{action('LeaseController@myleases')}}">My Leases</a>
                         <a class="dropdown-item" href="{{action('RentableController@myplaces')}}">My Places</a>
-
                         {{-- These are ADMIN only --}}
                         @if (Auth::user()->role==="admin")
+                        <hr class="my-1">
                         <a class="dropdown-item {{ Request::is('leases') ? 'active' : '' }}" href="/leases">Leases</a>
                         <a class="dropdown-item {{ Request::is('rentables') ? 'active' : '' }}"
                             href="/rentables">Places</a>
