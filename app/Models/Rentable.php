@@ -46,6 +46,6 @@ class Rentable extends Model
      */
     public function leases()
     {
-        return $this->hasMany('App\Models\Lease');
+        return $this->hasMany('App\Models\Lease')->orderby('start_time');
     }
 }
