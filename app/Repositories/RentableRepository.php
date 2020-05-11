@@ -26,7 +26,7 @@ class RentableRepository implements IRentableRepository
      */
     public function getRentables($query)
     {
-        return Rentable::filter($query)->with('user')->orderBy('id', 'asc')->paginate(15);
+        return Rentable::filter($query)->with('user')->where('date_of_hire', '>', now())->orderby('date_of_hire')->paginate(15);
     }
 
     /**
