@@ -29,7 +29,7 @@
                 </div>
             </div>
             {{Form::submit('Save', [ 'class' => 'btn btn-primary'])}}
-            <a href="javascript:history.back()" class="btn btn-sm btn-primary">Back</a>
+            <a href="javascript:history.back()" class="btn btn-primary">Back</a>
             {!! Form::close() !!}
             <div class="parkit-delete-button">
                 {!! Form::open(['action' => ['UserController@destroy', $user], 'method' => 'POST']) !!}
