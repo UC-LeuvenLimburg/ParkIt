@@ -11164,6 +11164,18 @@ a.text-dark:focus {
   }
 }
 
+@media screen and (max-width: 767px) {
+  #Hide-width-767 {
+    display: none !important;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  #Hide-width-576 {
+    display: none !important;
+  }
+}
+
 @media screen and (max-width: 991px) {
   .Only-show-on-small-screen {
     display: contents !important;
@@ -11233,12 +11245,5 @@ a.text-dark:focus {
 
 #No-font-size {
   font-size: 0;
-}
-
-@media screen and (max-width: 1199px) {
-  #Change-width-991 {
-    width: 570 !important;
-    height: 606 !important;
-  }
 }
 
