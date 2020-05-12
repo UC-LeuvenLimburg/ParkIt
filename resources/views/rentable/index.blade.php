@@ -25,15 +25,15 @@
         <thead class="table-primary">
             <tr>
                 @if (Auth::user()->role==="admin")
-                <th scope="col">Email</th>
+                <th scope="col" id="Hide-width-767">Email</th>
                 @endif
                 <th scope="col">Adress</th>
-                <th scope="col">Postal code</th>
+                <th scope="col" id="Hide-width-576">Postal code</th>
                 <th scope="col">Date of hire</th>
                 <th scope="col">Start time</th>
                 <th scope="col">End time</th>
                 @if (Auth::user()->role==="user")
-                <th scope="col">Price/h</th>
+                <th scope="col" id="Hide-width-576">Price/h</th>
                 @endif
                 <th scope="col">Actions</th>
             </tr>
@@ -42,15 +42,15 @@
             @foreach ($rentables as $rentable)
             <tr>
                 @if (Auth::user()->role==="admin")
-                <td>{{ $rentable->user->email}}</td>
+                <td  id="Hide-width-767">{{ $rentable->user->email}}</td>
                 @endif
                 <td>{{$rentable->adress}}</td>
-                <td>{{$rentable->postal_code}}</td>
+                <td id="Hide-width-576">{{$rentable->postal_code}}</td>
                 <td>{{date("d-m-Y", strtotime($rentable->date_of_hire))}}</td>
                 <td>{{date("H:i", strtotime($rentable->start_time))}}</td>
                 <td>{{date("H:i", strtotime($rentable->end_time))}}</td>
                 @if (Auth::user()->role==="user")
-                <td>{{ $rentable->price}}</td>
+                <td id="Hide-width-576">{{ $rentable->price}}</td>
                 @endif
                 <td>
                     <a class="btn btn-info btn-sm" href='/rentables/{{ $rentable->id }}'>Show</a>

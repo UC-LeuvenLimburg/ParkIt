@@ -12,6 +12,18 @@
     }
 }
 
+@media screen and (max-width: 767px) {
+    #Hide-width-767 {
+        display: none !important;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    #Hide-width-576 {
+        display: none !important;
+    }
+}
+
 @media screen and (max-width: 991px) {
     .Only-show-on-small-screen {
         display: contents !important;
