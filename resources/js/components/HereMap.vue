@@ -18,7 +18,7 @@ export default {
     name: "heremap",
     data() {
         return {
-            apikey: "wIrLYhE1R2UaGWbY369VpRZHSKDrPLD_SXOsnOpK-1A",
+            apikey: process.env.MIX_APIKEY,
             map: {},
             platform: {},
             defaultLayers: {},
