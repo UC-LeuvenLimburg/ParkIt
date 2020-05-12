@@ -95,14 +95,4 @@ class LeaseRepository implements ILeaseRepository
     {
         Lease::destroy($lease_id);
     }
-
-    /**
-     * Remove a lease if it is unpayed
-     *
-     */
-    public function deleteUnpayedLease()
-    {
-        $leases = Lease::where('Payed_at', null)->get();
-        dd($leases);
-    }
 }
