@@ -11154,6 +11154,34 @@ a.text-dark:focus {
     Styling for Rentable views
 */
 
+.Only-show-on-small-screen {
+  display: none !important;
+}
+
+@media screen and (max-width: 991px) {
+  #Hide-width-991 {
+    display: none !important;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  #Hide-width-767 {
+    display: none !important;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  #Hide-width-576 {
+    display: none !important;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .Only-show-on-small-screen {
+    display: contents !important;
+  }
+}
+
 /*
     Styling for User views
 */
@@ -11213,5 +11241,9 @@ a.text-dark:focus {
   -webkit-filter: brightness(1.2) grayscale(0.5) opacity(0.9);
   -moz-filter: brightness(1.2) grayscale(0.5) opacity(0.9);
   filter: brightness(1.2) grayscale(0.5) opacity(0.9);
+}
+
+#No-font-size {
+  font-size: 0;
 }
 

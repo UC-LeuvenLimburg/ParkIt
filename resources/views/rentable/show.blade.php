@@ -5,6 +5,9 @@
     <div class="row">
         <div class="col-lg-6">
             <h1>Place details</h1>
+            <div class="Only-show-on-small-screen">
+                @include('lease.currentleases',$rentable)
+            </div>
             {!! Form::model($rentable) !!}
             @if (Auth::user()->role==="admin")
             <div class="form-group">
@@ -70,9 +73,9 @@
             @endif
             <br>
         </div>
-        <div class="col-sm-2">
+        <div class="col-sm-2" id="Hide-width-991">
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-4" id="Hide-width-991">
             <div class="col-xl mt-4">
                 @include('lease.currentleases',$rentable)
             </div>

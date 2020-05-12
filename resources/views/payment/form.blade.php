@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-lg-6">
+        <div class="col-xl-6">
             <h1>Payment</h1>
             {!! Form::open(['url' => '/pay', 'method' => 'POST'])!!}
             {{Form::hidden('lease_id', $lease->id, ['hidden'])}}
@@ -48,7 +48,7 @@
 
             <p>Select a payment method</p>
 
-            <div class="form-group pay-selector">
+            <div class="form-group pay-selector" id="No-font-size">
                 <input type="radio" id="mastercard" name="payment_method" value="mastercard" required>
                 <label class="pay-orb pay-mastercard" for="mastercard"></label>
 
