@@ -1,3 +1,4 @@
+<h3>Current Leases</h3>
 <table class="table table-dark table-hover">
     <thead class="table-primary">
         <tr>
@@ -22,7 +23,10 @@
             <td>
                 <a class="btn btn-info btn-sm" href='/leases/{{ $lease->id }}'>Show</a>
                 @if (Auth::user()->role==="admin" || $lease->user_id == Auth::id())
-                <a class="btn btn-info btn-sm btn-warning" href='/leases/{{ $lease->id }}/edit'>Edit</a>
+                <a class="btn btn-sm btn-warning" href='/leases/{{ $lease->id }}/edit'>Edit</a>
+                @endif
+                @if ( $lease->payed_at === NULL && $lease->user_id == Auth::id())
+                <a class="btn btn-danger btn-sm" href='/pay/{{$lease->id}}/'>Pay</a>
                 @endif
             </td>
         </tr>

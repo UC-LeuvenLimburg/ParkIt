@@ -57,11 +57,7 @@ class LeaseController extends Controller
     public function store(StoreLeaseRequest $request)
     {
         $newLease = $this->leaseRepo->addLease($request->validated());
-        if (Auth::user()->role === "admin") {
-            return redirect('/leases/' . $newLease->id);
-        } else {
-            return redirect('/pay/' . $newLease->id);
-        }
+        return redirect('/leases/');
     }
 
     /**
@@ -72,7 +68,8 @@ class LeaseController extends Controller
      */
     public function show(Lease $lease)
     {
-        return view('lease.show', compact('lease'));
+        $totalPrice = $lease->totalPrice();
+        return view('lease.show', compact('lease', 'totalPrice'));
     }
 
     /**
@@ -131,10 +128,21 @@ class LeaseController extends Controller
      */
     public function createlease(int $id)
     {
-        $this->authorize('create', Lease::class);
         $user_id = Auth::id();
         $rentable = $this->rentableRepo->getRentable($id);
         return view('lease.create')->with(compact('user_id', 'rentable'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  App\Http\Requests\StoreLeaseRequest $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storelease(StoreLeaseRequest $request)
+    {
+        $newLease = $this->leaseRepo->addLease($request->validated());
+        return redirect('/pay/' . $newLease->id);
     }
 
     /**
@@ -144,11 +152,9 @@ class LeaseController extends Controller
      */
     public function pay(int $id)
     {
-        $totalTax = 0.15;
         $lease = $this->leaseRepo->getLease($id);
         $this->authorize('update', $lease);
-        $totalTimeInHours = $lease->rentTimeInMinutes() / 60;
-        $totalPrice = ($totalTimeInHours * $lease->rentable->price) + $totalTax;
+        $totalPrice = $lease->totalPrice();
         return view('payment.form')->with(compact('lease', 'totalPrice'));
     }
 
@@ -161,6 +167,6 @@ class LeaseController extends Controller
     {
         $id = $request->validated()['lease_id'];
         $this->leaseRepo->updateLease($id, ['payed_at' => now()]);
-        return redirect('/myleases');
+        return view('payment.redirect');
     }
 }

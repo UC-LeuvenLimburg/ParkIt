@@ -2,11 +2,16 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-xl">
+    <div class="row">
+        <div class="col-lg-6">
             <h1>Create Lease</h1>
+            @if (Auth::user()->role === "admin" && $rentable === null)
             {!! Form::open(['route' => 'leases.store']) !!}
-            @if (Auth::user()->role==="admin" && $rentable === null)
+            @else
+            {!! Form::open(['url' => '/createlease', 'method' => 'POST'])!!}
+            @endif
+
+            @if (Auth::user()->role === "admin" && $rentable === null)
             <div class="form-group">
                 {{Form::label('user_id', 'User Email')}}
                 <user-autocomplete />
@@ -19,6 +24,7 @@
             {{Form::hidden('user_id', $user_id, ['hidden', 'required'])}}
             {{Form::hidden('rentable_id', $rentable->id, ['hidden', 'required'])}}
             @endif
+
             @if ($rentable !== null)
             <div class="form-group">
                 {{Form::label('adress', 'Adress')}}
@@ -48,7 +54,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text">&euro;</span>
                     </div>
-                    {{Form::text('price', $rentable->price, ['class' => 'form-control', 'placeholer' => 'Date', 'readonly']) }}
+                    {{Form::text('price', number_format($rentable->price, 2, '.', ''), ['class' => 'form-control', 'placeholer' => 'Date', 'readonly']) }}
                 </div>
             </div>
             @endif
@@ -62,22 +68,23 @@
                     {{Form::text('license_plate', '', ['class' => 'form-control', 'placeholer' => 'license_plate', 'required']) }}
                 </div>
             </div>
-            @if (Auth::user()->role==="admin")
+            @if (Auth::user()->role === "admin" && $rentable === null)
             {{Form::submit('Save', [ 'class' => 'btn btn-primary'])}}
             @else
             {{Form::submit('Pay', [ 'class' => 'btn btn-primary'])}}
             @endif
             <a href="javascript:history.back()" class="btn btn-primary">Back</a>
             {!! Form::close() !!}
+        </div>
+        <div class="col-sm-2">
+        </div>
+        <div class="col-sm-4">
             @if ($rentable !== null)
-            @php($leases = $rentable->leases)
-            @if (count($leases) > 0)
             <div class="col-xl mt-4">
-                <h3>Current Leases</h3>
-                @include('lease.table', $leases)
+                @include('lease.currentleases', $rentable)
             </div>
             @endif
-            @endif
+
         </div>
     </div>
 </div>

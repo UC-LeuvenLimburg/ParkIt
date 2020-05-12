@@ -2,8 +2,8 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-xl">
+    <div class="row">
+        <div class="col-lg-6">
             <h1>Edit Lease</h1>
             {!! Form::model($lease, ['route' => ['leases.update', $lease], 'method' => 'PUT']) !!}
             <div class="form-group">
@@ -21,20 +21,20 @@
                 @if (Auth::user()->role==="admin")
                 <div class="form-group col-md-4">
                     {{Form::label('start_time', 'Start Time')}}
-                    {{Form::time('start_time', $lease->start_time, ['class' => 'form-control', 'placeholer' => 'Start Time', 'required']) }}
+                    {{Form::time('start_time', date("H:i", strtotime($lease->start_time)), ['class' => 'form-control', 'placeholer' => 'Start Time', 'required']) }}
                 </div>
                 <div class="form-group col-md-4">
                     {{Form::label('end_time', 'End Time')}}
-                    {{Form::time('end_time', $lease->end_time, ['class' => 'form-control', 'placeholer' => 'End Time', 'required']) }}
+                    {{Form::time('end_time', date("H:i", strtotime($lease->end_time)), ['class' => 'form-control', 'placeholer' => 'End Time', 'required']) }}
                 </div>
                 @else
                 <div class="form-group col-md-4">
                     {{Form::label('start_time', 'Start Time')}}
-                    {{Form::time('start_time', $lease->start_time, ['class' => 'form-control', 'placeholer' => 'Start Time', 'required','readonly']) }}
+                    {{Form::time('start_time', date("H:i", strtotime($lease->start_time)), ['class' => 'form-control', 'placeholer' => 'Start Time', 'required','readonly']) }}
                 </div>
                 <div class="form-group col-md-4">
                     {{Form::label('end_time', 'End Time')}}
-                    {{Form::time('end_time', $lease->end_time, ['class' => 'form-control', 'placeholer' => 'End Time', 'required', 'readonly']) }}
+                    {{Form::time('end_time', date("H:i", strtotime($lease->end_time)), ['class' => 'form-control', 'placeholer' => 'End Time', 'required', 'readonly']) }}
                 </div>
                 @endif
             </div>
@@ -44,7 +44,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text">&euro;</span>
                     </div>
-                    {{Form::text('price', $lease->rentable->price, ['class' => 'form-control', 'placeholer' => 'Date', 'readonly']) }}
+                    {{Form::text('price', number_format($lease->rentable->price, 2, '.', ''), ['class' => 'form-control', 'placeholer' => 'Date', 'readonly']) }}
                 </div>
             </div>
             <div class="form-group">
@@ -56,6 +56,7 @@
                 {{Form::text('license_plate', $lease->license_plate, ['class' => 'form-control', 'placeholer' => 'license_plate', 'required']) }}
             </div>
             {{Form::submit('Save', [ 'class' => 'btn btn-primary'])}}
+            <a href="javascript:history.back()" class="btn btn-primary">Back</a>
             {!! Form::close() !!}
             <div class="parkit-delete-button">
                 {!! Form::open(['action' => ['LeaseController@destroy', $lease], 'method' => 'POST']) !!}

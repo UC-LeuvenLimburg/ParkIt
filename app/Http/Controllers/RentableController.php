@@ -51,7 +51,7 @@ class RentableController extends Controller
     {
         $newRentable = $this->rentableRepo->addRentable($request->all());
         if (Auth::user()->role === "admin") {
-            return redirect('/rentables/' . $newRentable->id);
+            return redirect('/rentables/');
         } else {
             return redirect('/myplaces');
         }

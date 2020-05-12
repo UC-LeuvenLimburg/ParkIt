@@ -2,8 +2,8 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-xl">
+    <div class="row">
+        <div class="col-lg-6">
             <h1>Payment</h1>
             {!! Form::open(['url' => '/pay', 'method' => 'POST'])!!}
             {{Form::hidden('lease_id', $lease->id, ['hidden'])}}
@@ -38,18 +38,32 @@
             </div>
             <div class="form-group">
                 {{Form::label('price', 'Total Price (Tax included)')}}
-                {{Form::text('price', $totalPrice, ['class' => 'form-control', 'placeholer' => 'Price', 'readonly']) }}
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">&euro;</span>
+                    </div>
+                    {{Form::text('price', number_format($totalPrice, 2, '.', ''), ['class' => 'form-control', 'placeholer' => 'Price', 'readonly']) }}
+                </div>
             </div>
-            <div class="form-group">
-                <p>Payment methods</p>
-                <div class="custom-control custom-radio">
-                    <input type="radio" id="paypal" name="payment_method" class="custom-control-input" required>
-                    <label class="custom-control-label" for="paypal">Paypal</label>
-                </div>
-                <div class="custom-control custom-radio">
-                    <input type="radio" id="bancontact" name="payment_method" class="custom-control-input" required>
-                    <label class="custom-control-label" for="bancontact">bancontact</label>
-                </div>
+
+            <p>Select a payment method</p>
+
+            <div class="form-group pay-selector">
+                <input type="radio" id="mastercard" name="payment_method" value="mastercard" required>
+                <label class="pay-orb pay-mastercard" for="mastercard"></label>
+
+                <input type="radio" id="visa" name="payment_method" value="visa" required>
+                <label class="pay-orb pay-visa" for="visa"></label>
+
+                <input type="radio" id="paypal" name="payment_method" value="paypal" required>
+                <label class="pay-orb pay-paypal" for="paypal"></label>
+
+                <input type="radio" id="americanexpress" name="payment_method" value="americanexpress" required>
+                <label class="pay-orb pay-americanexpress" for="americanexpress"></label>
+
+                <input type="radio" id="maestro" name="payment_method" value="maestro" required>
+                <label class="pay-orb pay-maestro" for="maestro"></label>
+
             </div>
             <div class="form-group">
                 <div class="custom-control custom-checkbox">
