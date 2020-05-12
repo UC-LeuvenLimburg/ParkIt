@@ -44,7 +44,7 @@
                 </div>
             </div>
             {!! Form::close() !!}
-            <a href="javascript:history.back()" class="btn  btn-sm btn-primary">Back</a>
+            <a href="javascript:history.back()" class="btn btn-primary">Back</a>
         </div>
     </div>
 </div>
