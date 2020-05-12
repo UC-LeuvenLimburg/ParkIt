@@ -2,8 +2,8 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-xl">
+    <div class="row">
+        <div class="col-lg-6">
             <h1>Create User</h1>
             {!! Form::open(['route' => 'users.store']) !!}
             <div class="form-group">

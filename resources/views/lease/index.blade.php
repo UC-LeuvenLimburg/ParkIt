@@ -10,6 +10,8 @@
     <div><br></div>
     @endif
 
+    <leases-searchbar></leases-searchbar>
+
     @if (count($leases) > 0)
     @include('lease.table', $leases)
     <div class="parkit-paginator">

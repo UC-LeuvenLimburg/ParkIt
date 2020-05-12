@@ -2,8 +2,8 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-xl">
+    <div class="row">
+        <div class="col-lg-6">
             <h1>User details</h1>
             {!! Form::model($user) !!}
             <div class="form-group">
@@ -32,6 +32,7 @@
                     {{Form::label('created_at', 'Created at')}}
                     {{Form::date('created_at', $user->created_at, ['class' => 'form-control', 'placeholer' => 'Created at', 'disabled']) }}
                 </div>
+                <a href="javascript:history.back()" class="btn btn-sm btn-primary">Back</a>
             </div>
             {!! Form::close() !!}
         </div>

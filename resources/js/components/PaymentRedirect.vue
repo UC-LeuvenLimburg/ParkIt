@@ -4,7 +4,7 @@
             Please wait a moment. You will be redirected in
             <span>{{ timerCount }}</span> Seconds
         </h4>
-        <p>Wan't to go to the page now? Click <a href="/myleases"> here </a></p>
+        <p>Want to go to the page now? Click <a href="/myleases"> here </a></p>
     </div>
 </template>
 

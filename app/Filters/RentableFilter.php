@@ -37,6 +37,30 @@ trait RentableFilter
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
+    public function lat_like(Builder $builder, $value)
+    {
+        return $builder->where('lat', 'like', '%' . $value . '%');
+    }
+
+
+    /**
+     * @param \Illuminate\Database\Eloquent\Builder $builder
+     * @param $value
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function lng_like(Builder $builder, $value)
+    {
+        return $builder->where('lng', 'like', '%' . $value . '%');
+    }
+
+
+    /**
+     * @param \Illuminate\Database\Eloquent\Builder $builder
+     * @param $value
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
     public function date_of_hire_like(Builder $builder, $value)
     {
         return $builder->where('date_of_hire', 'like', '%' . $value . '%');

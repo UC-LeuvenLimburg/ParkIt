@@ -2,8 +2,8 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-xl">
+    <div class="row">
+        <div class="col-lg-6">
             <h1>Edit Place</h1>
             {!! Form::model($rentable, ['route' => ['rentables.update', $rentable], 'method' => 'PUT']) !!}
             {{Form::hidden('rentable_id', $rentable->id, ['hidden', 'required'])}}
@@ -41,17 +41,17 @@
                 <div class="form-group col-md-4">
                     {{Form::label('start_time', 'Start Time')}}
                     @if (Auth::user()->role==="admin")
-                    {{Form::time('start_time', $rentable->start_time, ['class' => 'form-control', 'placeholer' => 'Start Time', 'required']) }}
+                    {{Form::time('start_time', date("H:i", strtotime($rentable->start_time)), ['class' => 'form-control', 'placeholer' => 'Start Time', 'required']) }}
                     @else
-                    {{Form::time('start_time', $rentable->start_time, ['class' => 'form-control', 'placeholer' => 'Start Time', 'required','readonly']) }}
+                    {{Form::time('start_time', date("H:i", strtotime($rentable->start_time)), ['class' => 'form-control', 'placeholer' => 'Start Time', 'required','readonly']) }}
                     @endif
                 </div>
                 <div class="form-group col-md-4">
                     {{Form::label('end_time', 'End Time')}}
                     @if (Auth::user()->role==="admin")
-                    {{Form::time('end_time', $rentable->end_time, ['class' => 'form-control', 'placeholer' => 'End Time', 'required']) }}
+                    {{Form::time('end_time', date("H:i", strtotime($rentable->end_time)), ['class' => 'form-control', 'placeholer' => 'End Time', 'required']) }}
                     @else
-                    {{Form::time('end_time', $rentable->end_time, ['class' => 'form-control', 'placeholer' => 'End Time', 'required','readonly']) }}
+                    {{Form::time('end_time', date("H:i", strtotime($rentable->end_time)), ['class' => 'form-control', 'placeholer' => 'End Time', 'required','readonly']) }}
                     @endif
                 </div>
             </div>
@@ -62,9 +62,9 @@
                         <span class="input-group-text">&euro;</span>
                     </div>
                     @if (Auth::user()->role==="admin")
-                    {{Form::number('price', $rentable->price, ['class' => 'form-control', 'placeholer' => 'Price', 'step' => '.01', 'required']) }}
+                    {{Form::number('price', number_format($rentable->price, 2, '.', ''), ['class' => 'form-control', 'placeholer' => 'Price', 'step' => '.01', 'required']) }}
                     @else
-                    {{Form::number('price', $rentable->price, ['class' => 'form-control', 'placeholer' => 'Price', 'step' => '.01', 'required','readonly']) }}
+                    {{Form::number('price', number_format($rentable->price, 2, '.', ''), ['class' => 'form-control', 'placeholer' => 'Price', 'step' => '.01', 'required','readonly']) }}
                     @endif
                 </div>
             </div>
@@ -78,6 +78,7 @@
                 {{Form::textarea('description', $rentable->description, ['class' => 'form-control', 'placeholer' => 'Description', 'required']) }}
             </div>
             {{Form::submit('Save', ['class' => 'btn btn-primary'])}}
+            <a href="javascript:history.back()" class="btn btn-sm btn-primary">Back</a>
             {!! Form::close() !!}
             <div class="parkit-delete-button">
                 {!! Form::open(['action' => ['RentableController@destroy', $rentable], 'method' => 'POST']) !!}

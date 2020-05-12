@@ -2,8 +2,8 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-xl">
+    <div class="row">
+        <div class="col-lg-6">
             <h1>User details</h1>
             {!! Form::model($user, ['route' => ['users.update', $user], 'method' => 'PUT']) !!}
             <div class="form-group">
@@ -29,6 +29,7 @@
                 </div>
             </div>
             {{Form::submit('Save', [ 'class' => 'btn btn-primary'])}}
+            <a href="javascript:history.back()" class="btn btn-sm btn-primary">Back</a>
             {!! Form::close() !!}
             <div class="parkit-delete-button">
                 {!! Form::open(['action' => ['UserController@destroy', $user], 'method' => 'POST']) !!}
