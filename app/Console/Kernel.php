@@ -2,9 +2,10 @@
 
 namespace App\Console;
 
-use App\Console\Commands\DeleteUnpayedLeases;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Support\Facades\DB;
+use App\Models\Lease;
 
 class Kernel extends ConsoleKernel
 {
@@ -25,7 +26,18 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->call(new DeleteUnpayedLeases())->everyMinute()->thenPing("https://cronhub.io/ping/cfaebfb0-8e61-11ea-b978-3bfb1d9cdf52");
+        $schedule->call(function () {
+            $unpayedLeases = DB::select('select * from leases where payed_at IS NULL', array(1));
+            foreach ($unpayedLeases as $unpayedLease) {
+                $createdAt = strtotime($unpayedLease->created_at);
+                $now = strtotime(now());
+                $timeInMinutes = ($now - $createdAt) / 60;
+                if ($timeInMinutes >= 15) {
+                    $id = $unpayedLease->id;
+                    DB::table('leases')->delete($id);
+                }
+            }
+        })->everyMinute()->thenPing("https://cronhub.io/ping/cfaebfb0-8e61-11ea-b978-3bfb1d9cdf52");
     }
 
     /**
