@@ -78,6 +78,7 @@
                 {{Form::textarea('description', $rentable->description, ['class' => 'form-control', 'placeholer' => 'Description', 'required']) }}
             </div>
             {{Form::submit('Save', ['class' => 'btn btn-primary'])}}
+            <a href="javascript:history.back()" class="btn btn-primary">Back</a>
             {!! Form::close() !!}
             <div class="parkit-delete-button">
                 {!! Form::open(['action' => ['RentableController@destroy', $rentable], 'method' => 'POST']) !!}

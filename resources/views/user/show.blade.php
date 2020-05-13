@@ -32,6 +32,7 @@
                     {{Form::label('created_at', 'Created at')}}
                     {{Form::date('created_at', $user->created_at, ['class' => 'form-control', 'placeholer' => 'Created at', 'disabled']) }}
                 </div>
+                <a href="javascript:history.back()" class="btn btn-primary">Back</a>
             </div>
             {!! Form::close() !!}
         </div>

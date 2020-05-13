@@ -5,6 +5,9 @@
     <div class="row">
         <div class="col-lg-6">
             <h1>Place details</h1>
+            <div class="Only-show-on-small-screen">
+                @include('lease.currentleases',$rentable)
+            </div>
             {!! Form::model($rentable) !!}
             @if (Auth::user()->role==="admin")
             <div class="form-group">
@@ -56,11 +59,9 @@
                 {{Form::textarea('description', $rentable->description, ['class' => 'form-control', 'placeholer' => 'Description', 'readonly']) }}
             </div>
             @if ($rentable->user_id !== Auth::id() || Auth::user()->role==="admin")
-            <a href="{{ url('/createlease/' . $rentable->id ) }}" class="btn btn-sm btn-primary">Rent</a>
-            <a href="/rentables" class="btn btn-sm btn-primary">Back</a>
-            @else
-            <a href="/rent" class="btn btn-sm btn-primary">Back</a>
+            <a href="{{ url('/createlease/' . $rentable->id ) }}" class="btn btn-primary">Rent</a>
             @endif
+            <a href="javascript:history.back()" class="btn btn-primary">Back</a>
             {!! Form::close() !!}
             @if ($rentable->user_id === Auth::id() && count($rentable->leases) === 0)
             <div class="parkit-delete-button">
@@ -72,9 +73,9 @@
             @endif
             <br>
         </div>
-        <div class="col-sm-2">
+        <div class="col-sm-2" id="Hide-width-991">
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-4" id="Hide-width-991">
             <div class="col-xl mt-4">
                 @include('lease.currentleases',$rentable)
             </div>
