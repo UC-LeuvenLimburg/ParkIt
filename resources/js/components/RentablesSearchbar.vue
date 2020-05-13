@@ -1,5 +1,3 @@
-// address, postcode, date(day),
-
 <template>
     <div class="searchbar">
         <div class="form-row">
