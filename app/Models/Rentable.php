@@ -4,17 +4,25 @@ namespace App\Models;
 
 use App\Filters\RentableFilter;
 use eloquentFilter\QueryFilter\ModelFilters\Filterable;
+use Fico7489\Laravel\EloquentJoin\Traits\EloquentJoin;
 use Iatstuti\Database\Support\CascadeSoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Rentable extends Model
 {
-    use SoftDeletes, CascadeSoftDeletes, Filterable, RentableFilter;
+    use SoftDeletes, CascadeSoftDeletes, Filterable, RentableFilter, EloquentJoin;
 
     protected $cascadeDeletes = ['leases'];
 
     public $timestamps = false;
+
+    /**
+     * The attribute that masks our joined tables
+     *
+     * @var bool
+     */
+    protected $useTableAlias = True;
 
     /**
      * The attributes that can be filterd

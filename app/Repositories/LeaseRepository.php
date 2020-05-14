@@ -26,7 +26,7 @@ class LeaseRepository implements ILeaseRepository
      */
     public function getLeases($query)
     {
-        return Lease::filter($query)->with('rentable')->orderBy('id', 'asc')->paginate(15);
+        return Lease::filter($query)->orderByJoin('rentable.date_of_hire', 'asc')->with('rentable')->paginate(15);
     }
 
     /**
@@ -49,7 +49,7 @@ class LeaseRepository implements ILeaseRepository
      */
     public function getUserLeases(int $user_id, $query)
     {
-        return lease::filter($query)->where('user_id', $user_id)->paginate(15);
+        return lease::filter($query)->whereJoin('user_id', "=", $user_id)->orderByJoin('rentable.date_of_hire', 'asc')->paginate(15);
     }
 
     /**
