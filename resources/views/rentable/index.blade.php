@@ -19,6 +19,9 @@
     @if(Request::path() === "rentables")
     <a href="{{ route('rentables.create') }}" class="btn btn-sm btn-primary">Add New</a>
     @endif
+
+    <rentables-searchbar></rentables-searchbar>
+
     @if (count($rentables) > 0)
     <h3>Current Places</h3>
     <table class="table table-dark table-hover mt-4">
