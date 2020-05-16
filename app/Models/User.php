@@ -9,14 +9,22 @@ use Illuminate\Notifications\Notifiable;
 use Iatstuti\Database\Support\CascadeSoftDeletes;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use eloquentFilter\QueryFilter\ModelFilters\Filterable;
+use Fico7489\Laravel\EloquentJoin\Traits\EloquentJoin;
 
 class User extends Authenticatable
 {
-    use SoftDeletes, CascadeSoftDeletes, Filterable, UserFilter;
+    use SoftDeletes, CascadeSoftDeletes, Filterable, UserFilter, EloquentJoin;
 
     protected $cascadeDeletes = ['rentables', 'leases'];
 
     use Notifiable;
+
+    /**
+     * The attribute that masks our joined tables
+     *
+     * @var bool
+     */
+    protected $useTableAlias = True;
 
     /**
      * The attributes that can be filterd

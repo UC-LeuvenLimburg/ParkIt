@@ -4,12 +4,20 @@ namespace App\Models;
 
 use App\Filters\LeaseFilter;
 use eloquentFilter\QueryFilter\ModelFilters\Filterable;
+use Fico7489\Laravel\EloquentJoin\Traits\EloquentJoin;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Lease extends Model
 {
-    use SoftDeletes, Filterable, LeaseFilter;
+    use SoftDeletes, Filterable, LeaseFilter, EloquentJoin;
+
+    /**
+     * The attribute that masks our joined tables
+     *
+     * @var bool
+     */
+    protected $useTableAlias = True;
 
     /**
      * The attributes that can be filterd
