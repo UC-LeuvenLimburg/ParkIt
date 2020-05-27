@@ -58,7 +58,7 @@
                 {{Form::label('description', 'Description')}}
                 {{Form::textarea('description', $rentable->description, ['class' => 'form-control', 'placeholer' => 'Description', 'readonly']) }}
             </div>
-            @if ($rentable->user_id !== Auth::id() || Auth::user()->role==="admin")
+            @if ($rentable->user_id !== Auth::id())
             <a href="{{ url('/createlease/' . $rentable->id ) }}" class="btn btn-primary">Rent</a>
             @endif
             <a href="javascript:history.back()" class="btn btn-primary">Back</a>
